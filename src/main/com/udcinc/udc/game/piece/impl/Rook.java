@@ -5,10 +5,8 @@ import main.com.udcinc.udc.game.piece.Piece;
 
 public class Rook extends Piece {
     public Rook(Tile tile) {
+    	super(tile);
         this.name = "Rook";
-        this.isAlive = true;
-        this.position = tile.getPosition();
-        this.tile = tile;
         tile.setPiece(this);
     }
 }

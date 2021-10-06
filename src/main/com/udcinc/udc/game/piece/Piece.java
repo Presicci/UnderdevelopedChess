@@ -19,6 +19,12 @@ public abstract class Piece {
     protected Tile tile;
     protected String owner;   // TODO probably make owner obj
 
+    public Piece(Tile tile) {
+        this.isAlive = true;
+        this.position = tile.getPosition();
+        this.tile = tile;
+    }
+    
     //  Methods
     protected void doKill() {
         this.isAlive = false;
