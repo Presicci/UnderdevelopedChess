@@ -5,10 +5,8 @@ import main.com.udcinc.udc.game.board.Board;
 public class GameState {
 	private Board board;
 	
-	public void init() {
-        board = new Board();
-        board.init(GameSettings.getSize());
-        GameStatics.setGameState(null);
+	public GameState() {
+        board = new Board(GameSettings.getSize());
     }
 
     public Board getBoard() {

@@ -6,7 +6,7 @@ package main.com.udcinc.udc.game.board;
 public class Board {
     private Tile[][] tiles;
 
-    public void init(int size) {
+    public Board(int size) {
         tiles = new Tile[size][size];
     }
 
