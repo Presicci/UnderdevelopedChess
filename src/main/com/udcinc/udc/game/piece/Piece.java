@@ -35,7 +35,7 @@ public abstract class Piece {
         return false;
     }
 
-    protected List<Tile> getAllValidMoves() {
+    public List<Tile> getAllValidMoves() {
         List<Tile> possibleTiles = new ArrayList<>();
         for (Tile[] row : GameStatics.getGameState().getBoard().getTiles()) {
             for (Tile tile : row) {
