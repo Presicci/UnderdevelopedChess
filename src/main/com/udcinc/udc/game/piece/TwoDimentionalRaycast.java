@@ -49,6 +49,14 @@ public class TwoDimentionalRaycast {
 		return true;
 	}
 	
+	/**
+	 * Diagonal raycast function, computes if a tile is along a diagonal of the piece,
+	 * and not occluded.
+	 * Inefficient for global moveset calculation, use List<Tile> implementation instead.
+	 * @param tile The tile the raycast is being calculated to.
+	 * @param piece The piece the raycast is originating from.
+	 * @return True if not obstructed and pathable, false if not.
+	 */
 	public static boolean diagonalRaycast(Tile tile, Piece piece) {
 		final Tile[][] boardTiles = GameStatics.getGameState().getBoard().getTiles();
 		final int tileX = tile.getPosition().getX();
