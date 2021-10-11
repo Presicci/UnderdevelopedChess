@@ -11,7 +11,6 @@ public class Bishop extends Piece {
 	public Bishop(Tile tile) {
 		super(tile);
 		this.name = "Bishop";
-		tile.setPiece(this);
 	}
 
 	@Override

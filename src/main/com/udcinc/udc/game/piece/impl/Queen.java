@@ -13,7 +13,6 @@ public class Queen extends Piece {
 	public Queen(Tile tile) {
 		super(tile);
 		this.name = "Queen";
-		tile.setPiece(this);
 	}
 	
 	@Override

@@ -23,6 +23,7 @@ public abstract class Piece {
         this.isAlive = true;
         this.position = tile.getPosition();
         this.tile = tile;
+        tile.setPiece(this);
     }
     
     //  Methods

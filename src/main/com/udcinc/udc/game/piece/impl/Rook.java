@@ -8,7 +8,6 @@ public class Rook extends Piece {
     public Rook(Tile tile) {
     	super(tile);
         this.name = "Rook";
-        tile.setPiece(this);
     }
     
     @Override
