@@ -1,5 +1,6 @@
 package main.com.udcinc.udc.game.piece;
 
+import main.com.udcinc.udc.game.GameSettings;
 import main.com.udcinc.udc.game.GameStatics;
 import main.com.udcinc.udc.game.board.Tile;
 
@@ -46,5 +47,68 @@ public class TwoDimentionalRaycast {
 			}
 		}
 		return true;
+	}
+	
+	public static boolean diagonalRaycast(Tile tile, Piece piece) {
+		final Tile[][] boardTiles = GameStatics.getGameState().getBoard().getTiles();
+		final int tileX = tile.getPosition().getX();
+		final int tileY = tile.getPosition().getY();
+		final int pieceX = piece.getPosition().getX();
+		final int pieceY = piece.getPosition().getY();
+		final int boardSize = GameSettings.getSize();
+		boolean topObstruction = false;
+		boolean bottomObstruction = false;
+		if (tileX > pieceX) {
+			for (int x = pieceX; x < boardSize; ++x) {
+				for (int y = 0; y < boardSize; y++) {
+					if (Math.abs(x - pieceX) == Math.abs(y - pieceY)) {
+						if (pieceX == x && pieceY == y) {
+							continue;
+						}
+						if (boardTiles[x][y].hasPiece()) {
+							if (y > pieceY) {
+								topObstruction = true;
+							} else {
+								bottomObstruction = true;
+							}
+						}
+						if (tileX != x || tileY != y) {
+							continue;
+						}
+						if (topObstruction || bottomObstruction) {
+							return false;
+						} else {
+							return true;
+						}
+					}
+				}
+			}
+		} else if (tileX < pieceX) {
+			for (int x = pieceX; x >= 0; --x) {
+				for (int y = 0; y < boardSize; y++) {
+					if (Math.abs(x - pieceX) == Math.abs(y - pieceY)) {
+						if (pieceX == x && pieceY == y) {
+							continue;
+						}
+						if (boardTiles[x][y].hasPiece()) {
+							if (y > pieceY) {
+								topObstruction = true;
+							} else {
+								bottomObstruction = true;
+							}
+						}
+						if (tileX != x || tileY != y) {
+							continue;
+						}
+						if (topObstruction || bottomObstruction) {
+							return false;
+						} else {
+							return true;
+						}
+					}
+				}
+			}
+		}
+		return false;
 	}
 }

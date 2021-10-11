@@ -9,6 +9,7 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import main.com.udcinc.udc.game.board.Tile;
 import main.com.udcinc.udc.game.piece.Piece;
+import main.com.udcinc.udc.game.piece.impl.Bishop;
 import main.com.udcinc.udc.game.piece.impl.Rook;
 
 public class GameSceneBuilder extends Application {
@@ -74,7 +75,7 @@ public class GameSceneBuilder extends Application {
 
         //  Test objects
         Rook rook = new Rook(GameStatics.getGameState().getBoard().getTiles()[1][1]);
-        Rook rook1 = new Rook(GameStatics.getGameState().getBoard().getTiles()[1][4]);
+        Bishop bishop = new Bishop(GameStatics.getGameState().getBoard().getTiles()[1][4]);
 
         primaryStage.setTitle("test");
         primaryStage.setScene(new Scene(root, 800, 800));
