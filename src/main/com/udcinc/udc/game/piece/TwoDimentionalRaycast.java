@@ -1,5 +1,8 @@
 package main.com.udcinc.udc.game.piece;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import main.com.udcinc.udc.game.GameSettings;
 import main.com.udcinc.udc.game.GameStatics;
 import main.com.udcinc.udc.game.board.Tile;
@@ -48,12 +51,13 @@ public class TwoDimentionalRaycast {
 		}
 		return true;
 	}
-	
+
 	/**
-	 * Diagonal raycast function, computes if a tile is along a diagonal of the piece,
-	 * and not occluded.
-	 * Inefficient for global moveset calculation, use List<Tile> implementation instead.
-	 * @param tile The tile the raycast is being calculated to.
+	 * Diagonal raycast function, computes if a tile is along a diagonal of the
+	 * piece, and not occluded. Inefficient for global moveset calculation, use
+	 * List<Tile> implementation, diagonalRaycastList().
+	 * 
+	 * @param tile  The tile the raycast is being calculated to.
 	 * @param piece The piece the raycast is originating from.
 	 * @return True if not obstructed and pathable, false if not.
 	 */
@@ -74,7 +78,8 @@ public class TwoDimentionalRaycast {
 							continue;
 						}
 						if (boardTiles[x][y].hasPiece()) {
-							if ((tileX == x && tileY == y) && (!(y > pieceY && topObstruction) && !(y < pieceY && bottomObstruction))) {
+							if ((tileX == x && tileY == y)
+									&& (!(y > pieceY && topObstruction) && !(y < pieceY && bottomObstruction))) {
 								return true;
 							}
 							if (y > pieceY) {
@@ -102,7 +107,8 @@ public class TwoDimentionalRaycast {
 							continue;
 						}
 						if (boardTiles[x][y].hasPiece()) {
-							if ((tileX == x && tileY == y) && (!(y > pieceY && topObstruction) && !(y < pieceY && bottomObstruction))) {
+							if ((tileX == x && tileY == y)
+									&& (!(y > pieceY && topObstruction) && !(y < pieceY && bottomObstruction))) {
 								return true;
 							}
 							if (y > pieceY) {
@@ -124,5 +130,66 @@ public class TwoDimentionalRaycast {
 			}
 		}
 		return false;
+	}
+
+	public static List<Tile> diagonalRaycastList(Piece piece) {
+		final Tile[][] boardTiles = GameStatics.getGameState().getBoard().getTiles();
+		final int pieceX = piece.getPosition().getX();
+		final int pieceY = piece.getPosition().getY();
+		final int boardSize = GameSettings.getSize();
+		boolean topObstruction = false;
+		boolean bottomObstruction = false;
+		List<Tile> validTiles = new ArrayList<>();
+		for (int x = pieceX; x < boardSize; ++x) {
+			for (int y = 0; y < boardSize; y++) {
+				if (Math.abs(x - pieceX) == Math.abs(y - pieceY)) {
+					if (pieceX == x && pieceY == y) {
+						continue;
+					}
+					if (boardTiles[x][y].hasPiece()) {
+						if ((!(y > pieceY && topObstruction) && !(y < pieceY && bottomObstruction))) {
+							validTiles.add(boardTiles[x][y]);
+						}
+						if (y > pieceY) {
+							topObstruction = true;
+						} else {
+							bottomObstruction = true;
+						}
+					}
+					if ((y > pieceY && topObstruction) || (y < pieceY && bottomObstruction)) {
+						continue;
+					} else {
+						validTiles.add(boardTiles[x][y]);
+					}
+				}
+			}
+		}
+		topObstruction = false;
+		bottomObstruction = false;
+		for (int x = pieceX; x >= 0; --x) {
+			for (int y = 0; y < boardSize; y++) {
+				if (Math.abs(x - pieceX) == Math.abs(y - pieceY)) {
+					if (pieceX == x && pieceY == y) {
+						continue;
+					}
+					if (boardTiles[x][y].hasPiece()) {
+						if ((!(y > pieceY && topObstruction) && !(y < pieceY && bottomObstruction))) {
+							validTiles.add(boardTiles[x][y]);
+						}
+						if (y > pieceY) {
+							topObstruction = true;
+						} else {
+							bottomObstruction = true;
+						}
+					}
+					if ((y > pieceY && topObstruction) || (y < pieceY && bottomObstruction)) {
+						continue;
+					} else {
+						validTiles.add(boardTiles[x][y]);
+					}
+				}
+			}
+		}
+		return validTiles;
 	}
 }
