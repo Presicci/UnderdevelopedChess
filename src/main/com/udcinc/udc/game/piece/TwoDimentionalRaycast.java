@@ -74,6 +74,9 @@ public class TwoDimentionalRaycast {
 							continue;
 						}
 						if (boardTiles[x][y].hasPiece()) {
+							if ((tileX == x && tileY == y) && (!(y > pieceY && topObstruction) && !(y < pieceY && bottomObstruction))) {
+								return true;
+							}
 							if (y > pieceY) {
 								topObstruction = true;
 							} else {
@@ -99,6 +102,9 @@ public class TwoDimentionalRaycast {
 							continue;
 						}
 						if (boardTiles[x][y].hasPiece()) {
+							if ((tileX == x && tileY == y) && (!(y > pieceY && topObstruction) && !(y < pieceY && bottomObstruction))) {
+								return true;
+							}
 							if (y > pieceY) {
 								topObstruction = true;
 							} else {
