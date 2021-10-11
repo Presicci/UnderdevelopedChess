@@ -7,7 +7,7 @@ public class Knight extends Piece {
 
 	public Knight(Tile tile) {
 		super(tile);
-		// TODO Auto-generated constructor stub
+		this.name = "Knight";
 	}
 
 }

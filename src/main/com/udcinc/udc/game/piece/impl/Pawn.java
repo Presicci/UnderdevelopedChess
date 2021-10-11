@@ -7,7 +7,7 @@ public class Pawn extends Piece {
 
 	public Pawn(Tile tile) {
 		super(tile);
-		// TODO Auto-generated constructor stub
+		this.name = "Pawn";
 	}
 
 }
