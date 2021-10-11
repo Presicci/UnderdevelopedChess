@@ -83,7 +83,7 @@ public class TwoDimentionalRaycast {
 						if (tileX != x || tileY != y) {
 							continue;
 						}
-						if (topObstruction || bottomObstruction) {
+						if ((y > pieceY && topObstruction) || (y < pieceY && bottomObstruction)) {
 							return false;
 						} else {
 							return true;
@@ -108,7 +108,7 @@ public class TwoDimentionalRaycast {
 						if (tileX != x || tileY != y) {
 							continue;
 						}
-						if (topObstruction || bottomObstruction) {
+						if ((y > pieceY && topObstruction) || (y < pieceY && bottomObstruction)) {
 							return false;
 						} else {
 							return true;
