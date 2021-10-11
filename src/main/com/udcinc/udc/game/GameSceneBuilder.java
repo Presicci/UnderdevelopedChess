@@ -47,6 +47,7 @@ public class GameSceneBuilder extends Application {
                 int finalRow = row;
                 int finalColumn = column;
                 tile.setOnMouseClicked(event -> {
+                	resetBoardColors(root);
                     Tile boardTile = GameStatics.getGameState().getBoard().getTiles()[finalRow][finalColumn];
                     System.out.println("Clicked: " + finalRow + ", " + finalColumn);
                     Piece piece = boardTile.getPiece();
@@ -78,6 +79,16 @@ public class GameSceneBuilder extends Application {
         primaryStage.setTitle("test");
         primaryStage.setScene(new Scene(root, 800, 800));
         primaryStage.show();
+	}
+	
+	private void resetBoardColors(GridPane root) {
+		for (Node node : root.getChildren()) {
+			if ((GridPane.getRowIndex(node) + GridPane.getColumnIndex(node)) % 2 == 0) {
+				node.setStyle("-fx-background-color: white");
+			} else {
+				node.setStyle("-fx-background-color: black");
+			}
+        }
 	}
 	
 	public static void main(String[] args) {
