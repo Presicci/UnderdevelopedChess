@@ -4,6 +4,7 @@ import javafx.scene.image.Image;
 import main.com.udcinc.udc.game.GameStatics;
 import main.com.udcinc.udc.game.board.Position;
 import main.com.udcinc.udc.game.board.Tile;
+import main.com.udcinc.udc.game.player.Player;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,10 +18,11 @@ public abstract class Piece {
     protected boolean isAlive;
     protected Position position;
     protected Tile tile;
-    protected String owner;   // TODO probably make owner obj
+    protected Player owner;
 
-    public Piece(Tile tile) {
-        this.isAlive = true;
+    public Piece(Player player, Tile tile) {
+        this.owner = player;
+    	this.isAlive = true;
         this.position = tile.getPosition();
         this.tile = tile;
         tile.setPiece(this);
@@ -68,7 +70,7 @@ public abstract class Piece {
         return tile;
     }
 
-    public String getOwner() {
+    public Player getOwner() {
         return owner;
     }
 }

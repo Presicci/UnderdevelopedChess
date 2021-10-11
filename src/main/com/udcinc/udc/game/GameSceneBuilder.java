@@ -10,7 +10,9 @@ import javafx.stage.Stage;
 import main.com.udcinc.udc.game.board.Tile;
 import main.com.udcinc.udc.game.piece.Piece;
 import main.com.udcinc.udc.game.piece.impl.Bishop;
+import main.com.udcinc.udc.game.piece.impl.Queen;
 import main.com.udcinc.udc.game.piece.impl.Rook;
+import main.com.udcinc.udc.game.player.Player;
 
 public class GameSceneBuilder extends Application {
 
@@ -73,9 +75,13 @@ public class GameSceneBuilder extends Application {
             }
         }
 
+        // Test player
+        Player player = new Player("TestPlayer");
+        
         //  Test objects
-        Rook rook = new Rook(GameStatics.getGameState().getBoard().getTiles()[1][1]);
-        Bishop bishop = new Bishop(GameStatics.getGameState().getBoard().getTiles()[1][4]);
+        Rook rook = new Rook(player, GameStatics.getGameState().getBoard().getTiles()[1][1]);
+        Bishop bishop = new Bishop(player, GameStatics.getGameState().getBoard().getTiles()[1][4]);
+        Queen queen = new Queen(player, GameStatics.getGameState().getBoard().getTiles()[3][2]);
 
         primaryStage.setTitle("test");
         primaryStage.setScene(new Scene(root, 800, 800));

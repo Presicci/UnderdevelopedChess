@@ -7,11 +7,12 @@ import main.com.udcinc.udc.game.GameStatics;
 import main.com.udcinc.udc.game.board.Tile;
 import main.com.udcinc.udc.game.piece.Piece;
 import main.com.udcinc.udc.game.piece.TwoDimentionalRaycast;
+import main.com.udcinc.udc.game.player.Player;
 
 public class Queen extends Piece {
 
-	public Queen(Tile tile) {
-		super(tile);
+	public Queen(Player player, Tile tile) {
+		super(player, tile);
 		this.name = "Queen";
 	}
 	
