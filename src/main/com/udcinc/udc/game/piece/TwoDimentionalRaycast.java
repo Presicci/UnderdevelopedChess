@@ -14,8 +14,9 @@ public class TwoDimentionalRaycast {
 		final int tileY = tile.getPosition().getY();
 		final int pieceX = piece.getPosition().getX();
 		final int pieceY = piece.getPosition().getY();
-		// if (tile.getPiece().getOwner()) TODO return false if tile contains FRIENDLY
-		// piece
+		if (tile.getPiece() != null && tile.getPiece().getOwner() == piece.getOwner()) {
+			return false;
+		}
 		if (tileX == pieceX) { // Scan column
 			if (tileY > pieceY) { // Scan down
 				// Scan from piece to destination tile for obstructions
@@ -146,8 +147,10 @@ public class TwoDimentionalRaycast {
 					if (pieceX == x && pieceY == y) {
 						continue;
 					}
-					if (boardTiles[x][y].hasPiece()) {
-						if ((!(y > pieceY && topObstruction) && !(y < pieceY && bottomObstruction))) {
+					Piece tilePiece = boardTiles[x][y].getPiece();
+					if (tilePiece != null) {
+						if ((!(y > pieceY && topObstruction) && !(y < pieceY && bottomObstruction)) 
+								&& tilePiece.getOwner() != piece.getOwner()) {
 							validTiles.add(boardTiles[x][y]);
 						}
 						if (y > pieceY) {
@@ -172,8 +175,9 @@ public class TwoDimentionalRaycast {
 					if (pieceX == x && pieceY == y) {
 						continue;
 					}
-					if (boardTiles[x][y].hasPiece()) {
-						if ((!(y > pieceY && topObstruction) && !(y < pieceY && bottomObstruction))) {
+					Piece tilePiece = boardTiles[x][y].getPiece();
+					if (tilePiece != null) {
+						if ((!(y > pieceY && topObstruction) && !(y < pieceY && bottomObstruction)) && tilePiece.getOwner() != piece.getOwner()) {
 							validTiles.add(boardTiles[x][y]);
 						}
 						if (y > pieceY) {
