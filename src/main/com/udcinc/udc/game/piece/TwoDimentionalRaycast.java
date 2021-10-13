@@ -7,7 +7,23 @@ import main.com.udcinc.udc.game.GameSettings;
 import main.com.udcinc.udc.game.GameStatics;
 import main.com.udcinc.udc.game.board.Tile;
 
+/**
+ * TwoDimentionalRaycast.java
+ * Contains the raycast functions used to determine which tiles on the board
+ * the piece can move.  Raycasts terminate when met with a friendly peice,
+ * or after being met with an enemy piece.
+ * 
+ * @author Thomas Presicci
+ */
 public class TwoDimentionalRaycast {
+	/**
+	 * Performs a search on the x and y coordinate of the piece to check
+	 * if the tile is a valid move location.
+	 * @param tile The tile on the board being checked.
+	 * @param piece The piece being moved.
+	 * @return True if the tile is valid, false if the tile is not in line with 
+	 * the piece or if there is an obstruction in the way
+	 */
 	public static boolean straightRaycast(final Tile tile, final Piece piece) {
 		final Tile[][] boardTiles = GameStatics.getGameState().getBoard().getTiles();
 		final int tileX = tile.getPosition().getX();
@@ -132,7 +148,12 @@ public class TwoDimentionalRaycast {
 		}
 		return false;
 	}
-
+	
+	/**
+	 * Diagonal raycast function, returns a list of all possible diagonal move locations.
+	 * @param piece The piece that the moves are being calculated for
+	 * @return A List<Tile> of valid move locations
+	 */
 	public static List<Tile> diagonalRaycastList(Piece piece) {
 		final Tile[][] boardTiles = GameStatics.getGameState().getBoard().getTiles();
 		final int pieceX = piece.getPosition().getX();
@@ -141,24 +162,34 @@ public class TwoDimentionalRaycast {
 		boolean topObstruction = false;
 		boolean bottomObstruction = false;
 		List<Tile> validTiles = new ArrayList<>();
+		// Scans right along x, originating from the piece
 		for (int x = pieceX; x < boardSize; ++x) {
+			// Scans down along y, originating from 0
 			for (int y = 0; y < boardSize; y++) {
+				// If tile is on a diagonal of the piece
 				if (Math.abs(x - pieceX) == Math.abs(y - pieceY)) {
+					// Avoid matching the piece itself
 					if (pieceX == x && pieceY == y) {
 						continue;
 					}
 					Piece tilePiece = boardTiles[x][y].getPiece();
+					// If a piece is present on the tile
 					if (tilePiece != null) {
+						// If tile is not obstructed, and the tile piece 
+						// doesn't belong to the owner of the moving piece,
+						// it is a valid tile
 						if ((!(y > pieceY && topObstruction) && !(y < pieceY && bottomObstruction)) 
 								&& tilePiece.getOwner() != piece.getOwner()) {
 							validTiles.add(boardTiles[x][y]);
 						}
+						// Obstruction registration
 						if (y > pieceY) {
 							topObstruction = true;
 						} else {
 							bottomObstruction = true;
 						}
 					}
+					// If both diagonals are obstructed, go next
 					if ((y > pieceY && topObstruction) || (y < pieceY && bottomObstruction)) {
 						continue;
 					} else {
@@ -169,23 +200,33 @@ public class TwoDimentionalRaycast {
 		}
 		topObstruction = false;
 		bottomObstruction = false;
+		// Scans left along x, originating from the piece
 		for (int x = pieceX; x >= 0; --x) {
+			// Scans down along y, originating from 0
 			for (int y = 0; y < boardSize; y++) {
+				// If tile is on a diagonal of the piece
 				if (Math.abs(x - pieceX) == Math.abs(y - pieceY)) {
+					// Avoid matching the piece itself
 					if (pieceX == x && pieceY == y) {
 						continue;
 					}
 					Piece tilePiece = boardTiles[x][y].getPiece();
+					// If a piece is present on the tile
 					if (tilePiece != null) {
+						// If tile is not obstructed, and the tile piece 
+						// doesn't belong to the owner of the moving piece,
+						// it is a valid tile
 						if ((!(y > pieceY && topObstruction) && !(y < pieceY && bottomObstruction)) && tilePiece.getOwner() != piece.getOwner()) {
 							validTiles.add(boardTiles[x][y]);
 						}
+						// Obstruction registration
 						if (y > pieceY) {
 							topObstruction = true;
 						} else {
 							bottomObstruction = true;
 						}
 					}
+					// If both diagonals are obstructed, go next
 					if ((y > pieceY && topObstruction) || (y < pieceY && bottomObstruction)) {
 						continue;
 					} else {
@@ -196,4 +237,5 @@ public class TwoDimentionalRaycast {
 		}
 		return validTiles;
 	}
+	
 }
