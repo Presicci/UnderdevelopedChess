@@ -5,6 +5,8 @@ import main.com.udcinc.udc.game.piece.Piece;
 /**
  * Tile object which represents a single tile on the board.
  * Held in the Board container.
+ * 
+ * @author Thomas Presicci
  */
 public class Tile {
     private final Position position;

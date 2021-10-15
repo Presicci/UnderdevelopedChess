@@ -9,6 +9,11 @@ import main.com.udcinc.udc.game.piece.Piece;
 import main.com.udcinc.udc.game.piece.TwoDimentionalRaycast;
 import main.com.udcinc.udc.game.player.Player;
 
+/**
+ * Queen piece, can move diagonally, horizontally and vertically in all directions.
+ * 
+ * @author Thomas Presicci
+ */
 public class Queen extends Piece {
 
 	public Queen(Player player, Tile tile, GameState gs) {
@@ -25,6 +30,9 @@ public class Queen extends Piece {
     	}
     }
 	
+	/**
+	 * Overrides to calculate moves both in straight lines AND diagonally
+	 */
 	@Override
 	public List<Tile> getAllValidMoves() {
 		List<Tile> possibleTiles = new ArrayList<>();

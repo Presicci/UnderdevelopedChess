@@ -5,7 +5,11 @@ import main.com.udcinc.udc.game.board.Tile;
 import main.com.udcinc.udc.game.piece.Piece;
 import main.com.udcinc.udc.game.piece.TwoDimentionalRaycast;
 import main.com.udcinc.udc.game.player.Player;
-
+/**
+ * Rook piece, can move horizontally and vertically in all directions.
+ * 
+ * @author Thomas Presicci
+ */
 public class Rook extends Piece {
     public Rook(Player player, Tile tile, GameState gs) {
     	super(player, tile, gs);

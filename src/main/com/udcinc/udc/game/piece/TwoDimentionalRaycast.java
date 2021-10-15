@@ -8,7 +8,6 @@ import main.com.udcinc.udc.game.GameState;
 import main.com.udcinc.udc.game.board.Tile;
 
 /**
- * TwoDimentionalRaycast.java
  * Contains the raycast functions used to determine which tiles on the board
  * the piece can move.  Raycasts terminate when met with a friendly peice,
  * or after being met with an enemy piece.

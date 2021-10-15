@@ -1,5 +1,10 @@
 package main.com.udcinc.udc.game.board;
 
+/**
+ * Simple coordinate representation of a tile on the board.
+ * 
+ * @author Thomas Presicci
+ */
 public class Position {
     private final int x, y;
 

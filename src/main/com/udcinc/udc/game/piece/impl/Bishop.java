@@ -8,8 +8,13 @@ import main.com.udcinc.udc.game.piece.Piece;
 import main.com.udcinc.udc.game.piece.TwoDimentionalRaycast;
 import main.com.udcinc.udc.game.player.Player;
 
+/**
+ * Bishop piece, can move diagonally in all directions.
+ * 
+ * @author Thomas Presicci
+ */
 public class Bishop extends Piece {
-
+	
 	public Bishop(Player player, Tile tile, GameState gs) {
     	super(player, tile, gs);
 		this.name = "Bishop";

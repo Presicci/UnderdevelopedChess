@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Piece.java
  * Object template for the various chess pieces.
  * 
  * @author Thomas Presicci

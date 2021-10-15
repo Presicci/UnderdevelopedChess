@@ -15,6 +15,13 @@ import main.com.udcinc.udc.game.piece.impl.Queen;
 import main.com.udcinc.udc.game.piece.impl.Rook;
 import main.com.udcinc.udc.game.player.Player;
 
+/**
+ * Builder for the game scene
+ * Creates a dynamically sized board based on the size specified in the game settings
+ * Lots of test lines in here atm
+ * 
+ * @author Thomas Presicci
+ */
 public class GameSceneBuilder extends Application {
 
 	@Override
@@ -41,6 +48,8 @@ public class GameSceneBuilder extends Application {
         for (int row = 0; row < GameSettings.getSize(); row++) {
             for (int column = 0; column < GameSettings.getSize(); column++) {
                 StackPane tile = new StackPane();
+                
+                // Generates the tile pattern
                 String tileColor;
                 if ((row + column) % 2 == 0) {
                     tileColor = "white";
@@ -48,8 +57,12 @@ public class GameSceneBuilder extends Application {
                     tileColor = "black";
                 }
                 tile.setStyle("-fx-background-color: " + tileColor);
+                
+                // Finals used for event registration lambdas
                 int finalRow = row;
                 int finalColumn = column;
+                
+                //	Registers clicking on a tile, eventually to be replaced with clicking on a piece on a tile
                 tile.setOnMouseClicked(event -> {
                 	resetBoardColors(root);
                     Tile boardTile = gs.getBoard().getTiles()[finalRow][finalColumn];
@@ -61,13 +74,15 @@ public class GameSceneBuilder extends Application {
                             for (Node node : root.getChildren()) {
                                 if (GridPane.getRowIndex(node) == t.getPosition().getY()
                                         && GridPane.getColumnIndex(node) == t.getPosition().getX()) {
-                                    node.setStyle("-fx-background-color: orange");
+                                    node.setStyle("-fx-background-color: orange");	// temp color assignments for testing
                                 }
                             }
                         }
                     }
-                    tile.setStyle("-fx-background-color: yellow");
+                    tile.setStyle("-fx-background-color: yellow");	// temp color assignments for testing
                 });
+                
+                // Add the tile to the gridpane
                 root.add(tile, row, column);
 
                 //  Game manager assignments
@@ -85,11 +100,17 @@ public class GameSceneBuilder extends Application {
         Bishop bishop = new Bishop(player, gs.getBoard().getTiles()[1][4], gs);
         Queen queen = new Queen(player2, gs.getBoard().getTiles()[3][2], gs);
 
+        // Setup the window
         primaryStage.setTitle("test");
         primaryStage.setScene(new Scene(root, 800, 800));
         primaryStage.show();
 	}
 	
+	/**
+	 * Resets the colors of the board tiles back to their native colors.
+	 * 
+	 * @param root The GridPane containing the board tiles.
+	 */
 	private void resetBoardColors(GridPane root) {
 		for (Node node : root.getChildren()) {
 			if ((GridPane.getRowIndex(node) + GridPane.getColumnIndex(node)) % 2 == 0) {
