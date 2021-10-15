@@ -2,6 +2,7 @@ package main.com.udcinc.udc.game;
 
 import main.com.udcinc.udc.game.board.Board;
 import main.com.udcinc.udc.game.piece.Piece;
+import main.com.udcinc.udc.game.scene.GameSceneController;
 
 /**
  * Holds all information regarding the game state.

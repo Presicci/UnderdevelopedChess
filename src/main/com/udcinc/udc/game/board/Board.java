@@ -1,7 +1,7 @@
 package main.com.udcinc.udc.game.board;
 
-import main.com.udcinc.udc.game.GameSceneController;
 import main.com.udcinc.udc.game.piece.Piece;
+import main.com.udcinc.udc.game.scene.GameSceneController;
 
 /**
  * Container which holds a collection of Tiles.

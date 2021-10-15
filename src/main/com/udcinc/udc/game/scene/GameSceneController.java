@@ -1,4 +1,4 @@
-package main.com.udcinc.udc.game;
+package main.com.udcinc.udc.game.scene;
 
 import javafx.scene.Node;
 import javafx.scene.effect.ColorAdjust;

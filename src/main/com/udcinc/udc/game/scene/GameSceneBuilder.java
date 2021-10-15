@@ -1,4 +1,4 @@
-package main.com.udcinc.udc.game;
+package main.com.udcinc.udc.game.scene;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -12,6 +12,8 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import main.com.udcinc.udc.game.GameSettings;
+import main.com.udcinc.udc.game.GameState;
 import main.com.udcinc.udc.game.board.Position;
 import main.com.udcinc.udc.game.board.Tile;
 import main.com.udcinc.udc.game.piece.Piece;
