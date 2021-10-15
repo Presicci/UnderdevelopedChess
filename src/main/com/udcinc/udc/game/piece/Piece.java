@@ -9,17 +9,24 @@ import main.com.udcinc.udc.game.player.Player;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Piece.java
+ * Object template for the various chess pieces.
+ * 
+ * @author Thomas Presicci
+ */
 public abstract class Piece {
-    //  Default constructed finals based on piece constructor
+    //  Identity related variables assigned in subclass constructors
     protected String name;
     protected Image image;
 
-    //  Dynamically assigned vars
+    //  State based variables
     protected boolean isAlive;
     protected Position position;
     protected Tile tile;
     protected Player owner;
 
+    //	Constructor
     public Piece(Player player, Tile tile) {
         this.owner = player;
     	this.isAlive = true;
@@ -28,7 +35,10 @@ public abstract class Piece {
         tile.setPiece(this);
     }
     
-    //  Methods
+    /**
+     * When a piece is taken, remove its alive status and sets its 
+     * position out of play.
+     */
     protected void doKill() {
         this.isAlive = false;
         this.position = new Position(-1, -1);
@@ -38,6 +48,12 @@ public abstract class Piece {
         return false;
     }
 
+    /**
+     * Default method used to iterate over all tiles on the board,
+     * determining if those are valid moves for this piece.
+     * 
+     * @return A list containing all posssible moves for the piece
+     */
     public List<Tile> getAllValidMoves() {
         List<Tile> possibleTiles = new ArrayList<>();
         for (Tile[] row : GameStatics.getGameState().getBoard().getTiles()) {
@@ -50,6 +66,7 @@ public abstract class Piece {
         return possibleTiles;
     }
 
+    //	Getters/Setters
     public String getName() {
         return name;
     }
