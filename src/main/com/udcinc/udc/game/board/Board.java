@@ -1,5 +1,8 @@
 package main.com.udcinc.udc.game.board;
 
+import main.com.udcinc.udc.game.GameSceneController;
+import main.com.udcinc.udc.game.piece.Piece;
+
 /**
  * Container which holds a collection of Tiles.
  * Layout of the board in terms of coordinates:
@@ -13,10 +16,27 @@ package main.com.udcinc.udc.game.board;
  */
 public class Board {
     private Tile[][] tiles;
-
-    public Board(int size) {
+    private GameSceneController controller;
+    
+    public Board(int size, GameSceneController controller) {
         tiles = new Tile[size][size];
+        this.controller = controller;
     }
+	
+	/**
+	 * Adds a piece to the board visually
+	 * 
+	 * @param piece
+	 */
+	public void addPiece(Piece piece) {
+		controller.assignPieceToBoard(piece);
+	}
+	
+	public void movePiece(Piece piece, Position nextPos) {
+		controller.removePieceFromBoard(piece);
+		piece.move(nextPos);
+		controller.assignPieceToBoard(piece);
+	}
 
     public void assignTile(Tile tile, int x, int y) {
         tiles[x][y] = tile;

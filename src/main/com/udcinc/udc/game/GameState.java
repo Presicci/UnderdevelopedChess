@@ -14,18 +14,9 @@ public class GameState {
 	private GameSceneController controller;
 	
 	public GameState(GameSceneController controller) {
-        this.board = new Board(GameSettings.getSize());
+        this.board = new Board(GameSettings.getSize(), controller);
         this.controller = controller;
     }
-	
-	/**
-	 * Adds a piece to the board visually
-	 * 
-	 * @param piece
-	 */
-	public void addPiece(Piece piece) {
-		controller.assignPieceToBoard(piece);
-	}
 
     public Board getBoard() {
         return board;

@@ -114,9 +114,9 @@ public class GameSceneBuilder extends Application {
         Player player2 = new Player("TestPlayer2");
         
         //  Test objects
-        gs.addPiece(new Rook(player, gs.getBoard().getTiles()[1][1], gs));
-        gs.addPiece(new Bishop(player, gs.getBoard().getTiles()[1][4], gs));
-        gs.addPiece(new Queen(player2, gs.getBoard().getTiles()[3][2], gs));
+        gs.getBoard().addPiece(new Rook(player, gs.getBoard().getTiles()[1][1], gs));
+        gs.getBoard().addPiece(new Bishop(player, gs.getBoard().getTiles()[1][4], gs));
+        gs.getBoard().addPiece(new Queen(player2, gs.getBoard().getTiles()[3][2], gs));
 
         // Setup the window
         primaryStage.setTitle("test");
