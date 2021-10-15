@@ -2,6 +2,7 @@ package main.com.udcinc.udc.game.piece.impl;
 
 import java.util.List;
 
+import javafx.scene.image.Image;
 import main.com.udcinc.udc.game.GameState;
 import main.com.udcinc.udc.game.board.Tile;
 import main.com.udcinc.udc.game.piece.Piece;
@@ -18,6 +19,7 @@ public class Bishop extends Piece {
 	public Bishop(Player player, Tile tile, GameState gs) {
     	super(player, tile, gs);
 		this.name = "Bishop";
+		this.image = new Image("./rook.png");
 	}
 
 	@Override

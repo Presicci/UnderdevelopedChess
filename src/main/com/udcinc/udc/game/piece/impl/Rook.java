@@ -1,5 +1,6 @@
 package main.com.udcinc.udc.game.piece.impl;
 
+import javafx.scene.image.Image;
 import main.com.udcinc.udc.game.GameState;
 import main.com.udcinc.udc.game.board.Tile;
 import main.com.udcinc.udc.game.piece.Piece;
@@ -14,6 +15,7 @@ public class Rook extends Piece {
     public Rook(Player player, Tile tile, GameState gs) {
     	super(player, tile, gs);
         this.name = "Rook";
+        this.image = new Image("./rook.png");
     }
     
     @Override

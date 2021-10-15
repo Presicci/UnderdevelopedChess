@@ -3,6 +3,7 @@ package main.com.udcinc.udc.game.piece.impl;
 import java.util.ArrayList;
 import java.util.List;
 
+import javafx.scene.image.Image;
 import main.com.udcinc.udc.game.GameState;
 import main.com.udcinc.udc.game.board.Tile;
 import main.com.udcinc.udc.game.piece.Piece;
@@ -19,6 +20,7 @@ public class Queen extends Piece {
 	public Queen(Player player, Tile tile, GameState gs) {
     	super(player, tile, gs);
 		this.name = "Queen";
+        this.image = new Image("./rook.png");	// temp image location
 	}
 	
 	@Override
