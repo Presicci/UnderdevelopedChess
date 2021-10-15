@@ -15,7 +15,7 @@ import main.com.udcinc.udc.game.board.Tile;
  * 
  * @author Thomas Presicci
  */
-public class TwoDimentionalRaycast {
+public interface TwoDimentionalRaycast {
 	/**
 	 * Performs a search on the x and y coordinate of the piece to check
 	 * if the tile is a valid move location.
