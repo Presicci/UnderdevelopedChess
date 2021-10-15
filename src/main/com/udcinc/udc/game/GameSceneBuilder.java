@@ -33,11 +33,13 @@ public class GameSceneBuilder extends Application {
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-		//  Initialize our game state
-		GameState gs = new GameState(this);
-
         //  Active game scene
 		boardPane = FXMLLoader.load(getClass().getResource("gameScreen.fxml"));
+		
+		GameSceneController controller = new GameSceneController(boardPane);
+		
+		//  Initialize our game state
+		GameState gs = new GameState(controller);
 
         //  Handles hiding/showing GridPane columns/rows based on the desired dimensions, defined in Settings.java
         final double tileSize = 800.0 / GameSettings.getSize();
@@ -79,7 +81,7 @@ public class GameSceneBuilder extends Application {
                 
                 //	Registers clicking on a tile, eventually to be replaced with clicking on a piece on a tile
                 iv.setOnMouseClicked(event -> {
-                	resetBoardColors(boardPane);
+                	controller.resetBoardColors();
                     Tile boardTile = gs.getBoard().getTiles()[finalRow][finalColumn];
                     System.out.println("Clicked: " + finalRow + ", " + finalColumn);
                     Piece piece = boardTile.getPiece();
@@ -122,57 +124,8 @@ public class GameSceneBuilder extends Application {
         primaryStage.show();
 	}
 	
-	/**
-	 * Resets the colors of the board tiles back to their native colors.
-	 * 
-	 * @param root The GridPane containing the board tiles.
-	 */
-	private void resetBoardColors(GridPane root) {
-		for (Node node : root.getChildren()) {
-			if ((GridPane.getRowIndex(node) + GridPane.getColumnIndex(node)) % 2 == 0) {
-				node.setStyle("-fx-background-color: white");
-			} else {
-				node.setStyle("-fx-background-color: black");
-			}
-        }
-	}
-	
-	/**
-	 * Takes a piece and finds its position on the grid pane
-	 * Sets the image to that of the piece and the color
-	 * to that of the player
-	 * 
-	 * @param piece The piece being added to the board
-	 */
-	public void assignPieceToBoard(Piece piece) {
-		for (Node node : boardPane.getChildren()) {
-			if (node instanceof ImageView) {
-				if (GridPane.getRowIndex(node) == piece.getPosition().getY() 
-						&& GridPane.getColumnIndex(node) == piece.getPosition().getX()) {
-					// Set image
-					((ImageView) node).setImage(piece.getImage());
-					
-					// Color changing
-					Lighting lighting = new Lighting(new Light.Distant(0, 90, piece.getOwner().getColor()));
-	                ColorAdjust bright = new ColorAdjust(0, 1, 1, 1);
-	                lighting.setContentInput(bright);
-	                lighting.setSurfaceScale(0.0);
-	                node.setEffect(lighting);
-	                
-	                // Set visible
-	                node.setOpacity(100);
-				}
-			}
-		}
-	}
-	
 	public static void main(String[] args) {
         // Currently just for testing we launch straight into the chess board
 		launch(args);
-    }
-
-	public GridPane getBoardPane() {
-		return boardPane;
-	}
-	
+    }	
 }

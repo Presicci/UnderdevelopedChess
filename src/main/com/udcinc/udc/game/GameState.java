@@ -11,11 +11,11 @@ import main.com.udcinc.udc.game.piece.Piece;
  */
 public class GameState {
 	private Board board;
-	private GameSceneBuilder gsb;
+	private GameSceneController controller;
 	
-	public GameState(GameSceneBuilder gsb) {
+	public GameState(GameSceneController controller) {
         this.board = new Board(GameSettings.getSize());
-        this.gsb = gsb;
+        this.controller = controller;
     }
 	
 	/**
@@ -24,7 +24,7 @@ public class GameState {
 	 * @param piece
 	 */
 	public void addPiece(Piece piece) {
-		gsb.assignPieceToBoard(piece);
+		controller.assignPieceToBoard(piece);
 	}
 
     public Board getBoard() {
