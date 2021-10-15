@@ -46,6 +46,17 @@ public abstract class Piece {
         this.isAlive = false;
         this.position = new Position(-1, -1);
     }
+    
+    /**
+     * Moves this piece to the proived position
+     * unchecked for now for testing
+     * TODO add canMove() restriction
+     * 
+     * @param pos The position to move the piece to.
+     */
+    public void move(Position pos) {
+    	this.position = pos;
+    }
 
     protected boolean canMove(Tile tile) {  // Tile tile
         return false;
