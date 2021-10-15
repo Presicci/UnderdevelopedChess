@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+import main.com.udcinc.udc.game.board.Position;
 import main.com.udcinc.udc.game.board.Tile;
 import main.com.udcinc.udc.game.piece.Piece;
 import main.com.udcinc.udc.game.piece.impl.Bishop;
@@ -18,8 +19,8 @@ public class GameSceneBuilder extends Application {
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-	//  Initialize our game state
-		GameStatics.init();
+		//  Initialize our game state
+		GameState gs = new GameState();
 
         //  Active game scene
         GridPane root = FXMLLoader.load(getClass().getResource("gameScreen.fxml"));
@@ -51,7 +52,7 @@ public class GameSceneBuilder extends Application {
                 int finalColumn = column;
                 tile.setOnMouseClicked(event -> {
                 	resetBoardColors(root);
-                    Tile boardTile = GameStatics.getGameState().getBoard().getTiles()[finalRow][finalColumn];
+                    Tile boardTile = gs.getBoard().getTiles()[finalRow][finalColumn];
                     System.out.println("Clicked: " + finalRow + ", " + finalColumn);
                     Piece piece = boardTile.getPiece();
                     System.out.println("[" + (piece == null ? "" : piece.getName()) + "]");
@@ -71,17 +72,18 @@ public class GameSceneBuilder extends Application {
 
                 //  Game manager assignments
                 Tile boardTile = new Tile(column, row);
-                GameStatics.getGameState().getBoard().assignTile(boardTile, column, row);
+                gs.getBoard().assignTile(boardTile, column, row);
             }
         }
 
         // Test player
         Player player = new Player("TestPlayer");
+        Player player2 = new Player("TestPlayer2");
         
         //  Test objects
-        Rook rook = new Rook(player, GameStatics.getGameState().getBoard().getTiles()[1][1]);
-        Bishop bishop = new Bishop(player, GameStatics.getGameState().getBoard().getTiles()[1][4]);
-        Queen queen = new Queen(player, GameStatics.getGameState().getBoard().getTiles()[3][2]);
+        Rook rook = new Rook(player, gs.getBoard().getTiles()[1][1], gs);
+        Bishop bishop = new Bishop(player, gs.getBoard().getTiles()[1][4], gs);
+        Queen queen = new Queen(player2, gs.getBoard().getTiles()[3][2], gs);
 
         primaryStage.setTitle("test");
         primaryStage.setScene(new Scene(root, 800, 800));

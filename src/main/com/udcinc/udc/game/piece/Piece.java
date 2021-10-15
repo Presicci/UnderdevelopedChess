@@ -1,7 +1,7 @@
 package main.com.udcinc.udc.game.piece;
 
 import javafx.scene.image.Image;
-import main.com.udcinc.udc.game.GameStatics;
+import main.com.udcinc.udc.game.GameState;
 import main.com.udcinc.udc.game.board.Position;
 import main.com.udcinc.udc.game.board.Tile;
 import main.com.udcinc.udc.game.player.Player;
@@ -25,13 +25,17 @@ public abstract class Piece {
     protected Position position;
     protected Tile tile;
     protected Player owner;
+    
+    // GameState reference
+    protected GameState gs;
 
     //	Constructor
-    public Piece(Player player, Tile tile) {
+    public Piece(Player player, Tile tile, GameState gs) {
         this.owner = player;
     	this.isAlive = true;
         this.position = tile.getPosition();
         this.tile = tile;
+        this.gs = gs;
         tile.setPiece(this);
     }
     
@@ -56,7 +60,7 @@ public abstract class Piece {
      */
     public List<Tile> getAllValidMoves() {
         List<Tile> possibleTiles = new ArrayList<>();
-        for (Tile[] row : GameStatics.getGameState().getBoard().getTiles()) {
+        for (Tile[] row : gs.getBoard().getTiles()) {
             for (Tile tile : row) {
                 if (canMove(tile)) {
                     possibleTiles.add(tile);

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import main.com.udcinc.udc.game.GameSettings;
-import main.com.udcinc.udc.game.GameStatics;
+import main.com.udcinc.udc.game.GameState;
 import main.com.udcinc.udc.game.board.Tile;
 
 /**
@@ -24,8 +24,8 @@ public interface TwoDimentionalRaycast {
 	 * @return True if the tile is valid, false if the tile is not in line with 
 	 * the piece or if there is an obstruction in the way
 	 */
-	public static boolean straightRaycast(final Tile tile, final Piece piece) {
-		final Tile[][] boardTiles = GameStatics.getGameState().getBoard().getTiles();
+	public static boolean straightRaycast(final Tile tile, final Piece piece, GameState gs) {
+		final Tile[][] boardTiles = gs.getBoard().getTiles();
 		final int tileX = tile.getPosition().getX();
 		final int tileY = tile.getPosition().getY();
 		final int pieceX = piece.getPosition().getX();
@@ -78,8 +78,8 @@ public interface TwoDimentionalRaycast {
 	 * @param piece The piece the raycast is originating from.
 	 * @return True if not obstructed and pathable, false if not.
 	 */
-	public static boolean diagonalRaycast(Tile tile, Piece piece) {
-		final Tile[][] boardTiles = GameStatics.getGameState().getBoard().getTiles();
+	public static boolean diagonalRaycast(Tile tile, Piece piece, GameState gs) {
+		final Tile[][] boardTiles = gs.getBoard().getTiles();
 		final int tileX = tile.getPosition().getX();
 		final int tileY = tile.getPosition().getY();
 		final int pieceX = piece.getPosition().getX();
@@ -154,8 +154,8 @@ public interface TwoDimentionalRaycast {
 	 * @param piece The piece that the moves are being calculated for
 	 * @return A List<Tile> of valid move locations
 	 */
-	public static List<Tile> diagonalRaycastList(Piece piece) {
-		final Tile[][] boardTiles = GameStatics.getGameState().getBoard().getTiles();
+	public static List<Tile> diagonalRaycastList(Piece piece, GameState gs) {
+		final Tile[][] boardTiles = gs.getBoard().getTiles();
 		final int pieceX = piece.getPosition().getX();
 		final int pieceY = piece.getPosition().getY();
 		final int boardSize = GameSettings.getSize();
