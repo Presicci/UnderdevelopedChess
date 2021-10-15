@@ -18,8 +18,13 @@ public class GameState {
         this.gsb = gsb;
     }
 	
+	/**
+	 * Adds a piece to the board visually
+	 * 
+	 * @param piece
+	 */
 	public void addPiece(Piece piece) {
-		gsb.assignPieceToTile(piece);
+		gsb.assignPieceToBoard(piece);
 	}
 
     public Board getBoard() {

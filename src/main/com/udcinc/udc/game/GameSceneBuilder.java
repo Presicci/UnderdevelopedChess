@@ -137,17 +137,29 @@ public class GameSceneBuilder extends Application {
         }
 	}
 	
-	public void assignPieceToTile(Piece piece) {
+	/**
+	 * Takes a piece and finds its position on the grid pane
+	 * Sets the image to that of the piece and the color
+	 * to that of the player
+	 * 
+	 * @param piece The piece being added to the board
+	 */
+	public void assignPieceToBoard(Piece piece) {
 		for (Node node : boardPane.getChildren()) {
 			if (node instanceof ImageView) {
 				if (GridPane.getRowIndex(node) == piece.getPosition().getY() 
 						&& GridPane.getColumnIndex(node) == piece.getPosition().getX()) {
+					// Set image
 					((ImageView) node).setImage(piece.getImage());
+					
+					// Color changing
 					Lighting lighting = new Lighting(new Light.Distant(0, 90, piece.getOwner().getColor()));
 	                ColorAdjust bright = new ColorAdjust(0, 1, 1, 1);
 	                lighting.setContentInput(bright);
 	                lighting.setSurfaceScale(0.0);
 	                node.setEffect(lighting);
+	                
+	                // Set visible
 	                node.setOpacity(100);
 				}
 			}
