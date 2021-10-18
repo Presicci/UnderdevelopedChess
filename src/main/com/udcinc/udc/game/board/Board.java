@@ -33,8 +33,16 @@ public class Board {
 	}
 	
 	public void movePiece(Piece piece, Position nextPos) {
+		int x = nextPos.getX();
+		int y = nextPos.getY();
+		
+		piece.getTile().setPiece(null);
 		controller.removePieceFromBoard(piece);
+		
 		piece.move(nextPos);
+		piece.setTile(tiles[x][y]);
+		tiles[x][y].setPiece(piece);
+		
 		controller.assignPieceToBoard(piece);
 	}
 
