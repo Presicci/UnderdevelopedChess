@@ -42,7 +42,7 @@ public abstract class Piece {
      * When a piece is taken, remove its alive status and sets its 
      * position out of play.
      */
-    protected void doKill() {
+    public void doKill() {
         this.isAlive = false;
         this.position = new Position(-1, -1);
     }
