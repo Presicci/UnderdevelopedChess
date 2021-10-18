@@ -58,7 +58,7 @@ public abstract class Piece {
     	this.position = pos;
     }
 
-    protected boolean canMove(Tile tile) {  // Tile tile
+    public boolean canMove(Tile tile) {  // Tile tile
         return false;
     }
 
