@@ -159,9 +159,13 @@ public class GameSceneBuilder extends Application {
                 
                 // When a piece is dropped onto another piece
                 iv.setOnDragDropped(event -> {
+                	Tile boardTile = gs.getBoard().getTiles()[finalRow][finalColumn];
                 	// If selected piece is not null, move the piece
                 	if (selectedPiece != null) {
-                		if (selectedPiece.canMove(gs.getBoard().getTiles()[finalRow][finalColumn])) {
+                		if (selectedPiece.canMove(boardTile)) {
+                			if (boardTile.getPiece() != null) {
+                				gs.getBoard().killPiece(boardTile.getPiece());
+                			}
                 			gs.getBoard().movePiece(selectedPiece, new Position(finalRow, finalColumn));
                     	} else {
                     		System.out.println("Invalid move!");
@@ -174,9 +178,13 @@ public class GameSceneBuilder extends Application {
                 // When a piece is dropped onto a tile
                 // *tile may or may not contain another piece
                 tile.setOnDragDropped(event -> {                	
+                	Tile boardTile = gs.getBoard().getTiles()[finalRow][finalColumn];
                 	// If selected piece is not null, move the piece
                 	if (selectedPiece != null) {
-                		if (selectedPiece.canMove(gs.getBoard().getTiles()[finalRow][finalColumn])) {
+                		if (selectedPiece.canMove(boardTile)) {
+                			if (boardTile.getPiece() != null) {
+                				gs.getBoard().killPiece(boardTile.getPiece());
+                			}
                 			gs.getBoard().movePiece(selectedPiece, new Position(finalRow, finalColumn));
                     	} else {
                     		System.out.println("Invalid move!");
