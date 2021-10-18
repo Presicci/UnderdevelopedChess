@@ -32,6 +32,11 @@ public class Board {
 		controller.assignPieceToBoard(piece);
 	}
 	
+	public void killPiece(Piece piece) {
+		piece.doKill();
+		tiles[piece.getPosition().getX()][piece.getPosition().getY()].setPiece(null);
+	}
+	
 	public void movePiece(Piece piece, Position nextPos) {
 		int x = nextPos.getX();
 		int y = nextPos.getY();
