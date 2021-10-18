@@ -96,6 +96,10 @@ public abstract class Piece {
     public Position getPosition() {
         return position;
     }
+    
+    public void setTile(Tile tile) {
+    	this.tile = tile;
+    }
 
     public Tile getTile() {
         return tile;
