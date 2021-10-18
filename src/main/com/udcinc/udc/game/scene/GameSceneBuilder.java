@@ -4,13 +4,12 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.effect.ColorAdjust;
-import javafx.scene.effect.Light;
-import javafx.scene.effect.Lighting;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.ClipboardContent;
+import javafx.scene.input.Dragboard;
+import javafx.scene.input.TransferMode;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import main.com.udcinc.udc.game.GameSettings;
 import main.com.udcinc.udc.game.GameState;
@@ -32,6 +31,7 @@ import main.com.udcinc.udc.game.player.Player;
 public class GameSceneBuilder extends Application {
 	
 	private GridPane boardPane;
+	private static Piece selectedPiece;
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
@@ -87,7 +87,7 @@ public class GameSceneBuilder extends Application {
                     Tile boardTile = gs.getBoard().getTiles()[finalRow][finalColumn];
                     System.out.println("Clicked: " + finalRow + ", " + finalColumn);
                     Piece piece = boardTile.getPiece();
-                    System.out.println("[" + (piece == null ? "" : piece.getName()) + "]");
+                    System.out.println("[" + (piece == null ? "" : piece.getName()) + "] owned by " + piece.getOwner().getName());
                     if (piece != null) {
                         for (Tile t : piece.getAllValidMoves()) {
                             for (Node node : boardPane.getChildren()) {
@@ -99,6 +99,64 @@ public class GameSceneBuilder extends Application {
                         }
                     }
                     tile.setStyle("-fx-background-color: yellow");	// temp color assignments for testing
+                });
+                
+                // Start drag and drop
+                iv.setOnDragDetected(event -> {
+                	// Dragboard carries data with the mouse
+                	Dragboard db = iv.startDragAndDrop(TransferMode.ANY);
+                	// ClipboardContent carries the image
+                	ClipboardContent content = new ClipboardContent();
+                	content.putImage(iv.getImage());
+                	// Set the content to the dragboard
+                	db.setContent(content);
+                	
+                	// Sets the piece being dragged
+                	selectedPiece = gs.getBoard().getTiles()[finalRow][finalColumn].getPiece();
+                	
+                	event.consume();
+                });
+                
+                // Used in the case of a drag not ending on a tile
+                iv.setOnDragDone(event -> {
+                	selectedPiece = null;
+                });
+                
+                // Handles transfer mode acceptance of the piece on the tile
+                iv.setOnDragOver(event -> {
+                	if (event.getGestureSource() != iv && event.getDragboard().hasImage()) {
+                		event.acceptTransferModes(TransferMode.COPY_OR_MOVE);
+                	}
+                	event.consume();
+                });
+                
+                // Handles transfer mode acceptance of the tile
+                tile.setOnDragOver(event -> {
+                	if (event.getGestureSource() != iv && event.getDragboard().hasImage()) {
+                		event.acceptTransferModes(TransferMode.COPY_OR_MOVE);
+                	}
+                	event.consume();
+                });
+                
+                // When a piece is dropped onto another piece
+                iv.setOnDragDropped(event -> {
+                	// TODO all move validaiton here
+                	
+                	// If selected piece is not null, move the piece
+                	if (selectedPiece != null) {
+                		gs.getBoard().movePiece(selectedPiece, new Position(finalRow, finalColumn));
+                	}
+                });
+                
+                // When a piece is dropped onto a tile
+                // *tile may or may not contain another piece
+                tile.setOnDragDropped(event -> {
+                	// TODO all move validaiton here
+                	
+                	// If selected piece is not null, move the piece
+                	if (selectedPiece != null) {
+                		gs.getBoard().movePiece(selectedPiece, new Position(finalRow, finalColumn));
+                	}
                 });
                 
                 // Add the tile to the gridpane
