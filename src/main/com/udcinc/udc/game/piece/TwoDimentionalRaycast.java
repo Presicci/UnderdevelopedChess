@@ -93,9 +93,10 @@ public interface TwoDimentionalRaycast {
 						if (pieceX == x && pieceY == y) {
 							continue;
 						}
-						if (boardTiles[x][y].hasPiece()) {
-							if ((tileX == x && tileY == y)
-									&& (!(y > pieceY && topObstruction) && !(y < pieceY && bottomObstruction))) {
+						Piece tilePiece = boardTiles[x][y].getPiece();
+						if (tilePiece != null) {
+							if ((!(y > pieceY && topObstruction) && !(y < pieceY && bottomObstruction)) 
+									&& tilePiece.getOwner() != piece.getOwner()) {
 								return true;
 							}
 							if (y > pieceY) {
@@ -122,9 +123,10 @@ public interface TwoDimentionalRaycast {
 						if (pieceX == x && pieceY == y) {
 							continue;
 						}
-						if (boardTiles[x][y].hasPiece()) {
-							if ((tileX == x && tileY == y)
-									&& (!(y > pieceY && topObstruction) && !(y < pieceY && bottomObstruction))) {
+						Piece tilePiece = boardTiles[x][y].getPiece();
+						if (tilePiece != null) {
+							if ((!(y > pieceY && topObstruction) && !(y < pieceY && bottomObstruction)) 
+									&& tilePiece.getOwner() != piece.getOwner()) {
 								return true;
 							}
 							if (y > pieceY) {
@@ -215,7 +217,8 @@ public interface TwoDimentionalRaycast {
 						// If tile is not obstructed, and the tile piece 
 						// doesn't belong to the owner of the moving piece,
 						// it is a valid tile
-						if ((!(y > pieceY && topObstruction) && !(y < pieceY && bottomObstruction)) && tilePiece.getOwner() != piece.getOwner()) {
+						if ((!(y > pieceY && topObstruction) && !(y < pieceY && bottomObstruction)) 
+								&& tilePiece.getOwner() != piece.getOwner()) {
 							validTiles.add(boardTiles[x][y]);
 						}
 						// Obstruction registration
