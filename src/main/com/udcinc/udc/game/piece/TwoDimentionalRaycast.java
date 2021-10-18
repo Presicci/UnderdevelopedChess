@@ -95,8 +95,9 @@ public interface TwoDimentionalRaycast {
 						}
 						Piece tilePiece = boardTiles[x][y].getPiece();
 						if (tilePiece != null) {
-							if ((!(y > pieceY && topObstruction) && !(y < pieceY && bottomObstruction)) 
-									&& tilePiece.getOwner() != piece.getOwner()) {
+							if ((tileX == x && tileY == y)
+									&& (!(y > pieceY && topObstruction) && !(y < pieceY && bottomObstruction))
+									 && tilePiece.getOwner() != piece.getOwner()) {
 								return true;
 							}
 							if (y > pieceY) {
@@ -125,8 +126,9 @@ public interface TwoDimentionalRaycast {
 						}
 						Piece tilePiece = boardTiles[x][y].getPiece();
 						if (tilePiece != null) {
-							if ((!(y > pieceY && topObstruction) && !(y < pieceY && bottomObstruction)) 
-									&& tilePiece.getOwner() != piece.getOwner()) {
+							if ((tileX == x && tileY == y)
+									&& (!(y > pieceY && topObstruction) && !(y < pieceY && bottomObstruction))
+									 && tilePiece.getOwner() != piece.getOwner()) {
 								return true;
 							}
 							if (y > pieceY) {
