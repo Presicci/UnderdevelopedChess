@@ -90,7 +90,7 @@ public class GameSceneBuilder extends Application {
                     Piece piece = boardTile.getPiece();
                     
                     // Debug information
-                    System.out.println("[" + (piece == null ? "" : piece.getName()) + "] owned by " + piece.getOwner().getName());
+                    System.out.println("[" + (piece == null ? "" : piece.getName()) + "] owned by " + (piece == null ? "" : piece.getOwner().getName()));
                     System.out.println("Clicked: " + finalRow + ", " + finalColumn);
                     
                     // Recolors the board based on which tiles the piece can move to
@@ -108,6 +108,11 @@ public class GameSceneBuilder extends Application {
                 
                 // Start drag and drop
                 iv.setOnDragDetected(event -> {
+                	Piece piece = gs.getBoard().getTiles()[finalRow][finalColumn].getPiece();
+                	if (piece == null) {
+                		return;
+                	}
+                	
                 	// Dragboard carries data with the mouse
                 	Dragboard db = iv.startDragAndDrop(TransferMode.ANY);
                 	// ClipboardContent carries the image
@@ -117,9 +122,9 @@ public class GameSceneBuilder extends Application {
                 	db.setContent(content);
                 	
                 	// Sets the piece being dragged
-                	selectedPiece = gs.getBoard().getTiles()[finalRow][finalColumn].getPiece();
+                	selectedPiece = piece;
                 	
-                	for (Tile t : gs.getBoard().getTiles()[finalRow][finalColumn].getPiece().getAllValidMoves()) {
+                	for (Tile t : piece.getAllValidMoves()) {
                         for (Node node : boardPane.getChildren()) {
                             if (GridPane.getRowIndex(node) == t.getPosition().getY()
                                     && GridPane.getColumnIndex(node) == t.getPosition().getX()) {
