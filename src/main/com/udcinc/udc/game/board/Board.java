@@ -33,8 +33,8 @@ public class Board {
 	}
 	
 	public void killPiece(Piece piece) {
-		piece.doKill();
 		tiles[piece.getPosition().getX()][piece.getPosition().getY()].setPiece(null);
+		piece.doKill();
 	}
 	
 	public void movePiece(Piece piece, Position nextPos) {
