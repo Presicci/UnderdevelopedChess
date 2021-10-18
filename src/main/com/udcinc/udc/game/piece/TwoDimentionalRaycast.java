@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import main.com.udcinc.udc.game.GameSettings;
-import main.com.udcinc.udc.game.GameState;
 import main.com.udcinc.udc.game.board.Tile;
+import main.com.udcinc.udc.game.state.GameState;
 
 /**
  * Contains the raycast functions used to determine which tiles on the board

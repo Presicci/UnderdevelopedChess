@@ -12,7 +12,6 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import main.com.udcinc.udc.game.GameSettings;
-import main.com.udcinc.udc.game.GameState;
 import main.com.udcinc.udc.game.board.Position;
 import main.com.udcinc.udc.game.board.Tile;
 import main.com.udcinc.udc.game.piece.Piece;
@@ -20,6 +19,7 @@ import main.com.udcinc.udc.game.piece.impl.Bishop;
 import main.com.udcinc.udc.game.piece.impl.Queen;
 import main.com.udcinc.udc.game.piece.impl.Rook;
 import main.com.udcinc.udc.game.player.Player;
+import main.com.udcinc.udc.game.state.GameState;
 
 /**
  * Builder for the game scene

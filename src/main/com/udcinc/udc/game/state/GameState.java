@@ -1,7 +1,7 @@
-package main.com.udcinc.udc.game;
+package main.com.udcinc.udc.game.state;
 
+import main.com.udcinc.udc.game.GameSettings;
 import main.com.udcinc.udc.game.board.Board;
-import main.com.udcinc.udc.game.piece.Piece;
 import main.com.udcinc.udc.game.scene.GameSceneController;
 
 /**
@@ -21,5 +21,9 @@ public class GameState {
 
     public Board getBoard() {
         return board;
+    }
+    
+    public GameSceneController getController() {
+    	return controller;
     }
 }

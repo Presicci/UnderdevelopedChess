@@ -4,11 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javafx.scene.image.Image;
-import main.com.udcinc.udc.game.GameState;
 import main.com.udcinc.udc.game.board.Tile;
 import main.com.udcinc.udc.game.piece.Piece;
 import main.com.udcinc.udc.game.piece.TwoDimentionalRaycast;
 import main.com.udcinc.udc.game.player.Player;
+import main.com.udcinc.udc.game.state.GameState;
 
 /**
  * Queen piece, can move diagonally, horizontally and vertically in all directions.
