@@ -81,13 +81,19 @@ public class GameSceneBuilder extends Application {
                 int finalRow = row;
                 int finalColumn = column;
                 
-                //	Registers clicking on a tile, eventually to be replaced with clicking on a piece on a tile
+                //	Handles clicking on a piece
                 iv.setOnMouseClicked(event -> {
+                	// Reset the board to its default coloring before doing move coloring
                 	controller.resetBoardColors();
+                	
                     Tile boardTile = gs.getBoard().getTiles()[finalRow][finalColumn];
-                    System.out.println("Clicked: " + finalRow + ", " + finalColumn);
                     Piece piece = boardTile.getPiece();
+                    
+                    // Debug information
                     System.out.println("[" + (piece == null ? "" : piece.getName()) + "] owned by " + piece.getOwner().getName());
+                    System.out.println("Clicked: " + finalRow + ", " + finalColumn);
+                    
+                    // Recolors the board based on which tiles the piece can move to
                     if (piece != null) {
                         for (Tile t : piece.getAllValidMoves()) {
                             for (Node node : boardPane.getChildren()) {
@@ -98,7 +104,6 @@ public class GameSceneBuilder extends Application {
                             }
                         }
                     }
-                    tile.setStyle("-fx-background-color: yellow");	// temp color assignments for testing
                 });
                 
                 // Start drag and drop
@@ -113,6 +118,15 @@ public class GameSceneBuilder extends Application {
                 	
                 	// Sets the piece being dragged
                 	selectedPiece = gs.getBoard().getTiles()[finalRow][finalColumn].getPiece();
+                	
+                	for (Tile t : gs.getBoard().getTiles()[finalRow][finalColumn].getPiece().getAllValidMoves()) {
+                        for (Node node : boardPane.getChildren()) {
+                            if (GridPane.getRowIndex(node) == t.getPosition().getY()
+                                    && GridPane.getColumnIndex(node) == t.getPosition().getX()) {
+                                node.setStyle("-fx-background-color: orange");	// temp color assignments for testing
+                            }
+                        }
+                    }
                 	
                 	event.consume();
                 });
@@ -146,6 +160,8 @@ public class GameSceneBuilder extends Application {
                 	if (selectedPiece != null) {
                 		gs.getBoard().movePiece(selectedPiece, new Position(finalRow, finalColumn));
                 	}
+                	
+                	controller.resetBoardColors();
                 });
                 
                 // When a piece is dropped onto a tile
@@ -157,6 +173,8 @@ public class GameSceneBuilder extends Application {
                 	if (selectedPiece != null) {
                 		gs.getBoard().movePiece(selectedPiece, new Position(finalRow, finalColumn));
                 	}
+                	
+                	controller.resetBoardColors();
                 });
                 
                 // Add the tile to the gridpane
