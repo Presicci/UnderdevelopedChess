@@ -12,18 +12,12 @@ import main.com.udcinc.udc.game.scene.GameSceneController;
  */
 public class GameState {
 	private Board board;
-	private GameSceneController controller;
 	
-	public GameState(GameSceneController controller) {
-        this.board = new Board(GameSettings.getSize(), controller);
-        this.controller = controller;
+	public GameState() {
+        this.board = new Board(GameSettings.getSize());
     }
 
     public Board getBoard() {
         return board;
-    }
-    
-    public GameSceneController getController() {
-    	return controller;
     }
 }
