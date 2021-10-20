@@ -16,39 +16,14 @@ import main.com.udcinc.udc.game.scene.GameSceneController;
  */
 public class Board {
     private Tile[][] tiles;
-    private GameSceneController controller;
     
-    public Board(int size, GameSceneController controller) {
+    public Board(int size) {
         tiles = new Tile[size][size];
-        this.controller = controller;
     }
-	
-	/**
-	 * Adds a piece to the board visually
-	 * 
-	 * @param piece
-	 */
-	public void addPiece(Piece piece) {
-		controller.assignPieceToBoard(piece);
-	}
 	
 	public void killPiece(Piece piece) {
 		tiles[piece.getPosition().getX()][piece.getPosition().getY()].setPiece(null);
 		piece.doKill();
-	}
-	
-	public void movePiece(Piece piece, Position nextPos) {
-		int x = nextPos.getX();
-		int y = nextPos.getY();
-		
-		piece.getTile().setPiece(null);
-		controller.removePieceFromBoard(piece);
-		
-		piece.move(nextPos);
-		piece.setTile(tiles[x][y]);
-		tiles[x][y].setPiece(piece);
-		
-		controller.assignPieceToBoard(piece);
 	}
 
     public void assignTile(Tile tile, int x, int y) {
