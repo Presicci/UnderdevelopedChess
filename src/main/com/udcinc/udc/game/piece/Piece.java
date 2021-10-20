@@ -50,12 +50,14 @@ public abstract class Piece {
     /**
      * Moves this piece to the proived position
      * unchecked for now for testing
-     * TODO add canMove() restriction
      * 
      * @param pos The position to move the piece to.
      */
     public void move(Position pos) {
+    	this.tile.setPiece(null);
     	this.position = pos;
+    	this.setTile(gs.getBoard().getTiles()[pos.getX()][pos.getY()]);
+    	this.tile.setPiece(this);
     }
 
     public boolean canMove(Tile tile) {  // Tile tile
