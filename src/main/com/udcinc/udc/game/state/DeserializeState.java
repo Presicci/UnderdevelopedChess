@@ -24,6 +24,6 @@ public class DeserializeState {
 			e.printStackTrace();
 			System.out.println("GameState not found");
 		}
-		return gs == null ? new GameState(new GameSceneController(boardPane)) : gs;
+		return gs == null ? new GameState() : gs;
 	}
 }
