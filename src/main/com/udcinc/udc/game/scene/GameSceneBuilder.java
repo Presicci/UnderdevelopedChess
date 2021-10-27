@@ -1,6 +1,7 @@
 package main.com.udcinc.udc.game.scene;
 
-import javafx.application.Application;
+import java.io.IOException;
+
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
@@ -14,12 +15,11 @@ import main.com.udcinc.udc.game.state.GameState;
  * 
  * @author Thomas Presicci
  */
-public class GameSceneBuilder extends Application {	
+public class GameSceneBuilder {	
 
-	@Override
-	public void start(Stage primaryStage) throws Exception {
+	public void build(Stage stage) throws IOException {
         // Active game scene
-		FXMLLoader loader = new FXMLLoader(getClass().getResource("gameScreen.fxml"));
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("/main/resources/gameScreen.fxml"));
 		
 		// Initialize our game state
 		GameState gs = new GameState();
@@ -29,15 +29,10 @@ public class GameSceneBuilder extends Application {
 		
 		// Gets root pane for the scene
 		Pane root = loader.load();
-
-        // Setup the window
-        primaryStage.setTitle("Underdeveloped Chess");
-        primaryStage.setScene(new Scene(root, 800, 800));
-        primaryStage.show();
-	}
-	
-	public static void main(String[] args) {
-        // Currently just for testing we launch straight into the chess board
-		launch(args);
-    }	
+		
+		// Transition scene to gamescreen
+        Scene scene = new Scene(root, 800, 800);
+        stage.setScene(scene);
+        stage.show();
+	}	
 }
