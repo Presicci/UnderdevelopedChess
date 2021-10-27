@@ -2,12 +2,21 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.com.udcinc.udc.mainmenu.MainMenuController">
    <children>
-      <Pane layoutX="225.0" layoutY="272.0" prefHeight="200.0" prefWidth="350.0">
+      <ImageView fitHeight="600.0" fitWidth="800.0" opacity="0.7">
+         <image>
+            <Image url="@../../../resources/bg.jpg" />
+         </image>
+      </ImageView>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="218.0" opacity="0.69" stroke="BLACK" strokeType="INSIDE" width="800.0" />
+      <Pane layoutX="225.0" layoutY="238.0" prefHeight="314.0" prefWidth="350.0">
          <children>
             <Button alignment="CENTER" layoutX="50.0" layoutY="8.0" mnemonicParsing="false" onAction="#handlePlay" prefHeight="50.0" prefWidth="250.0" text="Play" textAlignment="CENTER">
                <font>
@@ -31,9 +40,14 @@
             </Button>
          </children>
       </Pane>
-      <Label layoutX="123.0" layoutY="60.0" text="Game Name">
+      <Label alignment="CENTER" layoutX="8.0" prefHeight="142.0" prefWidth="785.0" text="Underdeveloped" textAlignment="CENTER" wrapText="true">
          <font>
-            <Font name="System Bold" size="96.0" />
+            <Font name="Trebuchet MS Italic" size="96.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" layoutX="8.0" layoutY="90.0" prefHeight="141.0" prefWidth="785.0" text="Chess" textAlignment="CENTER" wrapText="true">
+         <font>
+            <Font name="Trebuchet MS Italic" size="96.0" />
          </font>
       </Label>
    </children>
