@@ -10,8 +10,7 @@ import main.com.udcinc.udc.game.state.GameState;
 
 /**
  * Builder for the game scene
- * Creates a dynamically sized board based on the size specified in the game settings
- * Lots of test lines in here atm
+ * Handles the transition to the game screen
  * 
  * @author Thomas Presicci
  */
@@ -19,7 +18,7 @@ public class GameSceneBuilder {
 
 	public void build(Stage stage) throws IOException {
         // Active game scene
-		FXMLLoader loader = new FXMLLoader(getClass().getResource("/main/resources/gameScreen.fxml"));
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("/main/resources/GameScreen.fxml"));
 		
 		// Initialize our game state
 		GameState gs = new GameState();
