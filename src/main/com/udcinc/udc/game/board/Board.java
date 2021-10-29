@@ -35,6 +35,10 @@ public class Board {
     }
     
     public Tile getTile(int x, int y) {
+    	// If attempting to fetch invalid tile, return null
+    	if (x >= getSize() || y >= getSize() || y < 0 || x < 0) {
+    		return null;
+    	}
     	return tiles[x][y];
     }
     
