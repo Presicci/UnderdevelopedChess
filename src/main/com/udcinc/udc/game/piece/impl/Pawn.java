@@ -29,7 +29,7 @@ public class Pawn extends Piece {
 		
 		if (pPos.getX() == tPos.getX()) {	// Tile is in the same column
 			return tile.hasPiece() ? false : isYAdjacent;
-		} else if (Math.sqrt(pPos.getX() - tPos.getX()) == 1) {	// Tile is in an adjacent column
+		} else if (Math.abs(pPos.getX() - tPos.getX()) == 1) {	// Tile is in an adjacent column
 			// Can only move diagonally if there is an enemy piece to cap
 			return isYAdjacent && tile.hasPiece() && tile.getPiece().getOwner() != this.getOwner();
 		}
