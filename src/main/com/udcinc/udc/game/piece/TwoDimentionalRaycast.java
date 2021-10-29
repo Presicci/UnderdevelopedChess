@@ -83,7 +83,7 @@ public interface TwoDimentionalRaycast {
 		final int tileY = tile.getPosition().getY();
 		final int pieceX = piece.getPosition().getX();
 		final int pieceY = piece.getPosition().getY();
-		final int boardSize = GameSettings.getSize();
+		final int boardSize = gs.getBoard().getSize();
 		boolean topObstruction = false;
 		boolean bottomObstruction = false;
 		if (tileX > pieceX) {
@@ -161,7 +161,7 @@ public interface TwoDimentionalRaycast {
 		final Tile[][] boardTiles = gs.getBoard().getTiles();
 		final int pieceX = piece.getPosition().getX();
 		final int pieceY = piece.getPosition().getY();
-		final int boardSize = GameSettings.getSize();
+		final int boardSize = gs.getBoard().getSize();
 		boolean topObstruction = false;
 		boolean bottomObstruction = false;
 		List<Tile> validTiles = new ArrayList<>();
