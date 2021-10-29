@@ -55,15 +55,13 @@ public class Pawn extends Piece {
         // Iterates through the 3 possible pawn move tiles
         List<Tile> tiles = new ArrayList<>();
         tiles.add(board.getTile(pX, y));
-        if (pX != board.getSize() - 1) {	// If piece is on right edge of board, don't scan right
-        	tiles.add(board.getTile(pX + 1, y));
-        }
-        if (pX != 0) {	// If piece is on left edge of board, don't scan left
-        	tiles.add(board.getTile(pX - 1, y));
-        }
-        
-        
+        tiles.add(board.getTile(pX + 1, y));
+        tiles.add(board.getTile(pX - 1, y));
+                
         for (Tile tile : tiles) {
+        	if (tile == null) {
+        		continue;
+        	}
         	if (tile.getPosition().getX() == pX) {	// Can only move forward if no pieces are present
         		if (!tile.hasPiece()) {
         			possibleTiles.add(tile);
