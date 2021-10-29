@@ -13,6 +13,9 @@ public class Player {
 	private String name;
 	private Color color = Color.DARKCYAN;
 	
+	// Boolean represents the side of the board the player starts on
+	private boolean white = false;
+	
 	public Player(String name) {
 		this.setName(name);
 	}
@@ -31,5 +34,13 @@ public class Player {
 	
 	public void setColor(Color color) {
 		this.color = color;
+	}
+
+	public boolean isWhite() {
+		return white;
+	}
+
+	public void setWhite(boolean white) {
+		this.white = white;
 	}
 }
