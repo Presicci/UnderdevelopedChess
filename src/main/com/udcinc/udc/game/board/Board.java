@@ -33,4 +33,16 @@ public class Board {
     public Tile[][] getTiles() {
         return tiles;
     }
+    
+    public Tile getTile(int x, int y) {
+    	return tiles[x][y];
+    }
+    
+    public Tile getTile(Position pos) {
+    	return getTile(pos.getX(), pos.getY());
+    }
+    
+    public int getSize() {
+    	return tiles[0].length;
+    }
 }
