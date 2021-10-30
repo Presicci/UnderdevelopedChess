@@ -109,11 +109,7 @@ public interface TwoDimentionalRaycast {
 						if (tileX != x || tileY != y) {
 							continue;
 						}
-						if ((y > pieceY && topObstruction) || (y < pieceY && bottomObstruction)) {
-							return false;
-						} else {
-							return true;
-						}
+						return (y <= pieceY || !topObstruction) && (y >= pieceY || !bottomObstruction);
 					}
 				}
 			}
@@ -140,11 +136,7 @@ public interface TwoDimentionalRaycast {
 						if (tileX != x || tileY != y) {
 							continue;
 						}
-						if ((y > pieceY && topObstruction) || (y < pieceY && bottomObstruction)) {
-							return false;
-						} else {
-							return true;
-						}
+						return (y <= pieceY || !topObstruction) && (y >= pieceY || !bottomObstruction);
 					}
 				}
 			}
