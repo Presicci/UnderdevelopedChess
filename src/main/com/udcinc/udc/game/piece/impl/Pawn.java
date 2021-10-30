@@ -38,7 +38,8 @@ public class Pawn extends Piece {
 	
 	/**
 	 * Overrides to do as few comparisons as possible,
-	 * only calculates for 
+	 * only calculates for tiles the pawn could potentially
+	 * move to
 	 */
 	@Override public List<Tile> getAllValidMoves() {
 		Position pPos = this.getPosition();
