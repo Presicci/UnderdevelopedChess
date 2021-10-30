@@ -29,7 +29,7 @@ public class King extends Piece {
 		
 		if (isAdjacent) {
 			// If tile does not have an allied piece, tile is valid
-			return (tile.hasPiece() && tile.getPiece().getOwner() == this.getOwner()) ? false : true;
+			return !tile.hasPiece() || tile.getPiece().getOwner() != this.getOwner();
 		}
 		return false;
 	}
