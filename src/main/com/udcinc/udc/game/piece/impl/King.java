@@ -16,7 +16,7 @@ public class King extends Piece {
 	public King(Player player, Tile tile, GameState gs) {
     	super(player, tile, gs);
 		this.name = "King";
-        this.image = new Image("./rook.png");	// temp image location
+        this.image = new Image("./king.png");
 	}
 	
 	@Override
