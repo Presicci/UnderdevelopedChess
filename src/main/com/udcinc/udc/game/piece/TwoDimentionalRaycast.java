@@ -109,11 +109,7 @@ public interface TwoDimentionalRaycast {
 						if (tileX != x || tileY != y) {
 							continue;
 						}
-						if ((y > pieceY && topObstruction) || (y < pieceY && bottomObstruction)) {
-							return false;
-						} else {
-							return true;
-						}
+						return (y <= pieceY || !topObstruction) && (y >= pieceY || !bottomObstruction);
 					}
 				}
 			}
@@ -140,11 +136,7 @@ public interface TwoDimentionalRaycast {
 						if (tileX != x || tileY != y) {
 							continue;
 						}
-						if ((y > pieceY && topObstruction) || (y < pieceY && bottomObstruction)) {
-							return false;
-						} else {
-							return true;
-						}
+						return (y <= pieceY || !topObstruction) && (y >= pieceY || !bottomObstruction);
 					}
 				}
 			}
@@ -193,9 +185,7 @@ public interface TwoDimentionalRaycast {
 						}
 					}
 					// If both diagonals are obstructed, go next
-					if ((y > pieceY && topObstruction) || (y < pieceY && bottomObstruction)) {
-						continue;
-					} else {
+					if (!((y > pieceY && topObstruction) || (y < pieceY && bottomObstruction))) {
 						validTiles.add(boardTiles[x][y]);
 					}
 				}
@@ -231,9 +221,7 @@ public interface TwoDimentionalRaycast {
 						}
 					}
 					// If both diagonals are obstructed, go next
-					if ((y > pieceY && topObstruction) || (y < pieceY && bottomObstruction)) {
-						continue;
-					} else {
+					if (!((y > pieceY && topObstruction) || (y < pieceY && bottomObstruction))) {
 						validTiles.add(boardTiles[x][y]);
 					}
 				}

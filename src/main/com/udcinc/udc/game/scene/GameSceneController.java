@@ -26,7 +26,7 @@ public class GameSceneController {
 	// Reference to the gridPane that is used for the board
 	@FXML private GridPane board;
 	
-	private GameState gs;
+	private final GameState gs;
 	
 	// static piece object used for storing object data during drag and drop
 	private static Piece selectedPiece;

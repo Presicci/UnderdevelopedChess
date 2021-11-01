@@ -11,7 +11,7 @@ import main.com.udcinc.udc.game.scene.GameSceneController;
  * @author Thomas Presicci
  */
 public class GameState {
-	private Board board;
+	private final Board board;
 	
 	public GameState() {
         this.board = new Board(GameSettings.getSize());

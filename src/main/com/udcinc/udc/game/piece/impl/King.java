@@ -16,7 +16,7 @@ public class King extends Piece {
 	public King(Player player, Tile tile, GameState gs) {
     	super(player, tile, gs);
 		this.name = "King";
-        this.image = new Image("./rook.png");	// temp image location
+        this.image = new Image("./king.png");
 	}
 	
 	@Override
@@ -29,14 +29,14 @@ public class King extends Piece {
 		
 		if (isAdjacent) {
 			// If tile does not have an allied piece, tile is valid
-			return (tile.hasPiece() && tile.getPiece().getOwner() == this.getOwner()) ? false : true;
+			return !tile.hasPiece() || tile.getPiece().getOwner() != this.getOwner();
 		}
 		return false;
 	}
 	
 	/**
 	 * Overrides to do as few comparisons as possible,
-	 * only calculates for 
+	 * only calculates for adjacent tiles
 	 */
 	@Override public List<Tile> getAllValidMoves() {
 		Position pPos = this.getPosition();

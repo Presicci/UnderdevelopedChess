@@ -16,7 +16,7 @@ public class Pawn extends Piece {
 	public Pawn(Player player, Tile tile, GameState gs) {
     	super(player, tile, gs);
 		this.name = "Pawn";
-        this.image = new Image("./rook.png");	// temp image location
+        this.image = new Image("./pawn.png");
 	}
 
 	@Override
@@ -38,7 +38,8 @@ public class Pawn extends Piece {
 	
 	/**
 	 * Overrides to do as few comparisons as possible,
-	 * only calculates for 
+	 * only calculates for tiles the pawn could potentially
+	 * move to
 	 */
 	@Override public List<Tile> getAllValidMoves() {
 		Position pPos = this.getPosition();
