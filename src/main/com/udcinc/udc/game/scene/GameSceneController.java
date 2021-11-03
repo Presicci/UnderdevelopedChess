@@ -332,7 +332,14 @@ public class GameSceneController {
 	 * @param piece The piece to move
 	 * @param nextPos The position to move the piece to
 	 */
-	private void movePiece(Piece piece, Position nextPos) {		
+	private void movePiece(Piece piece, Position nextPos) {
+		if (piece instanceof Pawn) {
+			Pawn pawn = ((Pawn) piece);
+			if (!pawn.hasMoved()) {
+				pawn.setMoved(true);	
+			}
+		}
+		
 		// Visually remove the piece from old tile
 		removePieceFromBoard(piece);
 		
