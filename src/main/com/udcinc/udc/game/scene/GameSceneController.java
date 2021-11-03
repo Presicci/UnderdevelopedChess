@@ -11,11 +11,15 @@ import javafx.scene.input.Dragboard;
 import javafx.scene.input.TransferMode;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
 import main.com.udcinc.udc.game.GameSettings;
 import main.com.udcinc.udc.game.board.Position;
 import main.com.udcinc.udc.game.board.Tile;
 import main.com.udcinc.udc.game.piece.Piece;
 import main.com.udcinc.udc.game.piece.impl.Bishop;
+import main.com.udcinc.udc.game.piece.impl.King;
+import main.com.udcinc.udc.game.piece.impl.Knight;
+import main.com.udcinc.udc.game.piece.impl.Pawn;
 import main.com.udcinc.udc.game.piece.impl.Queen;
 import main.com.udcinc.udc.game.piece.impl.Rook;
 import main.com.udcinc.udc.game.player.Player;
@@ -61,11 +65,43 @@ public class GameSceneController {
         // Test player
         Player player = new Player("TestPlayer");
         Player player2 = new Player("TestPlayer2");
+        player2.setWhite(true);
+        player2.setColor(Color.CORAL);
         
         //  Test objects
-        assignPieceToBoard(new Rook(player, gs.getBoard().getTiles()[1][1], gs));
-        assignPieceToBoard(new Bishop(player, gs.getBoard().getTiles()[1][4], gs));
-        assignPieceToBoard(new Queen(player2, gs.getBoard().getTiles()[3][2], gs));
+        assignPieceToBoard(new Rook(player, gs.getBoard().getTiles()[0][0], gs));
+        assignPieceToBoard(new Knight(player, gs.getBoard().getTiles()[1][0], gs));
+        assignPieceToBoard(new Bishop(player, gs.getBoard().getTiles()[2][0], gs));
+        assignPieceToBoard(new Queen(player, gs.getBoard().getTiles()[3][0], gs));
+        assignPieceToBoard(new King(player, gs.getBoard().getTiles()[4][0], gs));
+        assignPieceToBoard(new Bishop(player, gs.getBoard().getTiles()[5][0], gs));
+        assignPieceToBoard(new Knight(player, gs.getBoard().getTiles()[6][0], gs));
+        assignPieceToBoard(new Rook(player, gs.getBoard().getTiles()[7][0], gs));
+        assignPieceToBoard(new Pawn(player, gs.getBoard().getTiles()[0][1], gs));
+        assignPieceToBoard(new Pawn(player, gs.getBoard().getTiles()[1][1], gs));
+        assignPieceToBoard(new Pawn(player, gs.getBoard().getTiles()[2][1], gs));
+        assignPieceToBoard(new Pawn(player, gs.getBoard().getTiles()[3][1], gs));
+        assignPieceToBoard(new Pawn(player, gs.getBoard().getTiles()[4][1], gs));
+        assignPieceToBoard(new Pawn(player, gs.getBoard().getTiles()[5][1], gs));
+        assignPieceToBoard(new Pawn(player, gs.getBoard().getTiles()[6][1], gs));
+        assignPieceToBoard(new Pawn(player, gs.getBoard().getTiles()[7][1], gs));
+        
+        assignPieceToBoard(new Rook(player2, gs.getBoard().getTiles()[0][7], gs));
+        assignPieceToBoard(new Knight(player2, gs.getBoard().getTiles()[1][7], gs));
+        assignPieceToBoard(new Bishop(player2, gs.getBoard().getTiles()[2][7], gs));
+        assignPieceToBoard(new Queen(player2, gs.getBoard().getTiles()[3][7], gs));
+        assignPieceToBoard(new King(player2, gs.getBoard().getTiles()[4][7], gs));
+        assignPieceToBoard(new Bishop(player2, gs.getBoard().getTiles()[5][7], gs));
+        assignPieceToBoard(new Knight(player2, gs.getBoard().getTiles()[6][7], gs));
+        assignPieceToBoard(new Rook(player2, gs.getBoard().getTiles()[7][7], gs));
+        assignPieceToBoard(new Pawn(player2, gs.getBoard().getTiles()[0][6], gs));
+        assignPieceToBoard(new Pawn(player2, gs.getBoard().getTiles()[1][6], gs));
+        assignPieceToBoard(new Pawn(player2, gs.getBoard().getTiles()[2][6], gs));
+        assignPieceToBoard(new Pawn(player2, gs.getBoard().getTiles()[3][6], gs));
+        assignPieceToBoard(new Pawn(player2, gs.getBoard().getTiles()[4][6], gs));
+        assignPieceToBoard(new Pawn(player2, gs.getBoard().getTiles()[5][6], gs));
+        assignPieceToBoard(new Pawn(player2, gs.getBoard().getTiles()[6][6], gs));
+        assignPieceToBoard(new Pawn(player2, gs.getBoard().getTiles()[7][6], gs));
 	}
 	
 	/**
