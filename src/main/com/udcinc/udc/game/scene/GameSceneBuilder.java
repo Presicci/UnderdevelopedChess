@@ -6,6 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import main.com.udcinc.udc.game.player.Player;
 import main.com.udcinc.udc.game.state.GameState;
 
 /**
@@ -23,8 +24,12 @@ public class GameSceneBuilder {
 		// Initialize our game state
 		GameState gs = new GameState();
 		
+		// Test players
+		Player whitePlayer = new Player("White");
+		Player blackPlayer = new Player("Black");
+		
 		// Overloads the default controller constructor
-		loader.setControllerFactory(GameSceneController -> new GameSceneController(gs));
+		loader.setControllerFactory(GameSceneController -> new GameSceneController(gs, whitePlayer, blackPlayer));
 		
 		// Gets root pane for the scene
 		Pane root = loader.load();

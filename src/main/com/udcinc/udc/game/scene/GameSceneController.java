@@ -40,8 +40,9 @@ public class GameSceneController {
 	 * a constructor factory assignment in GameSceneBuilder.java
 	 * @param gs The gamestate model
 	 */
-	public GameSceneController(GameState gs) {
+	public GameSceneController(GameState gs, Player whitePlayer, Player blackPlayer) {
 		this.gs = gs;
+		gs.assignPlayers(whitePlayer, blackPlayer);
 	}
 	
 	/**
@@ -62,46 +63,40 @@ public class GameSceneController {
          * Test data
          */
         
-        // Test player
-        Player player = new Player("TestPlayer");
-        Player player2 = new Player("TestPlayer2");
-        player2.setWhite(true);
-        player2.setColor(Color.CORAL);
-        
         //  Test objects
-        assignPieceToBoard(new Rook(player, gs.getBoard().getTiles()[0][0], gs));
-        assignPieceToBoard(new Knight(player, gs.getBoard().getTiles()[1][0], gs));
-        assignPieceToBoard(new Bishop(player, gs.getBoard().getTiles()[2][0], gs));
-        assignPieceToBoard(new Queen(player, gs.getBoard().getTiles()[3][0], gs));
-        assignPieceToBoard(new King(player, gs.getBoard().getTiles()[4][0], gs));
-        assignPieceToBoard(new Bishop(player, gs.getBoard().getTiles()[5][0], gs));
-        assignPieceToBoard(new Knight(player, gs.getBoard().getTiles()[6][0], gs));
-        assignPieceToBoard(new Rook(player, gs.getBoard().getTiles()[7][0], gs));
-        assignPieceToBoard(new Pawn(player, gs.getBoard().getTiles()[0][1], gs));
-        assignPieceToBoard(new Pawn(player, gs.getBoard().getTiles()[1][1], gs));
-        assignPieceToBoard(new Pawn(player, gs.getBoard().getTiles()[2][1], gs));
-        assignPieceToBoard(new Pawn(player, gs.getBoard().getTiles()[3][1], gs));
-        assignPieceToBoard(new Pawn(player, gs.getBoard().getTiles()[4][1], gs));
-        assignPieceToBoard(new Pawn(player, gs.getBoard().getTiles()[5][1], gs));
-        assignPieceToBoard(new Pawn(player, gs.getBoard().getTiles()[6][1], gs));
-        assignPieceToBoard(new Pawn(player, gs.getBoard().getTiles()[7][1], gs));
+        assignPieceToBoard(new Rook(gs.getBlackPlayer(), gs.getBoard().getTiles()[0][0], gs));
+        assignPieceToBoard(new Knight(gs.getBlackPlayer(), gs.getBoard().getTiles()[1][0], gs));
+        assignPieceToBoard(new Bishop(gs.getBlackPlayer(), gs.getBoard().getTiles()[2][0], gs));
+        assignPieceToBoard(new Queen(gs.getBlackPlayer(), gs.getBoard().getTiles()[3][0], gs));
+        assignPieceToBoard(new King(gs.getBlackPlayer(), gs.getBoard().getTiles()[4][0], gs));
+        assignPieceToBoard(new Bishop(gs.getBlackPlayer(), gs.getBoard().getTiles()[5][0], gs));
+        assignPieceToBoard(new Knight(gs.getBlackPlayer(), gs.getBoard().getTiles()[6][0], gs));
+        assignPieceToBoard(new Rook(gs.getBlackPlayer(), gs.getBoard().getTiles()[7][0], gs));
+        assignPieceToBoard(new Pawn(gs.getBlackPlayer(), gs.getBoard().getTiles()[0][1], gs));
+        assignPieceToBoard(new Pawn(gs.getBlackPlayer(), gs.getBoard().getTiles()[1][1], gs));
+        assignPieceToBoard(new Pawn(gs.getBlackPlayer(), gs.getBoard().getTiles()[2][1], gs));
+        assignPieceToBoard(new Pawn(gs.getBlackPlayer(), gs.getBoard().getTiles()[3][1], gs));
+        assignPieceToBoard(new Pawn(gs.getBlackPlayer(), gs.getBoard().getTiles()[4][1], gs));
+        assignPieceToBoard(new Pawn(gs.getBlackPlayer(), gs.getBoard().getTiles()[5][1], gs));
+        assignPieceToBoard(new Pawn(gs.getBlackPlayer(), gs.getBoard().getTiles()[6][1], gs));
+        assignPieceToBoard(new Pawn(gs.getBlackPlayer(), gs.getBoard().getTiles()[7][1], gs));
         
-        assignPieceToBoard(new Rook(player2, gs.getBoard().getTiles()[0][7], gs));
-        assignPieceToBoard(new Knight(player2, gs.getBoard().getTiles()[1][7], gs));
-        assignPieceToBoard(new Bishop(player2, gs.getBoard().getTiles()[2][7], gs));
-        assignPieceToBoard(new Queen(player2, gs.getBoard().getTiles()[3][7], gs));
-        assignPieceToBoard(new King(player2, gs.getBoard().getTiles()[4][7], gs));
-        assignPieceToBoard(new Bishop(player2, gs.getBoard().getTiles()[5][7], gs));
-        assignPieceToBoard(new Knight(player2, gs.getBoard().getTiles()[6][7], gs));
-        assignPieceToBoard(new Rook(player2, gs.getBoard().getTiles()[7][7], gs));
-        assignPieceToBoard(new Pawn(player2, gs.getBoard().getTiles()[0][6], gs));
-        assignPieceToBoard(new Pawn(player2, gs.getBoard().getTiles()[1][6], gs));
-        assignPieceToBoard(new Pawn(player2, gs.getBoard().getTiles()[2][6], gs));
-        assignPieceToBoard(new Pawn(player2, gs.getBoard().getTiles()[3][6], gs));
-        assignPieceToBoard(new Pawn(player2, gs.getBoard().getTiles()[4][6], gs));
-        assignPieceToBoard(new Pawn(player2, gs.getBoard().getTiles()[5][6], gs));
-        assignPieceToBoard(new Pawn(player2, gs.getBoard().getTiles()[6][6], gs));
-        assignPieceToBoard(new Pawn(player2, gs.getBoard().getTiles()[7][6], gs));
+        assignPieceToBoard(new Rook(gs.getWhitePlayer(), gs.getBoard().getTiles()[0][7], gs));
+        assignPieceToBoard(new Knight(gs.getWhitePlayer(), gs.getBoard().getTiles()[1][7], gs));
+        assignPieceToBoard(new Bishop(gs.getWhitePlayer(), gs.getBoard().getTiles()[2][7], gs));
+        assignPieceToBoard(new Queen(gs.getWhitePlayer(), gs.getBoard().getTiles()[3][7], gs));
+        assignPieceToBoard(new King(gs.getWhitePlayer(), gs.getBoard().getTiles()[4][7], gs));
+        assignPieceToBoard(new Bishop(gs.getWhitePlayer(), gs.getBoard().getTiles()[5][7], gs));
+        assignPieceToBoard(new Knight(gs.getWhitePlayer(), gs.getBoard().getTiles()[6][7], gs));
+        assignPieceToBoard(new Rook(gs.getWhitePlayer(), gs.getBoard().getTiles()[7][7], gs));
+        assignPieceToBoard(new Pawn(gs.getWhitePlayer(), gs.getBoard().getTiles()[0][6], gs));
+        assignPieceToBoard(new Pawn(gs.getWhitePlayer(), gs.getBoard().getTiles()[1][6], gs));
+        assignPieceToBoard(new Pawn(gs.getWhitePlayer(), gs.getBoard().getTiles()[2][6], gs));
+        assignPieceToBoard(new Pawn(gs.getWhitePlayer(), gs.getBoard().getTiles()[3][6], gs));
+        assignPieceToBoard(new Pawn(gs.getWhitePlayer(), gs.getBoard().getTiles()[4][6], gs));
+        assignPieceToBoard(new Pawn(gs.getWhitePlayer(), gs.getBoard().getTiles()[5][6], gs));
+        assignPieceToBoard(new Pawn(gs.getWhitePlayer(), gs.getBoard().getTiles()[6][6], gs));
+        assignPieceToBoard(new Pawn(gs.getWhitePlayer(), gs.getBoard().getTiles()[7][6], gs));
 	}
 	
 	/**
