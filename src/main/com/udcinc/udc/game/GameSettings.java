@@ -8,9 +8,9 @@ package main.com.udcinc.udc.game;
  * @author Thomas Presicci
  */
 public class GameSettings {
-    private static int size = 8;
+    private int size = 8;
 
-    public static int getSize() {
+    public int getSize() {
         return size;
     }
 }

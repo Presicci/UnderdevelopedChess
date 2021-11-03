@@ -53,8 +53,8 @@ public class GameSceneController {
 		setupGrid();
 
         //  Create the board
-        for (int row = 0; row < GameSettings.getSize(); row++) {
-            for (int column = 0; column < GameSettings.getSize(); column++) {
+        for (int row = 0; row < gs.getSettings().getSize(); row++) {
+            for (int column = 0; column < gs.getSettings().getSize(); column++) {
                 registerTile(row,  column);
             }
         }
@@ -162,9 +162,9 @@ public class GameSceneController {
 	}
 	
 	public void setupGrid() {
-		final double tileSize = 600.0 / GameSettings.getSize();
+		final double tileSize = 600.0 / gs.getSettings().getSize();
         for (int index = 0; index < board.getRowConstraints().size(); index++) {
-            if (index > GameSettings.getSize() - 1) {
+            if (index > gs.getSettings().getSize() - 1) {
             	board.getRowConstraints().get(index).setMaxHeight(0);
             	board.getColumnConstraints().get(index).setMaxWidth(0);
             } else {

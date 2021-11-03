@@ -35,7 +35,7 @@ public class GameRules {
 	
 	/*
 	 * Time a player has to take their turns
-	 * TODO maybe implement the full chess timing rules idk yet
+	 * Time is in seconds
 	 * set to 0 to disable timers
 	 * 
 	 * defaults to 0

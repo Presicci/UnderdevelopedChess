@@ -1,0 +1,43 @@
+package main.com.udcinc.udc.game.timer;
+
+import java.util.Timer;
+import java.util.TimerTask;
+
+public class TurnTimer {
+	// Seconds left for the players turns
+	private int seconds;
+	
+	// Timer object that will handle the decrementing of time
+	private Timer timer;
+	
+	// If the timer should tick down
+	private boolean running = false;
+	
+	public TurnTimer(int seconds) {
+		this.seconds = seconds;	// testing
+		
+		timer = new Timer();
+		
+		timer.scheduleAtFixedRate(new TimerTask() {
+			@Override
+			public void run() {
+				if (running) {
+					System.out.println("Time: " + decrementTimer());	// Tick the timer down
+					// Write seconds to gui	
+				}
+			}
+		}, 1000, 1000);
+	}
+
+	public boolean isRunning() {
+		return running;
+	}
+
+	public void setRunning(boolean running) {
+		this.running = running;
+	}
+	
+	public int decrementTimer() {
+		return --seconds;
+	}
+}
