@@ -231,6 +231,10 @@ public class GameSceneController {
         	if (piece == null) {
         		return;
         	}
+        	// Piece can only be moved if it is that player's turn
+        	if (gs.getActivePlayer() != piece.getOwner()) {
+        		return;
+        	}
         	
         	// Dragboard carries data with the mouse
         	Dragboard db = iv.startDragAndDrop(TransferMode.ANY);
@@ -343,5 +347,8 @@ public class GameSceneController {
 		
 		// Visually add the piece to new tile
 		assignPieceToBoard(piece);
+		
+		// Changes the active player to the other player
+		gs.nextTurn();
 	}
 }

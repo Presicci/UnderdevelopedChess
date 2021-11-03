@@ -25,11 +25,27 @@ public class GameState {
         this.board = new Board(GameSettings.getSize());
     }
 	
+	/**
+	 * Called at game start, sets up the players
+	 * @param whitePlayer The player that will be going first, bottom side of board
+	 * @param blackPlayer The player that will be going second, top side of the board
+	 */
 	public void assignPlayers(Player whitePlayer, Player blackPlayer) {
 		whitePlayer.setWhite(true);
 		activePlayer = whitePlayer;
 		players[0] = whitePlayer;
 		players[1] = blackPlayer;
+	}
+	
+	/**
+	 * Switches the active player
+	 */
+	public void nextTurn() {
+		if (activePlayer == players[0]) {
+			activePlayer = players[1];
+		} else {
+			activePlayer = players[0];
+		}
 	}
 	
 	public Player[] getPlayers() {
@@ -46,5 +62,9 @@ public class GameState {
 
     public Board getBoard() {
         return board;
+    }
+    
+    public Player getActivePlayer() {
+    	return activePlayer;
     }
 }
