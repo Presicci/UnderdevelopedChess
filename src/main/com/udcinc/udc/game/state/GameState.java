@@ -29,7 +29,7 @@ public class GameState {
 		this.settings = new GameSettings();
 		this.rules = new GameRules();
 		this.players = new Player[2];
-        this.board = new Board(settings.getSize());
+        this.board = new Board(settings.getSize(), rules);
     }
 	
 	/**
@@ -69,6 +69,8 @@ public class GameState {
 		}
 	}
 	
+	
+	// Getters/setters
 	public GameSettings getSettings() {
 		return settings;
 	}
@@ -92,4 +94,10 @@ public class GameState {
     public Player getActivePlayer() {
     	return activePlayer;
     }
+
+	public GameRules getRules() {
+		return rules;
+	}
+    
+    
 }

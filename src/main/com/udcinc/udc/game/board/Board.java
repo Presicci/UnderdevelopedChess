@@ -1,7 +1,9 @@
 package main.com.udcinc.udc.game.board;
 
+import main.com.udcinc.udc.game.GameRules;
 import main.com.udcinc.udc.game.piece.Piece;
 import main.com.udcinc.udc.game.piece.impl.Pawn;
+import main.com.udcinc.udc.game.state.GameState;
 
 /**
  * Container which holds a collection of Tiles.
@@ -19,9 +21,12 @@ public class Board {
     
     // Tile of a pawn that has moved two tiles vertically last turn
     private Tile passantTile = null;
+    // Whether en passant is enabled or not
+    private boolean enPassant;
     
-    public Board(int size) {
+    public Board(int size, GameRules rules) {
         tiles = new Tile[size][size];
+        this.enPassant = rules.isEnPassantAllowed();
     }
 	
     /**
@@ -42,7 +47,7 @@ public class Board {
 		/* En passant handling */
 		// Reset the value of the passant tile, whether or not we are reassigning it
 		passantTile = null;
-		if (piece instanceof Pawn) {
+		if (piece instanceof Pawn && enPassant) {
 			if (piece.getPosition().getY() == nextPos.getY() + 2 
 					|| piece.getPosition().getY() == nextPos.getY() - 2) {
 				// Assign passant tile

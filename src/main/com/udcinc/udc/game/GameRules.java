@@ -103,7 +103,7 @@ public class GameRules {
 		this.pawnPromotion = pawnPromotion;
 	}
 
-	public boolean isEnPassant() {
+	public boolean isEnPassantAllowed() {
 		return enPassant;
 	}
 
