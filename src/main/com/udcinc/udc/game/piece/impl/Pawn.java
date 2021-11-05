@@ -133,6 +133,35 @@ public class Pawn extends Piece {
         return possibleTiles;
 	}
 	
+	/**
+	 * Returns capture moves regardless of tile occupation
+	 */
+	@Override public List<Tile> getDangerousTiles() {
+		Position pPos = this.getPosition();
+		int pX = pPos.getX();		
+		List<Tile> possibleTiles = new ArrayList<>();
+		Board board = gs.getBoard();
+        
+		// Gets the y coord for possible moves
+        int y = this.getOwner().isWhite() ? pPos.getY() - 1 : pPos.getY() + 1;
+        if (y < 0 || y > board.getSize() - 1) {	// If piece is at board edge, return empty list
+        	return possibleTiles;
+        }
+        	
+        // Iterates through the 3 possible pawn move tiles
+        List<Tile> tiles = new ArrayList<>();
+        tiles.add(board.getTile(pX + 1, y));
+        tiles.add(board.getTile(pX - 1, y));
+        
+        for (Tile tile : tiles) {
+        	if (tile == null) {
+        		continue;
+        	}
+        	possibleTiles.add(tile);
+        }
+        return possibleTiles;
+	}
+	
 	
 	// Getters/setters
 	public boolean hasMoved() {

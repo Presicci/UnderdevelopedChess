@@ -83,6 +83,16 @@ public abstract class Piece {
         }
         return possibleTiles;
     }
+    
+    /**
+     * Used for king move calculations
+     * Default method used to determine all tiles that this piece can capture on
+     * Differs from getAllValidMoves for pawn only
+     * @return List of tiles that are dangerous for a king
+     */
+    public List<Tile> getDangerousTiles() {
+        return getAllValidMoves();
+    }
 
     //	Getters/Setters
     public String getName() {

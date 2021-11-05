@@ -3,7 +3,9 @@ package main.com.udcinc.udc.game.piece;
 import java.util.ArrayList;
 import java.util.List;
 
+import main.com.udcinc.udc.game.board.Board;
 import main.com.udcinc.udc.game.board.Tile;
+import main.com.udcinc.udc.game.player.Player;
 import main.com.udcinc.udc.game.state.GameState;
 
 /**
@@ -227,6 +229,23 @@ public interface TwoDimentionalRaycast {
 			}
 		}
 		return validTiles;
+	}
+	
+	/**
+	 * Gets all tiles that the player's king can not move to
+	 * @return List of tiles that the other player's pieces are watching
+	 */
+	public static List<Tile> getCheckTiles(Player player, Board board) {
+		List<Tile> checkTiles = new ArrayList<>();
+		for (Tile[] column : board.getTiles()) {
+			for (Tile tile : column) {
+				Piece piece = tile.getPiece();
+				if (piece != null && piece.owner != player) {
+					checkTiles.addAll(piece.getDangerousTiles());
+				}
+			}
+		}
+		return checkTiles;
 	}
 	
 }
