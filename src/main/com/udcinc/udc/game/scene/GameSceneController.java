@@ -262,6 +262,8 @@ public class GameSceneController {
         // Used in the case of a drag not ending on a tile
         iv.setOnDragDone(event -> {
         	selectedPiece = null;
+        	// Remove the move coloring
+        	resetBoardColors();
         });
         
         // Handles transfer mode acceptance of the piece on the tile
