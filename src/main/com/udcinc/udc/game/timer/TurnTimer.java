@@ -3,6 +3,13 @@ package main.com.udcinc.udc.game.timer;
 import java.util.Timer;
 import java.util.TimerTask;
 
+/**
+ * Timer object that stores and handles a player timer
+ * Timer starts disabled and wont tick down till enabled
+ * Disabled at end of turn, enabled at start of turn
+ * 
+ * @author Thomas Presicci
+ */
 public class TurnTimer {
 	// Seconds left for the players turns
 	private int seconds;
@@ -14,10 +21,11 @@ public class TurnTimer {
 	private boolean running = false;
 	
 	public TurnTimer(int seconds) {
-		this.seconds = seconds;	// testing
+		this.seconds = seconds;
 		
 		timer = new Timer();
 		
+		//	Timer task that ticks every second
 		timer.scheduleAtFixedRate(new TimerTask() {
 			@Override
 			public void run() {
@@ -26,7 +34,7 @@ public class TurnTimer {
 					// Write seconds to gui	
 				}
 			}
-		}, 1000, 1000);
+		}, 1000, 1000);	// 1 second
 	}
 
 	public boolean isRunning() {
