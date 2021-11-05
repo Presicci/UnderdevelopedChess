@@ -17,6 +17,7 @@ import main.com.udcinc.udc.game.piece.impl.Pawn;
 public class Board {
     private Tile[][] tiles;
     
+    // Tile of a pawn that has moved two tiles vertically last turn
     private Tile passantTile = null;
     
     public Board(int size) {
@@ -38,10 +39,13 @@ public class Board {
 	 * @param nextPos Position being moved to
 	 */
 	public void movePiece(Piece piece, Position nextPos) {
+		/* En passant handling */
+		// Reset the value of the passant tile, whether or not we are reassigning it
 		passantTile = null;
 		if (piece instanceof Pawn) {
 			if (piece.getPosition().getY() == nextPos.getY() + 2 
 					|| piece.getPosition().getY() == nextPos.getY() - 2) {
+				// Assign passant tile
 				passantTile = tiles[nextPos.getX()][nextPos.getY()];
 			}
 		}
