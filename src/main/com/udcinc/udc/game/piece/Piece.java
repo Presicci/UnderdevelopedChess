@@ -3,6 +3,7 @@ package main.com.udcinc.udc.game.piece;
 import javafx.scene.image.Image;
 import main.com.udcinc.udc.game.board.Position;
 import main.com.udcinc.udc.game.board.Tile;
+import main.com.udcinc.udc.game.piece.impl.Pawn;
 import main.com.udcinc.udc.game.player.Player;
 import main.com.udcinc.udc.game.state.GameState;
 

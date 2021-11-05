@@ -28,6 +28,20 @@ public class Pawn extends Piece {
 	}
 
 	/**
+     * Moves this piece to the proived position
+     * unchecked for now for testing
+     * 
+     * @param pos The position to move the piece to.
+     */
+	@Override
+    public void move(Position pos) {
+    	this.moved = true;
+    	this.tile.setPiece(null);
+    	this.position = pos;
+    	this.setTile(gs.getBoard().getTiles()[pos.getX()][pos.getY()]);
+    	this.tile.setPiece(this);
+    }
+	/**
 	 * Checks that the tile is one y up or down, or that the tile is diagonally adjacent and contains an enemy piece
 	 * OR if the piece has yet to move, checks that the tile is two y up or down as well
 	 * @param tile The tile being checked
