@@ -62,7 +62,16 @@ public class Pawn extends Piece {
 		if (pPos.getX() == tPos.getX()) {	// Tile is in the same column
 			return tile.hasPiece() ? false : (isFirstMoveTile || isYAdjacent);
 		} else if (Math.abs(pPos.getX() - tPos.getX()) == 1) {	// Tile is in an adjacent column
-			// Can only move diagonally if there is an enemy piece to cap
+			// En passant handling
+			Tile passantTile = gs.getBoard().getPassantTile();
+			if (passantTile != null) {
+				Position passantPos = passantTile.getPosition();
+				if (tPos.getX() == passantPos.getX() 
+						&& tPos.getY() == pPos.getY() + (owner.isWhite() ? -1 : 1)) {
+					return true;
+				}
+			}
+			// otherwise can only move diagonally if there is an enemy piece to cap
 			return isYAdjacent && tile.hasPiece() && tile.getPiece().getOwner() != this.getOwner();
 		}
 		return false;
@@ -106,7 +115,16 @@ public class Pawn extends Piece {
         		if (!tile.hasPiece()) {
         			possibleTiles.add(tile);
         		}
-        	} else {	// Can only move diagonally if an enemy piece is present
+        	} else {
+        		// En passant handling
+        		Tile passantTile = gs.getBoard().getPassantTile();
+    			if (passantTile != null) {
+    				Position passantPos = passantTile.getPosition();
+    				if (pPos.getY() == passantPos.getY()) {
+    					possibleTiles.add(board.getTile(passantPos.getX(), passantPos.getY() + (owner.isWhite() ? -1 : 1)));
+    				}
+    			}
+    			// Otherwise can only move diagonally if an enemy piece is present
         		if (tile.hasPiece() && tile.getPiece().getOwner() != this.getOwner()) {
         			possibleTiles.add(tile);
         		}

@@ -332,6 +332,16 @@ public class GameSceneController {
 	 * @param nextPos The position to move the piece to
 	 */
 	private void movePiece(Piece piece, Position nextPos) {
+		// En passant piece removal handling, has to be done here to remove the piece visually
+		Tile passantTile = gs.getBoard().getPassantTile();
+		if (passantTile != null && piece instanceof Pawn) {
+			if (nextPos.getX() != piece.getPosition().getX() && nextPos.getY() == passantTile.getPosition().getY() + (piece.getOwner().isWhite() ? -1 : 1) && passantTile.hasPiece()) {
+				Piece passantPiece = passantTile.getPiece();
+				removePieceFromBoard(passantPiece);
+				gs.getBoard().killPiece(passantPiece);
+			}
+		}
+		
 		// Visually remove the piece from old tile
 		removePieceFromBoard(piece);
 		

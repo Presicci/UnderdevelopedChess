@@ -1,7 +1,7 @@
 package main.com.udcinc.udc.game.board;
 
 import main.com.udcinc.udc.game.piece.Piece;
-import main.com.udcinc.udc.game.scene.GameSceneController;
+import main.com.udcinc.udc.game.piece.impl.Pawn;
 
 /**
  * Container which holds a collection of Tiles.
@@ -16,6 +16,8 @@ import main.com.udcinc.udc.game.scene.GameSceneController;
  */
 public class Board {
     private Tile[][] tiles;
+    
+    private Tile passantTile = null;
     
     public Board(int size) {
         tiles = new Tile[size][size];
@@ -36,6 +38,14 @@ public class Board {
 	 * @param nextPos Position being moved to
 	 */
 	public void movePiece(Piece piece, Position nextPos) {
+		passantTile = null;
+		if (piece instanceof Pawn) {
+			if (piece.getPosition().getY() == nextPos.getY() + 2 
+					|| piece.getPosition().getY() == nextPos.getY() - 2) {
+				passantTile = tiles[nextPos.getX()][nextPos.getY()];
+			}
+		}
+		
 		piece.move(nextPos);
 	}
 
@@ -83,4 +93,8 @@ public class Board {
     public Tile[][] getTiles() {
         return tiles;
     }
+
+	public Tile getPassantTile() {
+		return passantTile;
+	}
 }
