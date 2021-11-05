@@ -29,6 +29,15 @@ public class Board {
 		tiles[piece.getPosition().getX()][piece.getPosition().getY()].setPiece(null);
 		piece.doKill();
 	}
+	
+	/**
+	 * Moves a piece to a tile at position nextPos
+	 * @param piece Piece being moved
+	 * @param nextPos Position being moved to
+	 */
+	public void movePiece(Piece piece, Position nextPos) {
+		piece.move(nextPos);
+	}
 
 	/**
 	 * Adds a tile to the board
