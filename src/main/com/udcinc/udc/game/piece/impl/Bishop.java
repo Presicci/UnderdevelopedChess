@@ -22,13 +22,18 @@ public class Bishop extends Piece {
 		this.image = new Image("./bishop.png");
 	}
 
-	@Override
-	public boolean canMove(Tile tile) {
+	/**
+	 * Checks if the tile is in an non-obstructed diagonal tile 
+	 * @param tile The tile being checked
+	 */
+	@Override public boolean canMove(Tile tile) {
 		return TwoDimentionalRaycast.diagonalRaycast(tile, this, gs);
 	}
 	
-	@Override
-	public List<Tile> getAllValidMoves() {
+	/**
+	 * Returns all tiles that are not obstructed in a diagonal from the bishop
+	 */
+	@Override public List<Tile> getAllValidMoves() {
         return TwoDimentionalRaycast.diagonalRaycastList(this, gs);
     }
 }

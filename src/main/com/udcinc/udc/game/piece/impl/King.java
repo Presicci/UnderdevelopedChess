@@ -11,6 +11,11 @@ import main.com.udcinc.udc.game.piece.Piece;
 import main.com.udcinc.udc.game.player.Player;
 import main.com.udcinc.udc.game.state.GameState;
 
+/**
+ * King piece, can move to any adjacent tile, linearly and diagonally
+ * 
+ * @author Thomas Presicci
+ */
 public class King extends Piece {
 	
 	public King(Player player, Tile tile, GameState gs) {
@@ -18,9 +23,12 @@ public class King extends Piece {
 		this.name = "King";
         this.image = new Image("./king.png");
 	}
-	
-	@Override
-	public boolean canMove(Tile tile) {
+
+	/**
+	 * Checks if the tile is adjacent to the king diagonally and linearly
+	 * @param tile The tile being checked
+	 */
+	@Override public boolean canMove(Tile tile) {
 		Position pPos = this.getPosition();
 		Position tPos = tile.getPosition();
 		

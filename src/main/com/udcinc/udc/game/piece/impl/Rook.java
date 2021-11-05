@@ -18,8 +18,11 @@ public class Rook extends Piece {
         this.image = new Image("./rook.png");
     }
     
-    @Override
-    public boolean canMove(Tile tile) {
+    /**
+     * Does a straight raycast either vertically or horizontally
+     * @param tile Tile being checked
+     */
+    @Override public boolean canMove(Tile tile) {
     	if (tile.getPosition().getX() == getPosition().getX() || tile.getPosition().getY() == getPosition().getY()) {
     		return TwoDimentionalRaycast.straightRaycast(tile, this, gs);
     	}

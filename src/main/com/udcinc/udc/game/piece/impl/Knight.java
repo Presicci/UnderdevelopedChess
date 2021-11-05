@@ -7,6 +7,11 @@ import main.com.udcinc.udc.game.piece.Piece;
 import main.com.udcinc.udc.game.player.Player;
 import main.com.udcinc.udc.game.state.GameState;
 
+/**
+ * Knight piece, can move in an L shape
+ * 
+ * @author Thomas Presicci
+ */
 public class Knight extends Piece {
 
 	public Knight(Player player, Tile tile, GameState gs) {
@@ -15,9 +20,12 @@ public class Knight extends Piece {
         this.image = new Image("./knight.png");
     }
 
-
-	@Override
-	public boolean canMove(Tile tile) {
+	/**
+	 * Checks that the tile is either (+- 2 x & +- 1) y OR (+- 1 x & +- 2 y), or that the tiles is an L away from the knight
+	 * getAllValidMoves just loops the board and tests this for each
+	 * @param tile The tile being checked
+	 */
+	@Override public boolean canMove(Tile tile) {
 		Position pPos = this.getPosition();
 		Position tPos = tile.getPosition();
 		

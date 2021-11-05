@@ -23,8 +23,11 @@ public class Queen extends Piece {
         this.image = new Image("./queen.png");
 	}
 	
-	@Override
-	public boolean canMove(Tile tile) {
+	/**
+	 * Does a straight raycast if the tile x = piece x, otherwise do diagonal raycast
+	 * @param tile Tile being checked
+	 */
+	@Override public boolean canMove(Tile tile) {
     	if (tile.getPosition().getX() == getPosition().getX() || tile.getPosition().getY() == getPosition().getY()) {
     		return TwoDimentionalRaycast.straightRaycast(tile, this, gs);
     	} else {

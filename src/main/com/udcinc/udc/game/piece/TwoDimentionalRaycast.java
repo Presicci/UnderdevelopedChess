@@ -3,7 +3,6 @@ package main.com.udcinc.udc.game.piece;
 import java.util.ArrayList;
 import java.util.List;
 
-import main.com.udcinc.udc.game.GameSettings;
 import main.com.udcinc.udc.game.board.Tile;
 import main.com.udcinc.udc.game.state.GameState;
 

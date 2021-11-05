@@ -6,10 +6,17 @@ import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
+/**
+ * Application launcher
+ * 
+ * @author Thomas Presicci
+ */
 public class Launcher extends Application {
 
-	@Override
-	public void start(Stage primaryStage) throws Exception {
+	/**
+	 * Starts the main menu through MainMenu.fxml
+	 */
+	@Override public void start(Stage primaryStage) throws Exception {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/main/resources/MainMenu.fxml"));
 		Pane root = loader.load();
 		

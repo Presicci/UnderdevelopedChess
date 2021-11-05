@@ -11,8 +11,14 @@ import main.com.udcinc.udc.game.piece.Piece;
 import main.com.udcinc.udc.game.player.Player;
 import main.com.udcinc.udc.game.state.GameState;
 
+/**
+ * Pawn piece, can move forward once or twice forward from its starting position, or once afterwards
+ * Can capture diagonally adjacent tiles
+ * 
+ * @author Thomas Presicci
+ */
 public class Pawn extends Piece {
-	
+	// Set to true as soon as the piece is moved
 	boolean moved = false;
 	
 	public Pawn(Player player, Tile tile, GameState gs) {
@@ -21,8 +27,12 @@ public class Pawn extends Piece {
         this.image = new Image("./pawn.png");
 	}
 
-	@Override
-	public boolean canMove(Tile tile) {
+	/**
+	 * Checks that the tile is one y up or down, or that the tile is diagonally adjacent and contains an enemy piece
+	 * OR if the piece has yet to move, checks that the tile is two y up or down as well
+	 * @param tile The tile being checked
+	 */
+	@Override public boolean canMove(Tile tile) {
 		Position pPos = this.getPosition();
 		Position tPos = tile.getPosition();
 		
@@ -91,6 +101,8 @@ public class Pawn extends Piece {
         return possibleTiles;
 	}
 	
+	
+	// Getters/setters
 	public boolean hasMoved() {
 		return moved;
 	}

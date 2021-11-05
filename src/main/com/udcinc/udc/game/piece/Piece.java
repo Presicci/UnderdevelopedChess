@@ -45,6 +45,7 @@ public abstract class Piece {
     public void doKill() {
         this.isAlive = false;
         this.position = new Position(-1, -1);
+        this.tile = null;
     }
     
     /**
