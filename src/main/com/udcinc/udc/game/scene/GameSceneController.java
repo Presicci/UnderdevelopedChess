@@ -1,18 +1,31 @@
 package main.com.udcinc.udc.game.scene;
 
+import java.io.IOException;
+import java.util.Collections;
+
 import javafx.fxml.FXML;
+import javafx.geometry.Insets;
 import javafx.scene.Node;
+import javafx.scene.control.Button;
 import javafx.scene.effect.ColorAdjust;
 import javafx.scene.effect.Light;
 import javafx.scene.effect.Lighting;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.ClipboardContent;
 import javafx.scene.input.Dragboard;
 import javafx.scene.input.TransferMode;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.BackgroundImage;
+import javafx.scene.layout.BackgroundPosition;
+import javafx.scene.layout.BackgroundRepeat;
+import javafx.scene.layout.BackgroundSize;
+import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
-import main.com.udcinc.udc.game.GameSettings;
 import main.com.udcinc.udc.game.board.Position;
 import main.com.udcinc.udc.game.board.Tile;
 import main.com.udcinc.udc.game.piece.Piece;
@@ -34,6 +47,13 @@ public class GameSceneController {
 	
 	// static piece object used for storing object data during drag and drop
 	private static Piece selectedPiece;
+	
+	/*
+	 * Pawn promotion dialogue
+	 */
+	@FXML private AnchorPane promoteDialogue;
+	@FXML private Button promoteRook, promoteKnight, promoteBishop, promoteQueen;
+	private static Piece promotingPiece;
 	
 	/**
 	 * This constructor overrides the base FXML constructor via
@@ -58,6 +78,24 @@ public class GameSceneController {
                 registerTile(row,  column);
             }
         }
+        
+		// Setup the pawn promotion button images
+		promoteRook.setBackground(new Background(Collections.singletonList(new BackgroundFill(
+                Color.LIGHTGRAY, new CornerRadii(0), new Insets(0))),
+				Collections.singletonList(new BackgroundImage(new Image("./rook.png", 80, 80, true, true), BackgroundRepeat.NO_REPEAT,
+						BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT))));
+		promoteKnight.setBackground(new Background(Collections.singletonList(new BackgroundFill(
+                Color.LIGHTGRAY, new CornerRadii(0), new Insets(0))),
+				Collections.singletonList(new BackgroundImage(new Image("./knight.png", 80, 80, true, true), BackgroundRepeat.NO_REPEAT,
+						BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT))));
+		promoteBishop.setBackground(new Background(Collections.singletonList(new BackgroundFill(
+                Color.LIGHTGRAY, new CornerRadii(0), new Insets(0))),
+				Collections.singletonList(new BackgroundImage(new Image("./bishop.png", 80, 80, true, true), BackgroundRepeat.NO_REPEAT,
+						BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT))));
+		promoteQueen.setBackground(new Background(Collections.singletonList(new BackgroundFill(
+                Color.LIGHTGRAY, new CornerRadii(0), new Insets(0))),
+				Collections.singletonList(new BackgroundImage(new Image("./queen.png", 80, 80, true, true), BackgroundRepeat.NO_REPEAT,
+						BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT))));
         
         /*
          * Test data
@@ -353,7 +391,91 @@ public class GameSceneController {
 		// Visually add the piece to new tile
 		assignPieceToBoard(piece);
 		
+		// Pawn promotion handling
+		if ((piece.getOwner().isWhite() ? (nextPos.getY() == 0) : (nextPos.getY() == gs.getBoard().getSize() - 1))
+				&& piece instanceof Pawn) {
+			promotingPiece = selectedPiece;
+			promoteDialogue.setVisible(true);
+			return;	// pause turn until dialogue is closed
+		}
+		
 		// Changes the active player to the other player
+		gs.nextTurn();
+	}
+	
+	/**
+	 * Handler for the rook button on the pawn promotion dialogue
+	 * Changes the pawn into a rook, then advances the turn
+	 * @param event The event being triggered
+	 */
+	@FXML private void handlePromoteRook() {
+		if (promotingPiece == null || !(promotingPiece instanceof Pawn)) {
+			promoteDialogue.setVisible(false);
+			gs.nextTurn();
+			return;
+		}
+		Rook rook = new Rook(promotingPiece.getOwner(), gs.getBoard().getTile(promotingPiece.getPosition()), gs);
+		assignPieceToBoard(rook);
+		
+		promoteDialogue.setVisible(false);
+		promotingPiece = null;
+		gs.nextTurn();
+	}
+	
+	/**
+	 * Handler for the knight button on the pawn promotion dialogue
+	 * Changes the pawn into a knight, then advances the turn
+	 * @param event The event being triggered
+	 */
+	@FXML private void handlePromoteKnight() {
+		if (promotingPiece == null || !(promotingPiece instanceof Pawn)) {
+			promoteDialogue.setVisible(false);
+			gs.nextTurn();
+			return;
+		}
+		Knight knight = new Knight(promotingPiece.getOwner(), gs.getBoard().getTile(promotingPiece.getPosition()), gs);
+		assignPieceToBoard(knight);
+		
+		promoteDialogue.setVisible(false);
+		promotingPiece = null;
+		gs.nextTurn();
+	}
+	
+	/**
+	 * Handler for the bishop button on the pawn promotion dialogue
+	 * Changes the pawn into a bishop, then advances the turn
+	 * @param event The event being triggered
+	 */
+	@FXML private void handlePromoteBishop() {
+		if (promotingPiece == null || !(promotingPiece instanceof Pawn)) {
+			promoteDialogue.setVisible(false);
+			gs.nextTurn();
+			return;
+		}
+		Bishop bishop = new Bishop(promotingPiece.getOwner(), gs.getBoard().getTile(promotingPiece.getPosition()), gs);
+		assignPieceToBoard(bishop);
+		
+		promoteDialogue.setVisible(false);
+		promotingPiece = null;
+		gs.nextTurn();
+	}
+	
+	/**
+	 * Handler for the queen button on the pawn promotion dialogue
+	 * Changes the pawn into a queen, then advances the turn
+	 * @param event The event being triggered
+	 */
+	@FXML private void handlePromoteQueen() {
+		if (promotingPiece == null || !(promotingPiece instanceof Pawn)) {
+			promoteDialogue.setVisible(false);
+			gs.nextTurn();
+			return;
+		}
+		Queen queen = new Queen(promotingPiece.getOwner(), gs.getBoard().getTile(promotingPiece.getPosition()), gs);
+		assignPieceToBoard(queen);
+		
+		promoteDialogue.setVisible(false);
+		promotingPiece = null;
 		gs.nextTurn();
 	}
 }
