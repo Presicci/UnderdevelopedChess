@@ -393,7 +393,8 @@ public class GameSceneController {
 		
 		// Pawn promotion handling
 		if ((piece.getOwner().isWhite() ? (nextPos.getY() == 0) : (nextPos.getY() == gs.getBoard().getSize() - 1))
-				&& piece instanceof Pawn) {
+				&& piece instanceof Pawn 
+				&& gs.getRules().isPawnPromotionActive()) {
 			promotingPiece = selectedPiece;
 			promoteDialogue.setVisible(true);
 			return;	// pause turn until dialogue is closed

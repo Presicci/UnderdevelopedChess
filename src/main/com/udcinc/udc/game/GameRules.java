@@ -95,7 +95,7 @@ public class GameRules {
 		this.castling = castling;
 	}
 
-	public boolean isPawnPromotion() {
+	public boolean isPawnPromotionActive() {
 		return pawnPromotion;
 	}
 
