@@ -20,7 +20,7 @@ public class Queen extends Piece {
 	public Queen(Player player, Tile tile, GameState gs) {
     	super(player, tile, gs);
 		this.name = "Queen";
-        this.image = new Image("./queen.png");
+        this.image = new Image("./main/resources/sprites/queen.png");
 	}
 	
 	/**

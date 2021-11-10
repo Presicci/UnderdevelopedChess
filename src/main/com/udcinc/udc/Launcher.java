@@ -17,7 +17,7 @@ public class Launcher extends Application {
 	 * Starts the main menu through MainMenu.fxml
 	 */
 	@Override public void start(Stage primaryStage) throws Exception {
-		FXMLLoader loader = new FXMLLoader(getClass().getResource("/main/resources/MainMenu.fxml"));
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("/main/resources/fxml/MainMenu.fxml"));
 		Pane root = loader.load();
 		
         // Setup the window

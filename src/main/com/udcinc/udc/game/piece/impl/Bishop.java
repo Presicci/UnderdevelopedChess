@@ -19,7 +19,7 @@ public class Bishop extends Piece {
 	public Bishop(Player player, Tile tile, GameState gs) {
     	super(player, tile, gs);
 		this.name = "Bishop";
-		this.image = new Image("./bishop.png");
+		this.image = new Image("./main/resources/sprites/bishop.png");
 	}
 
 	/**

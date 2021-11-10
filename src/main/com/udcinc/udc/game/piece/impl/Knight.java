@@ -17,7 +17,7 @@ public class Knight extends Piece {
 	public Knight(Player player, Tile tile, GameState gs) {
     	super(player, tile, gs);
 		this.name = "Knight";
-        this.image = new Image("./knight.png");
+        this.image = new Image("./main/resources/sprites/knight.png");
     }
 
 	/**

@@ -81,19 +81,19 @@ public class GameSceneController {
 		// Setup the pawn promotion button images
 		promoteRook.setBackground(new Background(Collections.singletonList(new BackgroundFill(
                 Color.LIGHTGRAY, new CornerRadii(0), new Insets(0))),
-				Collections.singletonList(new BackgroundImage(new Image("./rook.png", 80, 80, true, true), BackgroundRepeat.NO_REPEAT,
+				Collections.singletonList(new BackgroundImage(new Image("./main/resources/sprites/rook.png", 80, 80, true, true), BackgroundRepeat.NO_REPEAT,
 						BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT))));
 		promoteKnight.setBackground(new Background(Collections.singletonList(new BackgroundFill(
                 Color.LIGHTGRAY, new CornerRadii(0), new Insets(0))),
-				Collections.singletonList(new BackgroundImage(new Image("./knight.png", 80, 80, true, true), BackgroundRepeat.NO_REPEAT,
+				Collections.singletonList(new BackgroundImage(new Image("./main/resources/sprites/knight.png", 80, 80, true, true), BackgroundRepeat.NO_REPEAT,
 						BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT))));
 		promoteBishop.setBackground(new Background(Collections.singletonList(new BackgroundFill(
                 Color.LIGHTGRAY, new CornerRadii(0), new Insets(0))),
-				Collections.singletonList(new BackgroundImage(new Image("./bishop.png", 80, 80, true, true), BackgroundRepeat.NO_REPEAT,
+				Collections.singletonList(new BackgroundImage(new Image("./main/resources/sprites/bishop.png", 80, 80, true, true), BackgroundRepeat.NO_REPEAT,
 						BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT))));
 		promoteQueen.setBackground(new Background(Collections.singletonList(new BackgroundFill(
                 Color.LIGHTGRAY, new CornerRadii(0), new Insets(0))),
-				Collections.singletonList(new BackgroundImage(new Image("./queen.png", 80, 80, true, true), BackgroundRepeat.NO_REPEAT,
+				Collections.singletonList(new BackgroundImage(new Image("./main/resources/sprites/queen.png", 80, 80, true, true), BackgroundRepeat.NO_REPEAT,
 						BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT))));
         
         /*

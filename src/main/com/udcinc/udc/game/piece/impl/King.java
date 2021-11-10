@@ -21,7 +21,7 @@ public class King extends Piece {
 	public King(Player player, Tile tile, GameState gs) {
     	super(player, tile, gs);
 		this.name = "King";
-        this.image = new Image("./king.png");
+        this.image = new Image("./main/resources/sprites/king.png");
 	}
 
 	/**

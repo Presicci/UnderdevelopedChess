@@ -15,7 +15,7 @@ public class Rook extends Piece {
     public Rook(Player player, Tile tile, GameState gs) {
     	super(player, tile, gs);
         this.name = "Rook";
-        this.image = new Image("./rook.png");
+        this.image = new Image("./main/resources/sprites/rook.png");
     }
     
     /**

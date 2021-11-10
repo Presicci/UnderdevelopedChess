@@ -19,7 +19,7 @@ public class GameSceneBuilder {
 
 	public void build(Stage stage) throws IOException {
         // Active game scene
-		FXMLLoader loader = new FXMLLoader(getClass().getResource("/main/resources/GameScreen.fxml"));
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("/main/resources/fxml/GameScreen.fxml"));
 		
 		// Initialize our game state
 		GameState gs = new GameState();

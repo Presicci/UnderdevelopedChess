@@ -24,7 +24,7 @@ public class Pawn extends Piece {
 	public Pawn(Player player, Tile tile, GameState gs) {
     	super(player, tile, gs);
 		this.name = "Pawn";
-        this.image = new Image("./pawn.png");
+        this.image = new Image("./main/resources/sprites/pawn.png");
 	}
 
 	/**
