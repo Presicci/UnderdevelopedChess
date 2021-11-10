@@ -1,6 +1,5 @@
 package main.com.udcinc.udc.game.scene;
 
-import java.io.IOException;
 import java.util.Collections;
 
 import javafx.fxml.FXML;
