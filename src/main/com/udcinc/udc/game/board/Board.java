@@ -34,7 +34,11 @@ public class Board {
      * @param piece The piece being captured
      */
 	public void killPiece(Piece piece) {
-		tiles[piece.getPosition().getX()][piece.getPosition().getY()].setPiece(null);
+		Tile tile = tiles[piece.getPosition().getX()][piece.getPosition().getY()];
+		// Avoid possibly removing another piece from the tile, ordering
+		if (tile.getPiece() == piece) {
+			tile.setPiece(null);
+		}
 		piece.doKill();
 	}
 	
