@@ -5,6 +5,7 @@ import java.io.IOException;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import main.com.udcinc.udc.game.player.Player;
 import main.com.udcinc.udc.game.state.GameState;
@@ -27,6 +28,7 @@ public class GameSceneBuilder {
 		// Test players
 		Player whitePlayer = new Player("White");
 		Player blackPlayer = new Player("Black");
+		blackPlayer.setColor(Color.BURLYWOOD);
 		
 		// Overloads the default controller constructor
 		loader.setControllerFactory(GameSceneController -> new GameSceneController(gs, whitePlayer, blackPlayer));
