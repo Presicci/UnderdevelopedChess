@@ -1,6 +1,10 @@
 package main.com.udcinc.udc.game.piece.impl;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javafx.scene.image.Image;
+import main.com.udcinc.udc.game.board.Board;
 import main.com.udcinc.udc.game.board.Position;
 import main.com.udcinc.udc.game.board.Tile;
 import main.com.udcinc.udc.game.piece.Piece;
@@ -39,5 +43,30 @@ public class Knight extends Piece {
 			}
 		}
 		return false;
+	}
+	
+
+	/**
+	 * 
+	 */
+	@Override public List<Tile> getDangerousTiles() {
+		List<Tile> possibleTiles = new ArrayList<>();
+        for (Tile[] row : gs.getBoard().getTiles()) {
+            for (Tile tile : row) {
+            	Position pPos = this.getPosition();
+        		Position tPos = tile.getPosition();
+        		
+        		if (pPos.getX() == tPos.getX() + 1 || pPos.getX() == tPos.getX() - 1) {
+        			if (Math.abs(pPos.getY() - tPos.getY()) == 2) {
+        				possibleTiles.add(tile);
+        			}
+        		} else if (pPos.getX() == tPos.getX() + 2 || pPos.getX() == tPos.getX() - 2) {
+        			if (Math.abs(pPos.getY() - tPos.getY()) == 1) {
+        				possibleTiles.add(tile);
+        			}
+        		}
+            }
+        }
+        return possibleTiles;
 	}
 }

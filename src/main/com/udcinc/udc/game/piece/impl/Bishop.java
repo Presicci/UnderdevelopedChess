@@ -36,4 +36,11 @@ public class Bishop extends Piece {
 	@Override public List<Tile> getAllValidMoves() {
         return TwoDimentionalRaycast.diagonalRaycastList(this, gs, false);
     }
+	
+	/**
+	 * 
+	 */
+	@Override public List<Tile> getDangerousTiles() {
+        return TwoDimentionalRaycast.diagonalRaycastList(this, gs, true);
+    }
 }

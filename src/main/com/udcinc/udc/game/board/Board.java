@@ -1,8 +1,12 @@
 package main.com.udcinc.udc.game.board;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import main.com.udcinc.udc.game.GameRules;
 import main.com.udcinc.udc.game.piece.Piece;
 import main.com.udcinc.udc.game.piece.impl.Pawn;
+import main.com.udcinc.udc.game.player.Player;
 import main.com.udcinc.udc.game.state.GameState;
 
 /**
@@ -70,6 +74,24 @@ public class Board {
 	 */
     public void assignTile(Tile tile, int x, int y) {
         tiles[x][y] = tile;
+    }
+    
+    /**
+     * Returns a list of all tiles that are dangerous to the given player's king
+     * @param player The player that dangerous tiles are being calculated for
+     * @return List of tiles that are dangerous to the player's king
+     */
+    public List<Tile> getDangerousTiles(Player player) {
+    	List<Tile> dangerousTiles = new ArrayList<>();
+    	for (Tile[] column : tiles) {
+    		for (Tile tile : column) {
+    			Piece piece = tile.getPiece();
+        		if (piece != null && piece.getOwner() != player) {
+        			dangerousTiles.addAll(piece.getDangerousTiles());
+        		}
+    		}
+    	}
+    	return dangerousTiles;
     }
 
     /**

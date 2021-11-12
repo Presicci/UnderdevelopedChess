@@ -52,5 +52,23 @@ public class Queen extends Piece {
         possibleTiles.addAll(TwoDimentionalRaycast.diagonalRaycastList(this, gs, false));
         return possibleTiles;
     }
+	
+	/**
+	 * 
+	 */
+	@Override
+	public List<Tile> getDangerousTiles() {
+		List<Tile> possibleTiles = new ArrayList<>();
+        for (Tile[] row : gs.getBoard().getTiles()) {
+            for (Tile tile : row) {
+            	if ((tile.getPosition().getX() == getPosition().getX() || tile.getPosition().getY() == getPosition().getY()) 
+            			&& TwoDimentionalRaycast.straightRaycast(tile, this, gs, true)) {
+                    possibleTiles.add(tile);
+                }
+            }
+        }
+        possibleTiles.addAll(TwoDimentionalRaycast.diagonalRaycastList(this, gs, true));
+        return possibleTiles;
+    }
 
 }
