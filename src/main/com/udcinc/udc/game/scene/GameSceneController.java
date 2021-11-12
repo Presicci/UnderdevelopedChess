@@ -25,6 +25,8 @@ import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
+import main.com.udcinc.udc.game.board.Board;
 import main.com.udcinc.udc.game.board.Position;
 import main.com.udcinc.udc.game.board.Tile;
 import main.com.udcinc.udc.game.piece.Piece;
@@ -371,13 +373,16 @@ public class GameSceneController {
 	 * @param nextPos The position to move the piece to
 	 */
 	private void movePiece(Piece piece, Position nextPos) {
+		Board board = gs.getBoard();
+		Position pos = piece.getPosition();
+		
 		// En passant piece removal handling, has to be done here to remove the piece visually
-		Tile passantTile = gs.getBoard().getPassantTile();
+		Tile passantTile = board.getPassantTile();
 		if (passantTile != null && piece instanceof Pawn) {
-			if (nextPos.getX() != piece.getPosition().getX() && nextPos.getY() == passantTile.getPosition().getY() + (piece.getOwner().isWhite() ? -1 : 1) && passantTile.hasPiece()) {
+			if (nextPos.getX() != pos.getX() && nextPos.getY() == passantTile.getPosition().getY() + (piece.getOwner().isWhite() ? -1 : 1) && passantTile.hasPiece()) {
 				Piece passantPiece = passantTile.getPiece();
 				removePieceFromBoard(passantPiece);
-				gs.getBoard().killPiece(passantPiece);
+				board.killPiece(passantPiece);
 			}
 		}
 		
@@ -385,20 +390,41 @@ public class GameSceneController {
 		removePieceFromBoard(piece);
 		
 		// Move the piece to the new tile
-		gs.getBoard().movePiece(piece, nextPos);
+		board.movePiece(piece, nextPos);
 		
 		// Visually add the piece to new tile
 		assignPieceToBoard(piece);
 		
 		// Pawn promotion handling
-		if ((piece.getOwner().isWhite() ? (nextPos.getY() == 0) : (nextPos.getY() == gs.getBoard().getSize() - 1))
+		if ((piece.getOwner().isWhite() ? (nextPos.getY() == 0) : (nextPos.getY() == board.getSize() - 1))
 				&& piece instanceof Pawn 
 				&& gs.getRules().isPawnPromotionActive()) {
 			promotingPiece = selectedPiece;
 			promoteDialogue.setVisible(true);
-			return;	// pause turn until dialogue is closed
+			return; // pause turn until dialogue is closed
 		}
-		
+
+		// Castling handling
+		if (piece instanceof King) {
+			// Only time a king can move 2 tiles is when castling
+			int diff = nextPos.getX() - pos.getX();
+			if (Math.abs(diff) > 1) {
+				if (diff > 0) { // Castling right
+					Piece endPiece = board.getTile(board.getSize() - 1, pos.getY()).getPiece();
+					if (endPiece != null && endPiece instanceof Rook) {
+						movePiece(endPiece, new Position(nextPos.getX() - 1, nextPos.getY()));
+						return;
+					}
+				} else { // Castling left
+					Piece endPiece = board.getTile(0, pos.getY()).getPiece();
+					if (endPiece != null && endPiece instanceof Rook) {
+						movePiece(endPiece, new Position(nextPos.getX() + 1, nextPos.getY()));
+						return;
+					}
+				}
+			}
+		}
+
 		// Changes the active player to the other player
 		gs.nextTurn();
 	}

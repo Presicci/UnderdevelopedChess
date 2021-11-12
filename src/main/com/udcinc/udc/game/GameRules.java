@@ -87,7 +87,7 @@ public class GameRules {
 		this.numberOfTurns = numberOfTurns;
 	}
 
-	public boolean isCastling() {
+	public boolean isCastlingAllowed() {
 		return castling;
 	}
 
