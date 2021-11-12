@@ -20,7 +20,7 @@ import main.com.udcinc.udc.game.state.GameState;
 public class Pawn extends Piece {
 	
 	// Set to true as soon as the piece is moved
-	boolean moved = false;
+	private boolean moved = false;
 	
 	public Pawn(Player player, Tile tile, GameState gs) {
     	super(player, tile, gs);
@@ -29,8 +29,8 @@ public class Pawn extends Piece {
 	}
 
 	/**
-     * Moves this piece to the proived position
-     * unchecked for now for testing
+     * Moves this piece to the provided position
+     * overwritten to set moved to true
      * 
      * @param pos The position to move the piece to.
      */
@@ -42,6 +42,7 @@ public class Pawn extends Piece {
     	this.setTile(gs.getBoard().getTiles()[pos.getX()][pos.getY()]);
     	this.tile.setPiece(this);
     }
+	
 	/**
 	 * Checks that the tile is one y up or down, or that the tile is diagonally adjacent and contains an enemy piece
 	 * OR if the piece has yet to move, checks that the tile is two y up or down as well
