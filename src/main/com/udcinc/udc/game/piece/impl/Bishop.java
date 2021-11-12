@@ -27,13 +27,13 @@ public class Bishop extends Piece {
 	 * @param tile The tile being checked
 	 */
 	@Override public boolean canMove(Tile tile) {
-		return TwoDimentionalRaycast.diagonalRaycast(tile, this, gs);
+		return TwoDimentionalRaycast.diagonalRaycast(tile, this, gs, false);
 	}
 	
 	/**
 	 * Returns all tiles that are not obstructed in a diagonal from the bishop
 	 */
 	@Override public List<Tile> getAllValidMoves() {
-        return TwoDimentionalRaycast.diagonalRaycastList(this, gs);
+        return TwoDimentionalRaycast.diagonalRaycastList(this, gs, false);
     }
 }

@@ -10,7 +10,7 @@ import main.com.udcinc.udc.game.state.GameState;
 
 /**
  * Contains the raycast functions used to determine which tiles on the board
- * the piece can move.  Raycasts terminate when met with a friendly peice,
+ * the piece can move.  Raycasts terminate when met with a friendly piece,
  * or after being met with an enemy piece.
  * 
  * @author Thomas Presicci
@@ -24,13 +24,13 @@ public interface TwoDimentionalRaycast {
 	 * @return True if the tile is valid, false if the tile is not in line with 
 	 * the piece or if there is an obstruction in the way
 	 */
-	public static boolean straightRaycast(final Tile tile, final Piece piece, GameState gs) {
+	public static boolean straightRaycast(final Tile tile, final Piece piece, GameState gs, boolean friendlyFire) {
 		final Tile[][] boardTiles = gs.getBoard().getTiles();
 		final int tileX = tile.getPosition().getX();
 		final int tileY = tile.getPosition().getY();
 		final int pieceX = piece.getPosition().getX();
 		final int pieceY = piece.getPosition().getY();
-		if (tile.getPiece() != null && tile.getPiece().getOwner() == piece.getOwner()) {
+		if (tile.getPiece() != null && tile.getPiece().getOwner() == piece.getOwner() && !friendlyFire) {
 			return false;
 		}
 		if (tileX == pieceX) { // Scan column
@@ -78,7 +78,7 @@ public interface TwoDimentionalRaycast {
 	 * @param piece The piece the raycast is originating from.
 	 * @return True if not obstructed and pathable, false if not.
 	 */
-	public static boolean diagonalRaycast(Tile tile, Piece piece, GameState gs) {
+	public static boolean diagonalRaycast(Tile tile, Piece piece, GameState gs, boolean friendlyFire) {
 		final Tile[][] boardTiles = gs.getBoard().getTiles();
 		final int tileX = tile.getPosition().getX();
 		final int tileY = tile.getPosition().getY();
@@ -98,7 +98,7 @@ public interface TwoDimentionalRaycast {
 						if (tilePiece != null) {
 							if ((tileX == x && tileY == y)
 									&& (!(y > pieceY && topObstruction) && !(y < pieceY && bottomObstruction))
-									 && tilePiece.getOwner() != piece.getOwner()) {
+									 && (tilePiece.getOwner() != piece.getOwner() || friendlyFire)) {
 								return true;
 							}
 							if (y > pieceY) {
@@ -125,7 +125,7 @@ public interface TwoDimentionalRaycast {
 						if (tilePiece != null) {
 							if ((tileX == x && tileY == y)
 									&& (!(y > pieceY && topObstruction) && !(y < pieceY && bottomObstruction))
-									 && tilePiece.getOwner() != piece.getOwner()) {
+									 && (tilePiece.getOwner() != piece.getOwner() || friendlyFire)) {
 								return true;
 							}
 							if (y > pieceY) {
@@ -150,7 +150,7 @@ public interface TwoDimentionalRaycast {
 	 * @param piece The piece that the moves are being calculated for
 	 * @return A List<Tile> of valid move locations
 	 */
-	public static List<Tile> diagonalRaycastList(Piece piece, GameState gs) {
+	public static List<Tile> diagonalRaycastList(Piece piece, GameState gs, boolean friendlyFire) {
 		final Tile[][] boardTiles = gs.getBoard().getTiles();
 		final int pieceX = piece.getPosition().getX();
 		final int pieceY = piece.getPosition().getY();
@@ -175,7 +175,7 @@ public interface TwoDimentionalRaycast {
 						// doesn't belong to the owner of the moving piece,
 						// it is a valid tile
 						if ((!(y > pieceY && topObstruction) && !(y < pieceY && bottomObstruction)) 
-								&& tilePiece.getOwner() != piece.getOwner()) {
+								&& (tilePiece.getOwner() != piece.getOwner() || friendlyFire)) {
 							validTiles.add(boardTiles[x][y]);
 						}
 						// Obstruction registration
@@ -211,7 +211,7 @@ public interface TwoDimentionalRaycast {
 						// doesn't belong to the owner of the moving piece,
 						// it is a valid tile
 						if ((!(y > pieceY && topObstruction) && !(y < pieceY && bottomObstruction)) 
-								&& tilePiece.getOwner() != piece.getOwner()) {
+								&& (tilePiece.getOwner() != piece.getOwner() || friendlyFire)) {
 							validTiles.add(boardTiles[x][y]);
 						}
 						// Obstruction registration

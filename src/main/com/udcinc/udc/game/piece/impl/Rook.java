@@ -24,7 +24,7 @@ public class Rook extends Piece {
      */
     @Override public boolean canMove(Tile tile) {
     	if (tile.getPosition().getX() == getPosition().getX() || tile.getPosition().getY() == getPosition().getY()) {
-    		return TwoDimentionalRaycast.straightRaycast(tile, this, gs);
+    		return TwoDimentionalRaycast.straightRaycast(tile, this, gs, false);
     	}
     	return false;
     }

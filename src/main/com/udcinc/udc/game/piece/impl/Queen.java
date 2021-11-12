@@ -29,9 +29,9 @@ public class Queen extends Piece {
 	 */
 	@Override public boolean canMove(Tile tile) {
     	if (tile.getPosition().getX() == getPosition().getX() || tile.getPosition().getY() == getPosition().getY()) {
-    		return TwoDimentionalRaycast.straightRaycast(tile, this, gs);
+    		return TwoDimentionalRaycast.straightRaycast(tile, this, gs, false);
     	} else {
-    		return TwoDimentionalRaycast.diagonalRaycast(tile, this, gs);
+    		return TwoDimentionalRaycast.diagonalRaycast(tile, this, gs, false);
     	}
     }
 	
@@ -44,12 +44,12 @@ public class Queen extends Piece {
         for (Tile[] row : gs.getBoard().getTiles()) {
             for (Tile tile : row) {
             	if ((tile.getPosition().getX() == getPosition().getX() || tile.getPosition().getY() == getPosition().getY()) 
-            			&& TwoDimentionalRaycast.straightRaycast(tile, this, gs)) {
+            			&& TwoDimentionalRaycast.straightRaycast(tile, this, gs, false)) {
                     possibleTiles.add(tile);
                 }
             }
         }
-        possibleTiles.addAll(TwoDimentionalRaycast.diagonalRaycastList(this, gs));
+        possibleTiles.addAll(TwoDimentionalRaycast.diagonalRaycastList(this, gs, false));
         return possibleTiles;
     }
 
