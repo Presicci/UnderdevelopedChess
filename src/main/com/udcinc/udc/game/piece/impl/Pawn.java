@@ -18,6 +18,7 @@ import main.com.udcinc.udc.game.state.GameState;
  * @author Thomas Presicci
  */
 public class Pawn extends Piece {
+	
 	// Set to true as soon as the piece is moved
 	boolean moved = false;
 	
@@ -60,7 +61,7 @@ public class Pawn extends Piece {
 		boolean isYAdjacent = tPos.getY() == (this.getOwner().isWhite() ? pPos.getY() - 1 : pPos.getY() + 1);
 		
 		if (pPos.getX() == tPos.getX()) {	// Tile is in the same column
-			return tile.hasPiece() ? false : (isFirstMoveTile || isYAdjacent);
+			return tile.hasPiece() ? false : ((isFirstMoveTile && !gs.getBoard().getTile(tPos.getX(), this.getOwner().isWhite() ? tPos.getY() + 1 : tPos.getY() - 1).hasPiece()) || isYAdjacent);
 		} else if (Math.abs(pPos.getX() - tPos.getX()) == 1) {	// Tile is in an adjacent column
 			// En passant handling
 			Tile passantTile = gs.getBoard().getPassantTile();
@@ -102,7 +103,7 @@ public class Pawn extends Piece {
             
         // Y coordinate if the piece is in its starting position
         int firstMoveY = this.getOwner().isWhite() ? pPos.getY() - 2 : pPos.getY() + 2;
-        if (!moved) {	// If the piece has yet to move, add an extra vertical tile
+        if (!moved && !board.getTile(pX, y).hasPiece()) {	// If the piece has yet to move, add an extra vertical tile
             tiles.add(board.getTile(pX, firstMoveY));
         }
         
