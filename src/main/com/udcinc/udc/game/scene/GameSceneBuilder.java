@@ -37,7 +37,7 @@ public class GameSceneBuilder {
 		Pane root = loader.load();
 		
 		// Transition scene to gamescreen
-        Scene scene = new Scene(root, 800, 800);
+        Scene scene = new Scene(root, 800, 600);
         stage.setScene(scene);
         stage.show();
 	}	
