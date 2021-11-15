@@ -9,8 +9,13 @@ package main.com.udcinc.udc.game;
  */
 public class GameSettings {
     private int size = 8;
-
+    private boolean enableMoveHighlighting = true;
+    
     public int getSize() {
         return size;
+    }
+    
+    public boolean isMoveHightlighting() {
+    	return enableMoveHighlighting;
     }
 }

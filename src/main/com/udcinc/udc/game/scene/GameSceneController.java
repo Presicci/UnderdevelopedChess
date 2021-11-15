@@ -162,6 +162,10 @@ public class GameSceneController {
 	 * @param y The y coordinate
 	 */
 	private void addMoveCircle(int x, int y) {
+		// Checks if move highlighting is enabled in the settings
+		if (!gs.getSettings().isMoveHightlighting()) {
+			return;
+		}
 		// Setup circle
 		Circle circle = new Circle(0, 0, 15);
     	circle.setFill(Color.LIMEGREEN);
