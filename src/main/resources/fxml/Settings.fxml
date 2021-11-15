@@ -31,7 +31,7 @@
             <Font name="Trebuchet MS" size="18.0" />
          </font>
       </Label>
-      <ColorPicker fx:id="whiteColor" layoutX="188.0" layoutY="92.0" />
+      <ColorPicker fx:id="whiteColor" layoutX="188.0" layoutY="93.0" />
       <Label layoutX="30.0" layoutY="92.0" text="White's color:">
          <font>
             <Font size="16.0" />
@@ -81,7 +81,7 @@
       <TextField fx:id="turns" alignment="CENTER_RIGHT" layoutX="624.0" layoutY="371.0" prefHeight="25.0" prefWidth="40.0" text="1" />
       <ColorPicker fx:id="boardBrown" layoutX="188.0" layoutY="154.0">
          <value>
-            <Color red="0.43421053886413574" green="0.3380878269672394" blue="0.13066519796848297" />
+            <Color red="0.6470588445663452" green="0.16470588743686676" blue="0.16470588743686676" />
          </value>
       </ColorPicker>
       <Label layoutX="30.0" layoutY="154.0" text="Board colors:">
@@ -91,7 +91,7 @@
       </Label>
       <ColorPicker fx:id="boardBeige" layoutX="188.0" layoutY="186.0">
          <value>
-            <Color red="0.8815789222717285" green="0.8111750483512878" blue="0.6979166865348816" />
+            <Color red="0.9607843160629272" green="0.9607843160629272" blue="0.8627451062202454" />
          </value>
       </ColorPicker>
    </children>
