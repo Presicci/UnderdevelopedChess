@@ -103,45 +103,83 @@ public class GameSceneController {
                 Color.LIGHTGRAY, new CornerRadii(0), new Insets(0))),
 				Collections.singletonList(new BackgroundImage(new Image("./main/resources/sprites/queen.png", 80, 80, true, true), BackgroundRepeat.NO_REPEAT,
 						BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT))));
-        
-        /*
-         * Test data
-         */
-        
-        //  Test objects
-        assignPieceToBoard(new Rook(gs.getBlackPlayer(), gs.getBoard().getTiles()[0][0], gs));
-        assignPieceToBoard(new Knight(gs.getBlackPlayer(), gs.getBoard().getTiles()[1][0], gs));
-        assignPieceToBoard(new Bishop(gs.getBlackPlayer(), gs.getBoard().getTiles()[2][0], gs));
-        assignPieceToBoard(new Queen(gs.getBlackPlayer(), gs.getBoard().getTiles()[3][0], gs));
-        assignPieceToBoard(new King(gs.getBlackPlayer(), gs.getBoard().getTiles()[4][0], gs));
-        assignPieceToBoard(new Bishop(gs.getBlackPlayer(), gs.getBoard().getTiles()[5][0], gs));
-        assignPieceToBoard(new Knight(gs.getBlackPlayer(), gs.getBoard().getTiles()[6][0], gs));
-        assignPieceToBoard(new Rook(gs.getBlackPlayer(), gs.getBoard().getTiles()[7][0], gs));
-        assignPieceToBoard(new Pawn(gs.getBlackPlayer(), gs.getBoard().getTiles()[0][1], gs));
-        assignPieceToBoard(new Pawn(gs.getBlackPlayer(), gs.getBoard().getTiles()[1][1], gs));
-        assignPieceToBoard(new Pawn(gs.getBlackPlayer(), gs.getBoard().getTiles()[2][1], gs));
-        assignPieceToBoard(new Pawn(gs.getBlackPlayer(), gs.getBoard().getTiles()[3][1], gs));
-        assignPieceToBoard(new Pawn(gs.getBlackPlayer(), gs.getBoard().getTiles()[4][1], gs));
-        assignPieceToBoard(new Pawn(gs.getBlackPlayer(), gs.getBoard().getTiles()[5][1], gs));
-        assignPieceToBoard(new Pawn(gs.getBlackPlayer(), gs.getBoard().getTiles()[6][1], gs));
-        assignPieceToBoard(new Pawn(gs.getBlackPlayer(), gs.getBoard().getTiles()[7][1], gs));
-        
-        assignPieceToBoard(new Rook(gs.getWhitePlayer(), gs.getBoard().getTiles()[0][7], gs));
-        assignPieceToBoard(new Knight(gs.getWhitePlayer(), gs.getBoard().getTiles()[1][7], gs));
-        assignPieceToBoard(new Bishop(gs.getWhitePlayer(), gs.getBoard().getTiles()[2][7], gs));
-        assignPieceToBoard(new Queen(gs.getWhitePlayer(), gs.getBoard().getTiles()[3][7], gs));
-        assignPieceToBoard(new King(gs.getWhitePlayer(), gs.getBoard().getTiles()[4][7], gs));
-        assignPieceToBoard(new Bishop(gs.getWhitePlayer(), gs.getBoard().getTiles()[5][7], gs));
-        assignPieceToBoard(new Knight(gs.getWhitePlayer(), gs.getBoard().getTiles()[6][7], gs));
-        assignPieceToBoard(new Rook(gs.getWhitePlayer(), gs.getBoard().getTiles()[7][7], gs));
-        assignPieceToBoard(new Pawn(gs.getWhitePlayer(), gs.getBoard().getTiles()[0][6], gs));
-        assignPieceToBoard(new Pawn(gs.getWhitePlayer(), gs.getBoard().getTiles()[1][6], gs));
-        assignPieceToBoard(new Pawn(gs.getWhitePlayer(), gs.getBoard().getTiles()[2][6], gs));
-        assignPieceToBoard(new Pawn(gs.getWhitePlayer(), gs.getBoard().getTiles()[3][6], gs));
-        assignPieceToBoard(new Pawn(gs.getWhitePlayer(), gs.getBoard().getTiles()[4][6], gs));
-        assignPieceToBoard(new Pawn(gs.getWhitePlayer(), gs.getBoard().getTiles()[5][6], gs));
-        assignPieceToBoard(new Pawn(gs.getWhitePlayer(), gs.getBoard().getTiles()[6][6], gs));
-        assignPieceToBoard(new Pawn(gs.getWhitePlayer(), gs.getBoard().getTiles()[7][6], gs));
+		populateBoard();
+	}
+	
+	/**
+	 * Default board layout, just like normal chess
+	 */
+	private String[][] defaultLayout = { 
+			{ "br", "bk", "bb", "bq", "bK", "bb", "bk", "br" },
+			{ "bp", "bp", "bp", "bp", "bp", "bp", "bp", "bp" },
+			{ "-", "-", "-", "-", "-", "-", "-", "-", },
+			{ "-", "-", "-", "-", "-", "-", "-", "-", },
+			{ "-", "-", "-", "-", "-", "-", "-", "-", },
+			{ "-", "-", "-", "-", "-", "-", "-", "-", },
+			{ "wp", "wp", "wp", "wp", "wp", "wp", "wp", "wp" },
+			{ "wr", "wk", "wb", "wq", "wK", "wb", "wk", "wr" },
+		};
+
+	/**
+	 * Modular board population
+	 * Pulls from a 2d string array of piece representations
+	 * 
+	 * Full character table:
+	 * - denotes an empty tile, or really just any incorrect syntax will too
+	 * 
+	 * prefixes
+	 * b denotes a black owned piece
+	 * w denotes a white owned piece
+	 * 
+	 * suffixes, case sensitive!
+	 * r denotes a rook
+	 * k denotes a knight
+	 * b denotes a bishop
+	 * q denotes a queen
+	 * K denotes a king
+	 * p denotes a pawn
+	 */
+	private void populateBoard() {
+		Board b = gs.getBoard();
+		int x = 0, y = 0;
+		for (String[] row : defaultLayout) {	// For now just using default layout as loader
+			for (String tile : row) {
+				Player player = null;
+				// Hyphen (-) denotes an empty tile
+				if (tile.equalsIgnoreCase("-")) {
+					++x;
+					continue;
+				}
+				// prefix denotes player ownership, case insensitive
+				if (tile.startsWith("b") || tile.startsWith("B")) {
+					player = gs.getBlackPlayer();
+				} else if (tile.startsWith("w") || tile.startsWith("w")) {
+					player = gs.getWhitePlayer();
+				}
+				// If no player is read, skip piece
+				if (player == null) {
+					++x;
+					continue;
+				}
+				// Suffix denotes piece type, case sensitive
+				if (tile.endsWith("r")) {
+					assignPieceToBoard(new Rook(player, b.getTile(x, y), gs));
+				} else if (tile.endsWith("k")) {
+					assignPieceToBoard(new Knight(player, b.getTile(x, y), gs));
+				} else if (tile.endsWith("b")) {
+					assignPieceToBoard(new Bishop(player, b.getTile(x, y), gs));
+				} else if (tile.endsWith("q")) {
+					assignPieceToBoard(new Queen(player, b.getTile(x, y), gs));
+				} else if (tile.endsWith("K")) {
+					assignPieceToBoard(new King(player, b.getTile(x, y), gs));
+				} else if (tile.endsWith("p")) {
+					assignPieceToBoard(new Pawn(player, b.getTile(x, y), gs));
+				}
+				++x;
+			}
+			x = 0;
+			++y;
+		}
 	}
 	
 	/**
