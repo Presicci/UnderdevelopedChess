@@ -1,6 +1,8 @@
 package main.com.udcinc.udc.game.scene;
 
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
@@ -49,6 +51,9 @@ public class GameSceneController {
 	// static piece object used for storing object data during drag and drop
 	private static Piece selectedPiece;
 	
+	// Static list of all currently populated move indicator circles
+	private static List<Circle> moveCircles;
+	
 	/*
 	 * Pawn promotion dialogue
 	 */
@@ -64,6 +69,7 @@ public class GameSceneController {
 	public GameSceneController(GameState gs, Player whitePlayer, Player blackPlayer) {
 		this.gs = gs;
 		gs.assignPlayers(whitePlayer, blackPlayer);
+		moveCircles = new ArrayList<Circle>();
 	}
 	
 	/**
@@ -139,18 +145,42 @@ public class GameSceneController {
 	}
 	
 	/**
-	 * Resets the colors of the board tiles back to their native colors.
-	 * 
-	 * @param root The GridPane containing the board tiles.
+	 * Remove all move indicator circles from the board.
+	 * should be performed after each move, or on selecting a new piece
 	 */
-	public void resetBoardColors() {
-		for (Node node : board.getChildren()) {
-			if ((GridPane.getRowIndex(node) + GridPane.getColumnIndex(node)) % 2 == 0) {
-				node.setStyle("-fx-background-color: white");
-			} else {
-				node.setStyle("-fx-background-color: black");
-			}
-        }
+	private void resetMoveCircles() {
+		for (Circle c : moveCircles) {
+			board.getChildren().remove(c);
+		}
+		moveCircles.clear();
+	}
+	
+	/**
+	 * Adds a circle at the specified grid coordinates, indicating that tile as a possible move
+	 * for the selected piece
+	 * @param x The x coordinate
+	 * @param y The y coordinate
+	 */
+	private void addMoveCircle(int x, int y) {
+		// Setup circle
+		Circle circle = new Circle(0, 0, 15);
+    	circle.setFill(Color.LIMEGREEN);
+    	circle.setStroke(Color.BLACK);
+    	// Remove circle on drag hover over so it does not interfere with our dropping
+        circle.setOnDragEntered(event -> {
+        	circle.setVisible(false);
+        	for (Circle c : moveCircles) {
+        		if (c != circle) {
+        			c.setVisible(true);	
+        		}
+        	}
+        });
+    	// Center the circle
+    	double centerX = ((board.getWidth() / gs.getBoard().getSize()) / 2) - (circle.getRadius());
+    	circle.setTranslateX(centerX);
+        // Add to board
+    	board.add(circle, x, y);
+    	moveCircles.add(circle);
 	}
 	
 	/**
@@ -242,7 +272,7 @@ public class GameSceneController {
         //	Handles clicking on a piece
         iv.setOnMouseClicked(event -> {
         	// Reset the board to its default coloring before doing move coloring
-        	resetBoardColors();
+        	resetMoveCircles();
         	
             Tile boardTile = gs.getBoard().getTiles()[row][column];
             Piece piece = boardTile.getPiece();
@@ -251,15 +281,10 @@ public class GameSceneController {
             System.out.println("[" + (piece == null ? "" : piece.getName()) + "] owned by " + (piece == null ? "" : piece.getOwner().getName()));
             System.out.println("Clicked: " + row + ", " + column);
             
-            // Recolors the board based on which tiles the piece can move to
+            // Spawn a circle on tiles that are possible moves
             if (piece != null) {
                 for (Tile t : piece.getAllValidMoves()) {
-                    for (Node node : board.getChildren()) {
-                        if (GridPane.getRowIndex(node) == t.getPosition().getY()
-                                && GridPane.getColumnIndex(node) == t.getPosition().getX()) {
-                            node.setStyle("-fx-background-color: orange");	// temp color assignments for testing
-                        }
-                    }
+                	addMoveCircle(t.getPosition().getX(), t.getPosition().getY());
                 }
             }
         });
@@ -287,12 +312,7 @@ public class GameSceneController {
         	selectedPiece = piece;
         	
         	for (Tile t : piece.getAllValidMoves()) {
-                for (Node node : board.getChildren()) {
-                    if (GridPane.getRowIndex(node) == t.getPosition().getY()
-                            && GridPane.getColumnIndex(node) == t.getPosition().getX()) {
-                        node.setStyle("-fx-background-color: orange");	// temp color assignments for testing
-                    }
-                }
+            	addMoveCircle(t.getPosition().getX(), t.getPosition().getY());
             }
         	
         	event.consume();
@@ -302,7 +322,7 @@ public class GameSceneController {
         iv.setOnDragDone(event -> {
         	selectedPiece = null;
         	// Remove the move coloring
-        	resetBoardColors();
+        	resetMoveCircles();
         });
         
         // Handles transfer mode acceptance of the piece on the tile
@@ -336,7 +356,7 @@ public class GameSceneController {
             	}
         	}
         	
-        	resetBoardColors();
+        	resetMoveCircles();
         });
         
         // When a piece is dropped onto a tile
@@ -355,7 +375,7 @@ public class GameSceneController {
             	}
         	}
         	
-        	resetBoardColors();
+        	resetMoveCircles();
         });
         
         // Add the tile to the gridpane
