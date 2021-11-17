@@ -13,6 +13,7 @@ import main.com.udcinc.udc.game.GameRules;
 import main.com.udcinc.udc.game.scene.GameSceneBuilder;
 import main.com.udcinc.udc.settings.GameSettings;
 import main.com.udcinc.udc.settings.SettingsController;
+import main.com.udcinc.udc.setup.SetupController;
 
 /**
  * Controller for MainMenu.fxml
@@ -38,8 +39,22 @@ public class MainMenuController {
 	 * @throws IOException exception thrown if GameScreen.fxml can not be loaded
 	 */
 	@FXML public void handlePlay(Event event) throws IOException {
-		GameSceneBuilder gsb = new GameSceneBuilder();
-		gsb.build((Stage) ((Node)event.getSource()).getScene().getWindow(), settings, rules);
+		Stage stage = ((Stage) ((Node) event.getSource()).getScene().getWindow());
+		// Active game scene
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("/main/resources/fxml/GameSetup.fxml"));
+
+		// Gets root pane for the scene
+		Pane root = loader.load();
+
+		// Pass settings and rules along
+		SetupController controller = loader.<SetupController>getController();
+		controller.setSettings(settings);
+		controller.setRules(rules);
+
+		// Transition scene to gamescreen
+		Scene scene = new Scene(root, 800, 600);
+		stage.setScene(scene);
+		stage.show();
 	}
 	
 	/**
