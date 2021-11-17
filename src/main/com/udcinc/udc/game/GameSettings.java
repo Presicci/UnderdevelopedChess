@@ -3,6 +3,7 @@ package main.com.udcinc.udc.game;
 import java.io.Serializable;
 
 import javafx.scene.paint.Color;
+import main.com.udcinc.udc.settings.SerializableColor;
 
 /**
  * Static for now for the case of testing,
@@ -31,25 +32,25 @@ public class GameSettings implements Serializable {
      * The color of white's pieces
      * defaults to WHITE, #FFFFFF
      */
-    private Color whiteColor = Color.WHITE;
+    private SerializableColor whiteColor = new SerializableColor(Color.WHITE);
     
     /*
      * The color of black's pieces
      * defaults to BLACK, #000000
      */
-    private Color blackColor = Color.BLACK;
+    private SerializableColor blackColor = new SerializableColor(Color.BLACK);
     
     /*
      * The color of the brown tiles on the board
      * defaults to BROWN, #A52A2A
      */
-    private Color boardBrown = Color.BROWN;
+    private SerializableColor boardBrown = new SerializableColor(Color.BROWN);
     
     /*
      * The color of the beige tiles on the board
      * defaults to BEIGE, #F5F5DC
      */
-    private Color boardBeige = Color.BEIGE;
+    private SerializableColor boardBeige = new SerializableColor(Color.BEIGE);
 
     
     
@@ -73,34 +74,34 @@ public class GameSettings implements Serializable {
 	}
 
 	public Color getWhiteColor() {
-		return whiteColor;
+		return whiteColor.getColor();
 	}
 
 	public void setWhiteColor(Color whiteColor) {
-		this.whiteColor = whiteColor;
+		this.whiteColor = new SerializableColor(whiteColor);
 	}
 
 	public Color getBlackColor() {
-		return blackColor;
+		return blackColor.getColor();
 	}
 
 	public void setBlackColor(Color blackColor) {
-		this.blackColor = blackColor;
+		this.blackColor = new SerializableColor(blackColor);
 	}
 
 	public Color getBoardBrown() {
-		return boardBrown;
+		return boardBrown.getColor();
 	}
 
 	public void setBoardBrown(Color boardBrown) {
-		this.boardBrown = boardBrown;
+		this.boardBrown = new SerializableColor(boardBrown);
 	}
 
 	public Color getBoardBeige() {
-		return boardBeige;
+		return boardBeige.getColor();
 	}
 
 	public void setBoardBeige(Color boardBeige) {
-		this.boardBeige = boardBeige;
+		this.boardBeige = new SerializableColor(boardBeige);
 	}
 }
