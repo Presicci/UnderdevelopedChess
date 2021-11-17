@@ -1,5 +1,6 @@
 package main.com.udcinc.udc.setup;
 
+import java.io.File;
 import java.io.IOException;
 
 import javafx.event.Event;
@@ -7,6 +8,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import main.com.udcinc.udc.game.GameRules;
@@ -23,6 +25,27 @@ public class SetupController {
 
 	private GameSettings settings;
 	private GameRules rules;
+	
+	@FXML
+	private ChoiceBox<String> playerOne, playerTwo;
+	
+	@FXML
+	private void initialize() {
+		File saveFolder = new File("playersaves");
+		if (!saveFolder.exists()) {
+			return;
+			//saveFolder.mkdir();
+		}
+		File[] saveList = saveFolder.listFiles();
+		for (int index = 0; index < saveList.length; index++) {
+			String name = saveList[index].getName();
+			if (name.contains(".ser")) {
+				name = name.replace(".ser", "").replace("_", "");
+				playerOne.getItems().add(name);
+				playerTwo.getItems().add(name);
+			}
+		}
+	}
 	
 	/**
 	 * Handler for the new player button
