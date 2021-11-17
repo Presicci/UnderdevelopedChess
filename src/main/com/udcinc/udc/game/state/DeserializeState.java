@@ -9,7 +9,7 @@ import main.com.udcinc.udc.game.scene.GameSceneController;
 
 public class DeserializeState {
 
-	public static GameState load(GridPane boardPane) {
+	/*public static GameState load(GridPane boardPane) {
 		GameState gs = null;
 		try {
 			FileInputStream fileInput = new FileInputStream("savegame.ser");
@@ -25,5 +25,5 @@ public class DeserializeState {
 			System.out.println("GameState not found");
 		}
 		return gs == null ? new GameState() : gs;
-	}
+	}*/
 }
