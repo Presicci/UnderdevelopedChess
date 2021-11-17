@@ -15,6 +15,7 @@ import javafx.stage.Stage;
 import main.com.udcinc.udc.game.GameRules;
 import main.com.udcinc.udc.game.GameSettings;
 import main.com.udcinc.udc.mainmenu.MainMenuController;
+import main.com.udcinc.udc.settings.saving.SerializeSettings;
 
 /**
  * Controller for Settings.fxml
@@ -77,6 +78,9 @@ public class SettingsController {
         controller.setRules(rules);
         controller.setSettings(settings);
 		
+        // Save settings
+        SerializeSettings.save(settings);
+        
 		// Transition scene to gamescreen
 		Scene scene = new Scene(root, 800, 600);
 		stage.setScene(scene);
