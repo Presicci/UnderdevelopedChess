@@ -1,6 +1,10 @@
 package main.com.udcinc.udc.game.player;
 
-public abstract class PlayerStatistics {
+import java.io.Serializable;
+
+public abstract class PlayerStatistics implements Serializable {
+
+	private static final long serialVersionUID = 4580327507020894250L;
 
 	// Winrate
 	private int gamesPlayed, gamesWon;

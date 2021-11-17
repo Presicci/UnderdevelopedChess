@@ -2,6 +2,7 @@ package main.com.udcinc.udc.game.player;
 
 import javafx.scene.paint.Color;
 import main.com.udcinc.udc.game.timer.TurnTimer;
+import main.com.udcinc.udc.settings.SerializableColor;
 
 /**
  * Represents a player in the game
@@ -11,10 +12,13 @@ import main.com.udcinc.udc.game.timer.TurnTimer;
  * @author Thomas Presicci
  */
 public class Player extends PlayerStatistics {
+
+	private static final long serialVersionUID = 3403203753803432579L;
+	
 	// Player's name
 	private String name;
 	// Color for the player's pieces
-	private Color color = Color.DARKCYAN;
+	private SerializableColor color = new SerializableColor(Color.DARKCYAN);
 	// Boolean represents the side of the board the player starts on
 	private boolean white = false;
 	
@@ -45,11 +49,11 @@ public class Player extends PlayerStatistics {
 	}
 	
 	public Color getColor() {
-		return color;
+		return color.getColor();
 	}
 	
 	public void setColor(Color color) {
-		this.color = color;
+		this.color = new SerializableColor(color);
 	}
 
 	public boolean isWhite() {
