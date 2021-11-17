@@ -1,9 +1,8 @@
-package main.com.udcinc.udc.game;
+package main.com.udcinc.udc.settings;
 
 import java.io.Serializable;
 
 import javafx.scene.paint.Color;
-import main.com.udcinc.udc.settings.SerializableColor;
 
 /**
  * Static for now for the case of testing,

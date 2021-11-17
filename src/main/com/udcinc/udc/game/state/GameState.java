@@ -1,10 +1,10 @@
 package main.com.udcinc.udc.game.state;
 
 import main.com.udcinc.udc.game.GameRules;
-import main.com.udcinc.udc.game.GameSettings;
 import main.com.udcinc.udc.game.board.Board;
 import main.com.udcinc.udc.game.player.Player;
 import main.com.udcinc.udc.game.scene.GameSceneController;
+import main.com.udcinc.udc.settings.GameSettings;
 
 /**
  * Holds all information regarding the game state.

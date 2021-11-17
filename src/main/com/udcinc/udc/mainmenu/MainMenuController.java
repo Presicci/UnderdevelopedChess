@@ -10,8 +10,8 @@ import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import main.com.udcinc.udc.game.GameRules;
-import main.com.udcinc.udc.game.GameSettings;
 import main.com.udcinc.udc.game.scene.GameSceneBuilder;
+import main.com.udcinc.udc.settings.GameSettings;
 import main.com.udcinc.udc.settings.SettingsController;
 
 /**

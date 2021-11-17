@@ -13,7 +13,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import main.com.udcinc.udc.game.GameRules;
-import main.com.udcinc.udc.game.GameSettings;
 import main.com.udcinc.udc.mainmenu.MainMenuController;
 import main.com.udcinc.udc.settings.saving.SerializeSettings;
 

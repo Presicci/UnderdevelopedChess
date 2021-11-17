@@ -8,9 +8,9 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import main.com.udcinc.udc.game.GameRules;
-import main.com.udcinc.udc.game.GameSettings;
 import main.com.udcinc.udc.game.player.Player;
 import main.com.udcinc.udc.game.state.GameState;
+import main.com.udcinc.udc.settings.GameSettings;
 
 /**
  * Builder for the game scene

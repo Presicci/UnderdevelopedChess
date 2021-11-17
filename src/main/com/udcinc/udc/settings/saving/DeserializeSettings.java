@@ -4,7 +4,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 
-import main.com.udcinc.udc.game.GameSettings;
+import main.com.udcinc.udc.settings.GameSettings;
 
 public class DeserializeSettings {
 

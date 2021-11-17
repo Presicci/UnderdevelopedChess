@@ -4,7 +4,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 
-import main.com.udcinc.udc.game.GameSettings;
+import main.com.udcinc.udc.settings.GameSettings;
 
 public class SerializeSettings {
 	
