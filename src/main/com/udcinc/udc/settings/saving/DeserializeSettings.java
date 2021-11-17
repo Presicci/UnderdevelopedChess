@@ -20,7 +20,7 @@ public class DeserializeSettings {
 			return new GameSettings();
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
-			System.out.println("GameState not found");
+			System.out.println("Class not found");
 		}
 		return settings == null ? new GameSettings() : settings;
 	}
