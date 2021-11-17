@@ -22,7 +22,7 @@
             <Font name="Trebuchet MS" size="18.0" />
          </font>
       </Button>
-      <ChoiceBox fx:id="player1" layoutX="369.0" layoutY="245.0" prefWidth="150.0" />
+      <ChoiceBox fx:id="playerOne" layoutX="369.0" layoutY="245.0" prefWidth="150.0" />
       <Label layoutX="282.0" layoutY="245.0" text="Player 1:">
          <font>
             <Font size="16.0" />
@@ -33,7 +33,7 @@
             <Font size="16.0" />
          </font>
       </Label>
-      <ChoiceBox fx:id="player2" layoutX="369.0" layoutY="272.0" prefWidth="150.0" />
+      <ChoiceBox fx:id="playerTwo" layoutX="369.0" layoutY="272.0" prefWidth="150.0" />
       <Button layoutX="362.0" layoutY="208.0" mnemonicParsing="false" onAction="#handleNewPlayer" style="-fx-background-color: black; -fx-border-color: white;" text="New Player" textFill="WHITE" />
       <Button layoutX="327.0" layoutY="506.0" mnemonicParsing="false" onAction="#handleStartGame" style="-fx-background-color: black; -fx-border-color: white;" text="Start Game" textFill="WHITE">
          <font>
