@@ -9,7 +9,10 @@ import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import main.com.udcinc.udc.game.GameRules;
+import main.com.udcinc.udc.game.GameSettings;
 import main.com.udcinc.udc.game.scene.GameSceneBuilder;
+import main.com.udcinc.udc.settings.SettingsController;
 
 /**
  * Controller for MainMenu.fxml
@@ -18,6 +21,16 @@ import main.com.udcinc.udc.game.scene.GameSceneBuilder;
  * @author Thomas Presicci
  */
 public class MainMenuController {
+	
+	private GameRules rules;
+	private GameSettings settings;
+	
+	@FXML
+	private void initialize() {
+		// Will be replaced with serialation loaders
+		rules = new GameRules();
+		settings = new GameSettings();
+	}
 	
 	/**
 	 * Handler for the play button
@@ -44,9 +57,22 @@ public class MainMenuController {
 		// Gets root pane for the scene
 		Pane root = loader.load();
 
+		// Pass settings and rules along
+        SettingsController controller = loader.<SettingsController>getController();
+        controller.setSettings(settings);
+        controller.setRules(rules);
+		
 		// Transition scene to gamescreen
 		Scene scene = new Scene(root, 800, 600);
 		stage.setScene(scene);
 		stage.show();
+	}
+	
+	public void setSettings(GameSettings settings) {
+		this.settings = settings;
+	}
+	
+	public void setRules(GameRules rules) {
+		this.rules = rules;
 	}
 }

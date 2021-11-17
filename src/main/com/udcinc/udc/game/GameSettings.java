@@ -68,7 +68,7 @@ public class GameSettings implements Serializable {
 		return enableMoveHighlighting;
 	}
 
-	public void setEnableMoveHighlighting(boolean enableMoveHighlighting) {
+	public void setMoveHighlighting(boolean enableMoveHighlighting) {
 		this.enableMoveHighlighting = enableMoveHighlighting;
 	}
 
