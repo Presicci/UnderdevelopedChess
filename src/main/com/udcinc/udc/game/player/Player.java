@@ -10,7 +10,7 @@ import main.com.udcinc.udc.game.timer.TurnTimer;
  * 
  * @author Thomas Presicci
  */
-public class Player {
+public class Player extends PlayerStatistics {
 	// Player's name
 	private String name;
 	// Color for the player's pieces
