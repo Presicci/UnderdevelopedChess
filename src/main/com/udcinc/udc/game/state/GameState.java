@@ -25,9 +25,9 @@ public class GameState {
 	
 	private GameRules rules;
 	
-	public GameState() {
-		this.settings = new GameSettings();
-		this.rules = new GameRules();
+	public GameState(GameSettings settings, GameRules rules) {
+		this.settings = settings;
+		this.rules = rules;
 		this.players = new Player[2];
         this.board = new Board(settings.getSize(), rules);
     }

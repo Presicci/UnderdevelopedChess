@@ -297,9 +297,9 @@ public class GameSceneController {
         // Generates the tile pattern
         String tileColor;
         if ((row + column) % 2 == 0) {
-            tileColor = "white";
+            tileColor = colorToHex(gs.getSettings().getBoardBrown());
         } else {
-            tileColor = "black";
+            tileColor = colorToHex(gs.getSettings().getBoardBeige());
         }
         tile.setStyle("-fx-background-color: " + tileColor);
         
@@ -566,4 +566,11 @@ public class GameSceneController {
 		promotingPiece = null;
 		gs.nextTurn();
 	}
+	
+	private String colorToHex(Color color) {
+        return String.format("#%02X%02X%02X",
+            (int)(color.getRed() * 255),
+            (int)(color.getGreen() * 255),
+            (int)(color.getBlue() * 255));
+    }
 }

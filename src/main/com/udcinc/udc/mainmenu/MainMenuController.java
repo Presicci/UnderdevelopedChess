@@ -39,7 +39,7 @@ public class MainMenuController {
 	 */
 	@FXML public void handlePlay(Event event) throws IOException {
 		GameSceneBuilder gsb = new GameSceneBuilder();
-		gsb.build((Stage) ((Node)event.getSource()).getScene().getWindow());
+		gsb.build((Stage) ((Node)event.getSource()).getScene().getWindow(), settings, rules);
 	}
 	
 	/**
