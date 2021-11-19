@@ -40,18 +40,27 @@ public class SetupController {
 	@FXML
 	private TextField playerNameEntry;
 	
+	/**
+	 * Initialize is called after constructor
+	 */
 	@FXML
 	private void initialize() {
-		loadPlayers();
+		loadPlayerLists();
 	}
 	
-	private void loadPlayers() {
+	/**
+	 * Populates the player selection lists with all saves from the playersaves folder
+	 */
+	private void loadPlayerLists() {
+		// Clear lists
 		playerOne.getItems().clear();
 		playerTwo.getItems().clear();
+		// Check if folder exists
 		File saveFolder = new File("playersaves");
 		if (!saveFolder.exists()) {
 			return;
 		}
+		// Add players to lists
 		File[] saveList = saveFolder.listFiles();
 		for (int index = 0; index < saveList.length; index++) {
 			String name = saveList[index].getName();
@@ -88,7 +97,7 @@ public class SetupController {
 		}
 		// Save player
 		SerializePlayer.save(player);
-		loadPlayers();
+		loadPlayerLists();
 	}
 	
 	
