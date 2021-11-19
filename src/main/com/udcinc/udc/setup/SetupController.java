@@ -9,9 +9,14 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import main.com.udcinc.udc.game.GameRules;
+import main.com.udcinc.udc.game.player.Player;
+import main.com.udcinc.udc.game.player.saving.DeserializePlayer;
+import main.com.udcinc.udc.game.player.saving.SerializePlayer;
 import main.com.udcinc.udc.game.scene.GameSceneBuilder;
 import main.com.udcinc.udc.mainmenu.MainMenuController;
 import main.com.udcinc.udc.settings.GameSettings;
@@ -30,17 +35,28 @@ public class SetupController {
 	private ChoiceBox<String> playerOne, playerTwo;
 	
 	@FXML
+	private AnchorPane newPlayerDialogue;
+	
+	@FXML
+	private TextField playerNameEntry;
+	
+	@FXML
 	private void initialize() {
+		loadPlayers();
+	}
+	
+	private void loadPlayers() {
+		playerOne.getItems().clear();
+		playerTwo.getItems().clear();
 		File saveFolder = new File("playersaves");
 		if (!saveFolder.exists()) {
 			return;
-			//saveFolder.mkdir();
 		}
 		File[] saveList = saveFolder.listFiles();
 		for (int index = 0; index < saveList.length; index++) {
 			String name = saveList[index].getName();
 			if (name.contains(".ser")) {
-				name = name.replace(".ser", "").replace("_", "");
+				name = name.replace(".ser", "").replace("_", " ");
 				playerOne.getItems().add(name);
 				playerTwo.getItems().add(name);
 			}
@@ -50,10 +66,29 @@ public class SetupController {
 	/**
 	 * Handler for the new player button
 	 * @param event The event being triggered
-	 * @throws IOException exception thrown if GameScreen.fxml can not be loaded
 	 */
-	@FXML public void handleNewPlayer(Event event) throws IOException {
-		
+	@FXML public void handleNewPlayer(Event event) {
+		newPlayerDialogue.setVisible(true);
+	}
+	
+	/**
+	 * Handler for the create player button
+	 * @param event The event being triggered
+	 */
+	@FXML public void handleCreatePlayer(Event event) {
+		if (playerNameEntry.getText().isEmpty()) {
+			return;
+		}
+		newPlayerDialogue.setVisible(false);
+		Player player = new Player(playerNameEntry.getText());
+		File saveFolder = new File("playersaves");
+		// Create directory if it doesn't exist
+		if (!saveFolder.exists()) {
+			saveFolder.mkdir();
+		}
+		// Save player
+		SerializePlayer.save(player);
+		loadPlayers();
 	}
 	
 	
@@ -63,8 +98,17 @@ public class SetupController {
 	 * @throws IOException exception thrown if GameScreen.fxml can not be loaded
 	 */
 	@FXML public void handleStartGame(Event event) throws IOException {
+		if (playerOne.getValue() == null || playerTwo.getValue() == null) {
+			return;
+		}
+		Player white = DeserializePlayer.load(playerOne.getValue().replace(" ", "_"));
+		Player black = DeserializePlayer.load(playerTwo.getValue().replace(" ", "_"));
+		if (white == null || black == null) {
+			System.out.println("Error loading");
+			return;
+		}
 		GameSceneBuilder gsb = new GameSceneBuilder();
-		gsb.build((Stage) ((Node)event.getSource()).getScene().getWindow(), settings, rules);
+		gsb.build((Stage) ((Node)event.getSource()).getScene().getWindow(), settings, rules, white, black);
 	}
 	
 	/**

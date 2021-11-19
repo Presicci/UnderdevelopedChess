@@ -4,6 +4,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
@@ -40,5 +41,16 @@
             <Font size="27.0" />
          </font>
       </Button>
+      <AnchorPane fx:id="newPlayerDialogue" layoutX="188.0" layoutY="185.0" prefHeight="200.0" prefWidth="450.0" style="-fx-background-color: lightgray; -fx-border-color: black;" visible="false">
+         <children>
+            <Button layoutX="199.0" layoutY="159.0" mnemonicParsing="false" onAction="#handleCreatePlayer" style="-fx-background-color: white; -fx-border-color: black;" text="Create" />
+            <TextField fx:id="playerNameEntry" layoutX="151.0" layoutY="88.0" />
+            <Label layoutX="113.0" layoutY="39.0" text="Please enter your name">
+               <font>
+                  <Font name="Yu Gothic Light" size="22.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
    </children>
 </AnchorPane>
