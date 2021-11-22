@@ -3,7 +3,6 @@ package main.com.udcinc.udc.game.state;
 import main.com.udcinc.udc.game.GameRules;
 import main.com.udcinc.udc.game.board.Board;
 import main.com.udcinc.udc.game.player.Player;
-import main.com.udcinc.udc.game.scene.GameSceneController;
 import main.com.udcinc.udc.settings.GameSettings;
 
 /**
@@ -26,8 +25,8 @@ public class GameState {
 	private GameRules rules;
 	
 	public GameState(GameSettings settings, GameRules rules) {
-		this.settings = new GameSettings();
-		this.rules = new GameRules();
+		this.settings = settings;
+		this.rules = rules;
 		this.players = new Player[2];
         this.board = new Board(settings.getSize(), rules);
     }
