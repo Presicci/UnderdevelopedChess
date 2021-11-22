@@ -10,7 +10,6 @@ import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import main.com.udcinc.udc.game.GameRules;
-import main.com.udcinc.udc.game.scene.GameSceneBuilder;
 import main.com.udcinc.udc.settings.GameSettings;
 import main.com.udcinc.udc.settings.SettingsController;
 import main.com.udcinc.udc.setup.SetupController;
@@ -50,7 +49,7 @@ public class MainMenuController {
 		SetupController controller = loader.<SetupController>getController();
 		controller.setSettings(settings);
 		controller.setRules(rules);
-
+		
 		// Transition scene to gamescreen
 		Scene scene = new Scene(root, 800, 600);
 		stage.setScene(scene);

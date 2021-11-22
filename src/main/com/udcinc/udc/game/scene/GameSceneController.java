@@ -103,6 +103,8 @@ public class GameSceneController {
                 Color.LIGHTGRAY, new CornerRadii(0), new Insets(0))),
 				Collections.singletonList(new BackgroundImage(new Image("./main/resources/sprites/queen.png", 80, 80, true, true), BackgroundRepeat.NO_REPEAT,
 						BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT))));
+		
+		// Adds pieces to the board
 		populateBoard();
 	}
 	
