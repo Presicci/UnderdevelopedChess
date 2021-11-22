@@ -23,7 +23,7 @@ import main.com.udcinc.udc.settings.saving.SerializeSettings;
  */
 public class SettingsController {
 	
-	@FXML private ColorPicker whiteColor, blackColor, boardBrown, boardBeige;
+	@FXML private ColorPicker whiteColor, blackColor, boardBrown, boardBeige, highlightColor;
 	@FXML private CheckBox moveHighlighting, castling, promoting, passant;
 	@FXML private TextField timer, turns;
 	
@@ -66,6 +66,7 @@ public class SettingsController {
 		settings.setBoardBrown(boardBrown.getValue());
 		settings.setBoardBeige(boardBeige.getValue());
 		settings.setMoveHighlighting(moveHighlighting.isSelected());
+		settings.setMoveHighlightingColor(highlightColor.getValue());
 		rules.setEnPassant(passant.isSelected());
 		rules.setCastling(castling.isSelected());
 		rules.setPawnPromotion(promoting.isSelected());
@@ -94,6 +95,7 @@ public class SettingsController {
 		boardBrown.setValue(settings.getBoardBrown());
 		boardBeige.setValue(settings.getBoardBeige());
 		moveHighlighting.setSelected(settings.isMoveHightlighting());
+		highlightColor.setValue(settings.getMoveHighlightingColor());
 	}
 	
 	public void setRules(GameRules rules) {

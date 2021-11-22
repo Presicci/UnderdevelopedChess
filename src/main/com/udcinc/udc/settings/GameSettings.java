@@ -51,7 +51,12 @@ public class GameSettings implements Serializable {
      */
     private SerializableColor boardBeige = new SerializableColor(Color.BEIGE);
 
-    
+    /*
+     * The color of the move highlighting on the board
+     * defaults to LIMEGREEN, #32CD32
+     */
+    private SerializableColor moveHighlightingColor = new SerializableColor(Color.LIMEGREEN);
+
     
     
     
@@ -102,5 +107,13 @@ public class GameSettings implements Serializable {
 
 	public void setBoardBeige(Color boardBeige) {
 		this.boardBeige = new SerializableColor(boardBeige);
+	}
+
+	public Color getMoveHighlightingColor() {
+		return moveHighlightingColor.getColor();
+	}
+
+	public void setMoveHighlightingColor(Color moveHighlightingColor) {
+		this.moveHighlightingColor = new SerializableColor(moveHighlightingColor);
 	}
 }

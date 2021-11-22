@@ -10,7 +10,6 @@
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.com.udcinc.udc.settings.SettingsController">
    <children>
       <Label prefHeight="60.0" prefWidth="800.0" style="-fx-background-color: lightgray;" text="Settings">
@@ -94,5 +93,15 @@
             <Color red="0.9607843160629272" green="0.9607843160629272" blue="0.8627451062202454" />
          </value>
       </ColorPicker>
+      <ColorPicker fx:id="highlightColor" layoutX="188.0" layoutY="449.0">
+         <value>
+            <Color red="0.19607843458652496" green="0.8039215803146362" blue="0.19607843458652496" />
+         </value>
+      </ColorPicker>
+      <Label layoutX="30.0" layoutY="448.0" text="Highlighting color">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

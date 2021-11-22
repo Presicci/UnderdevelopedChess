@@ -208,8 +208,8 @@ public class GameSceneController {
 		}
 		// Setup circle
 		Circle circle = new Circle(0, 0, 15);
-    	circle.setFill(Color.LIMEGREEN);
-    	circle.setStroke(Color.BLACK);
+		// Set to color to whats defined in the settings
+    	circle.setFill(gs.getSettings().getMoveHighlightingColor());
     	// Remove circle on drag hover over so it does not interfere with our dropping
         circle.setOnDragEntered(event -> {
         	circle.setVisible(false);
