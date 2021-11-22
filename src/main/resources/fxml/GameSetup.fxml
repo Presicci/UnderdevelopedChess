@@ -52,5 +52,10 @@
             </Label>
          </children>
       </AnchorPane>
+      <Label fx:id="errorMessage" alignment="CENTER" contentDisplay="CENTER" layoutX="41.0" layoutY="457.0" prefHeight="17.0" prefWidth="744.0" text="Error Message" textFill="#b92929" visible="false">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
