@@ -107,7 +107,7 @@ public class SetupController {
 	 * @throws IOException exception thrown if GameScreen.fxml can not be loaded
 	 */
 	@FXML public void handleStartGame(Event event) throws IOException {
-		if (playerOne.getValue() == null || playerTwo.getValue() == null) {
+		if (playerOne.getValue() == null || playerTwo.getValue() == null || playerOne.getValue().equals(playerTwo.getValue())) {
 			return;
 		}
 		Player white = DeserializePlayer.load(playerOne.getValue().replace(" ", "_"));
