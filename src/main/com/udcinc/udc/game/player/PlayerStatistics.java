@@ -7,7 +7,7 @@ public abstract class PlayerStatistics implements Serializable {
 	private static final long serialVersionUID = 4580327507020894250L;
 
 	// Winrate
-	private int gamesPlayed, gamesWon;
+	private int gamesPlayed, gamesCompleted, gamesWon;
 	
 	// Pieces captured
 	private int pawnsCaptured, knightsCaptured, rooksCaptured, bishopsCaptured, queensCaptured;
@@ -23,6 +23,18 @@ public abstract class PlayerStatistics implements Serializable {
 	public void setGamesPlayed(int gamesPlayed) {
 		this.gamesPlayed = gamesPlayed;
 	}
+	
+	public int getGamesCompleted() {
+		return gamesCompleted;
+	}
+
+	public void setGamesCompleted(int gamesCompleted) {
+		this.gamesCompleted = gamesCompleted;
+	}
+	
+	public int incrementGamesCompleted() {
+		return ++gamesCompleted;
+	}
 
 	public int getGamesWon() {
 		return gamesWon;
@@ -33,7 +45,7 @@ public abstract class PlayerStatistics implements Serializable {
 	}
 	
 	public double getWinRation() {
-		return gamesPlayed / gamesWon;
+		return gamesCompleted / gamesWon;
 	}
 
 	public int getPawnsCaptured() {
