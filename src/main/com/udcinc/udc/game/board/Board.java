@@ -118,6 +118,22 @@ public class Board {
     }
     
     /**
+     * Gets all pieces present on the board
+     * @return List of pieces
+     */
+    public List<Piece> getPieces() {
+    	List<Piece> pieces = new ArrayList<>();
+    	for (Tile[] column : tiles) {
+    		for (Tile tile : column) {
+    			if (tile.hasPiece()) {
+    				pieces.add(tile.getPiece());
+    			}
+    		}
+    	}
+    	return pieces;
+    }
+    
+    /**
      * Gets the size of the board
      * @return Board is a square, so just return the length of one axis
      */
