@@ -24,6 +24,10 @@ public abstract class PlayerStatistics implements Serializable {
 		this.gamesPlayed = gamesPlayed;
 	}
 	
+	public int incrementGamesPlayed() {
+		return ++gamesPlayed;
+	}
+	
 	public int getGamesCompleted() {
 		return gamesCompleted;
 	}
@@ -44,6 +48,10 @@ public abstract class PlayerStatistics implements Serializable {
 		this.gamesWon = gamesWon;
 	}
 	
+	public int incrementGamesWon() {
+		return ++gamesWon;
+	}
+	
 	public double getWinRation() {
 		return gamesCompleted / gamesWon;
 	}
@@ -55,9 +63,17 @@ public abstract class PlayerStatistics implements Serializable {
 	public void setPawnsCaptured(int pawnsCaptured) {
 		this.pawnsCaptured = pawnsCaptured;
 	}
+	
+	public int incrementPawnsCaptured() {
+		return ++pawnsCaptured;
+	}
 
 	public int getKnightsCaptured() {
 		return knightsCaptured;
+	}
+	
+	public int incrementKnightsCaptured() {
+		return ++knightsCaptured;
 	}
 
 	public void setKnightsCaptured(int knightsCaptured) {
@@ -71,6 +87,10 @@ public abstract class PlayerStatistics implements Serializable {
 	public void setRooksCaptured(int rooksCaptured) {
 		this.rooksCaptured = rooksCaptured;
 	}
+	
+	public int incrementRooksCaptured() {
+		return ++rooksCaptured;
+	}
 
 	public int getBishopsCaptured() {
 		return bishopsCaptured;
@@ -78,6 +98,10 @@ public abstract class PlayerStatistics implements Serializable {
 
 	public void setBishopsCaptured(int bishopsCaptured) {
 		this.bishopsCaptured = bishopsCaptured;
+	}
+	
+	public int incrementBishopsCaptured() {
+		return ++bishopsCaptured;
 	}
 
 	public int getQueensCaptured() {
@@ -88,5 +112,79 @@ public abstract class PlayerStatistics implements Serializable {
 		this.queensCaptured = queensCaptured;
 	}
 	
+	public int incrementQueensCaptured() {
+		return ++queensCaptured;
+	}
+
+	public int getPawnCaptures() {
+		return pawnCaptures;
+	}
+
+	public void setPawnCaptures(int pawnCaptures) {
+		this.pawnCaptures = pawnCaptures;
+	}
 	
+	public int incrementPawnCaptures() {
+		return ++pawnCaptures;
+	}
+
+	public int getKnightCaptures() {
+		return knightCaptures;
+	}
+
+	public void setKnightCaptures(int knightCaptures) {
+		this.knightCaptures = knightCaptures;
+	}
+	
+	public int incrementKnightCaptures() {
+		return ++knightCaptures;
+	}
+
+	public int getRookCaptures() {
+		return rookCaptures;
+	}
+
+	public void setRookCaptures(int rookCaptures) {
+		this.rookCaptures = rookCaptures;
+	}
+	
+	public int incrementRookCaptures() {
+		return ++rookCaptures;
+	}
+
+	public int getBishopCaptures() {
+		return bishopCaptures;
+	}
+
+	public void setBishopCaptures(int bishopCaptures) {
+		this.bishopCaptures = bishopCaptures;
+	}
+	
+	public int incrementBishopCaptures() {
+		return ++bishopCaptures;
+	}
+
+	public int getQueenCaptures() {
+		return queenCaptures;
+	}
+
+	public void setQueenCaptures(int queenCaptures) {
+		this.queenCaptures = queenCaptures;
+	}
+	
+	public int incrementQueenCaptures() {
+		return ++queenCaptures;
+	}
+
+	public int getKingCaptures() {
+		return kingCaptures;
+	}
+
+	public void setKingCaptures(int kingCaptures) {
+		this.kingCaptures = kingCaptures;
+	}
+	
+	public int incrementKingCaptures() {
+		return ++kingCaptures;
+	}
 }
