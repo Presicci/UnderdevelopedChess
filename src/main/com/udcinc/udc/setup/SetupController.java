@@ -9,6 +9,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
@@ -39,6 +40,9 @@ public class SetupController {
 	
 	@FXML
 	private TextField playerNameEntry;
+	
+	@FXML
+	private Label errorMessage;
 	
 	/**
 	 * Initialize is called after constructor
@@ -108,6 +112,8 @@ public class SetupController {
 	 */
 	@FXML public void handleStartGame(Event event) throws IOException {
 		if (playerOne.getValue() == null || playerTwo.getValue() == null || playerOne.getValue().equals(playerTwo.getValue())) {
+			errorMessage.setText("Please select two different players before starting a game");
+			errorMessage.setVisible(true);
 			return;
 		}
 		Player white = DeserializePlayer.load(playerOne.getValue().replace(" ", "_"));
