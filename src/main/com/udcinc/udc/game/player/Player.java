@@ -18,11 +18,11 @@ public class Player extends PlayerStatistics {
 	// Player's name
 	private String name;
 	// Color for the player's pieces
-	private SerializableColor color = new SerializableColor(Color.DARKCYAN);
+	private transient SerializableColor color = new SerializableColor(Color.DARKCYAN);
 	// Boolean represents the side of the board the player starts on
-	private boolean white = false;
+	private transient boolean white = false;
 	
-	private TurnTimer timer;
+	private transient TurnTimer timer;
 	
 	public Player(String name) {
 		this.setName(name);
