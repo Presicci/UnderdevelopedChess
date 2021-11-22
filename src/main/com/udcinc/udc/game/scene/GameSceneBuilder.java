@@ -42,8 +42,8 @@ public class GameSceneBuilder {
 		
 		// Register event filter to save players when window is closed
 		stage.getScene().getWindow().addEventFilter(WindowEvent.WINDOW_CLOSE_REQUEST, (event) -> {
-			whitePlayer.incrementGamesCompleted();
-			blackPlayer.incrementGamesCompleted();
+			whitePlayer.incrementGamesPlayed();
+			blackPlayer.incrementGamesPlayed();
 			SerializePlayer.save(whitePlayer);
 			SerializePlayer.save(blackPlayer);
 		});
