@@ -391,7 +391,9 @@ public class GameSceneController {
         	// If selected piece is not null, move the piece
         	if (selectedPiece != null) {
         		if (selectedPiece.canMove(boardTile)) {
-        			if (boardTile.getPiece() != null) {
+        			Piece capturedPiece = boardTile.getPiece();
+        			if (capturedPiece != null) {
+            			handleMoveStats(selectedPiece, capturedPiece);
         				gs.getBoard().killPiece(boardTile.getPiece());
         			}
         			movePiece(selectedPiece, new Position(row, column));
@@ -410,7 +412,9 @@ public class GameSceneController {
         	// If selected piece is not null, move the piece
         	if (selectedPiece != null) {
         		if (selectedPiece.canMove(boardTile)) {
-        			if (boardTile.getPiece() != null) {
+        		Piece capturedPiece = boardTile.getPiece();
+    				if (capturedPiece != null) {
+    					handleMoveStats(selectedPiece, capturedPiece);
         				gs.getBoard().killPiece(boardTile.getPiece());
         			}
         			movePiece(selectedPiece, new Position(row, column));
@@ -575,4 +579,41 @@ public class GameSceneController {
             (int)(color.getGreen() * 255),
             (int)(color.getBlue() * 255));
     }
+	
+	/**
+	 * Increments player counters based on the piece being moved and the piece being captured
+	 * Called when a piece captures another piece
+	 * @param movedPiece The piece doing the capturing
+	 * @param capturedPiece The piece being captured
+	 */
+	private void handleMoveStats(Piece movedPiece, Piece capturedPiece) {
+		Player owner = movedPiece.getOwner();
+		if (owner == null) {
+			return;
+		}
+		if (movedPiece instanceof Pawn) {
+			owner.incrementPawnCaptures();
+		} else if (movedPiece instanceof Rook) {
+			owner.incrementRookCaptures();
+		} else if (movedPiece instanceof Bishop) {
+			owner.incrementBishopCaptures();
+		} else if (movedPiece instanceof Knight) {
+			owner.incrementKnightCaptures();
+		} else if (movedPiece instanceof Queen) {
+			owner.incrementQueenCaptures();
+		} else if (movedPiece instanceof King) {
+			owner.incrementKingCaptures();
+		}
+		if (capturedPiece instanceof Pawn) {
+			owner.incrementPawnsCaptured();
+		} else if (capturedPiece instanceof Rook) {
+			owner.incrementRooksCaptured();
+		} else if (capturedPiece instanceof Bishop) {
+			owner.incrementBishopsCaptured();
+		} else if (capturedPiece instanceof Knight) {
+			owner.incrementKnightsCaptured();
+		} else if (capturedPiece instanceof Queen) {
+			owner.incrementQueensCaptured();
+		}
+	}
 }
