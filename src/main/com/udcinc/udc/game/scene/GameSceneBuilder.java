@@ -6,8 +6,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import main.com.udcinc.udc.game.GameRules;
 import main.com.udcinc.udc.game.player.Player;
+import main.com.udcinc.udc.game.player.saving.SerializePlayer;
 import main.com.udcinc.udc.game.state.GameState;
 import main.com.udcinc.udc.settings.GameSettings;
 
@@ -38,9 +40,17 @@ public class GameSceneBuilder {
 		// Gets root pane for the scene
 		Pane root = loader.load();
 		
+		// Register event filter to save players when window is closed
+		stage.getScene().getWindow().addEventFilter(WindowEvent.WINDOW_CLOSE_REQUEST, (event) -> {
+			whitePlayer.incrementGamesCompleted();
+			blackPlayer.incrementGamesCompleted();
+			SerializePlayer.save(whitePlayer);
+			SerializePlayer.save(blackPlayer);
+		});
+		
 		// Transition scene to gamescreen
         Scene scene = new Scene(root, 800, 600);
         stage.setScene(scene);
         stage.show();
-	}	
+	}
 }
