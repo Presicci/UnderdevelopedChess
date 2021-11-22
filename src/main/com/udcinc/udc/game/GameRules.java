@@ -8,13 +8,8 @@ package main.com.udcinc.udc.game;
  */
 public class GameRules {	
 	/**
-	 * Stalemate
+	 * Stalemate: 
 	 * If player cant move, but isnt in check game ends in a draw	
-	 * If only two kings remain, its a draw
-	 * If one player has only a king, other has only a king and bishop/knight, its a draw
-	 * If exact same positions repeat 3 times, its a draw
-	 * If for 50 moves no pieces are captured and no pawns move, its a draw
-	 * Can offer a draw
 	 */
 	
 	
