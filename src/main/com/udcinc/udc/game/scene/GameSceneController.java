@@ -573,6 +573,11 @@ public class GameSceneController {
 		gs.nextTurn();
 	}
 	
+	/**
+	 * Converts a javafx color into a hex string of format #000000
+	 * @param color The color to convert
+	 * @return A string containing the hexcode
+	 */
 	private String colorToHex(Color color) {
         return String.format("#%02X%02X%02X",
             (int)(color.getRed() * 255),
