@@ -6,14 +6,7 @@ package main.com.udcinc.udc.game;
  * 
  * @author Thomas Presicci
  */
-public class GameRules {
-	/**
-	 * Castling notes
-	 * King cant move over a space that would put it in check
-	 * All spaces between king and rook must be open
-	 * King and rook must not have moved
-	 */
-	
+public class GameRules {	
 	/**
 	 * Stalemate
 	 * If player cant move, but isnt in check game ends in a draw	
