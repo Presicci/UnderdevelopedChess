@@ -155,7 +155,7 @@ public class GameSceneController {
 				// prefix denotes player ownership, case insensitive
 				if (tile.startsWith("b") || tile.startsWith("B")) {
 					player = gs.getBlackPlayer();
-				} else if (tile.startsWith("w") || tile.startsWith("w")) {
+				} else if (tile.startsWith("w") || tile.startsWith("W")) {
 					player = gs.getWhitePlayer();
 				}
 				// If no player is read, skip piece
