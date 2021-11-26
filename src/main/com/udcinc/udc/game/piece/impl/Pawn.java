@@ -122,7 +122,7 @@ public class Pawn extends Piece {
         		Tile passantTile = gs.getBoard().getPassantTile();
     			if (passantTile != null) {
     				Position passantPos = passantTile.getPosition();
-    				if (pPos.getY() == passantPos.getY()) {
+    				if (pPos.getY() == passantPos.getY() && (tile.getPosition().getX() == passantPos.getX() && tile.getPosition().getY() == passantPos.getY() + (owner.isWhite() ? -1 : 1))) {
     					possibleTiles.add(board.getTile(passantPos.getX(), passantPos.getY() + (owner.isWhite() ? -1 : 1)));
     				}
     			}
