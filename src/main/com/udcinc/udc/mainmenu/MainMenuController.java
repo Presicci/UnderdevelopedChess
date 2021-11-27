@@ -26,13 +26,6 @@ public class MainMenuController {
 	private GameRules rules;
 	private GameSettings settings;
 	
-	@FXML
-	private void initialize() {
-		// Will be replaced with serialation loaders
-		rules = new GameRules();
-		settings = new GameSettings();
-	}
-	
 	/**
 	 * Handler for the play button
 	 * @param event The event being triggered
