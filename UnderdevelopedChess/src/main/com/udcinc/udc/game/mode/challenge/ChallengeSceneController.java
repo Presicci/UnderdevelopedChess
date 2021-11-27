@@ -499,6 +499,7 @@ public class ChallengeSceneController {
         
         // When a piece is dropped onto another piece
         iv.setOnDragDropped(event -> {
+        	System.out.println("setOnDragged Drop(Piece does exist\n");
         	Tile boardTile = gs.getBoard().getTiles()[row][column];
         	// If selected piece is not null, move the piece
         	if (selectedPiece != null) {
@@ -507,8 +508,6 @@ public class ChallengeSceneController {
         			if (capturedPiece != null) {
             			handleMoveStats(selectedPiece, capturedPiece);
         				gs.getBoard().killPiece(boardTile.getPiece());
-        				
-        			
         				System.out.printf("Stomped %s\n", capturedPiece.getName());
         				if(capturedPiece.getName() == "King")
         				{
@@ -516,9 +515,7 @@ public class ChallengeSceneController {
         					System.out.println("Victory Button is now visible!");
         					checkAnswerButton.setVisible(true);
         					System.out.println("Done");
-        					//Upon the win condition being complete, the button appears.
- 
-        					
+        					//Upon the win condition being complete, the button appears.        					
         				}
         					        				
         			}
@@ -533,7 +530,8 @@ public class ChallengeSceneController {
         
         // When a piece is dropped onto a tile
         // *tile may or may not contain another piece
-        tile.setOnDragDropped(event -> {                	
+        tile.setOnDragDropped(event -> { 
+        	System.out.println("setOnDragDropped(Piece may not exist\n");
         	Tile boardTile = gs.getBoard().getTiles()[row][column];
         	// If selected piece is not null, move the piece
         	if (selectedPiece != null) {
@@ -542,6 +540,16 @@ public class ChallengeSceneController {
     				if (capturedPiece != null) {
     					handleMoveStats(selectedPiece, capturedPiece);
         				gs.getBoard().killPiece(boardTile.getPiece());
+            				if(capturedPiece.getName() == "King")
+            				{
+            					System.out.println("King was captured, puzzle complete!");
+            					System.out.println("Victory Button is now visible!");
+            					checkAnswerButton.setVisible(true);
+            					System.out.println("Done");
+            					//Upon the win condition being complete, the button appears.        					
+            				}
+            					        				
+            			
         			}
         			movePiece(selectedPiece, new Position(row, column));
             	} else {
