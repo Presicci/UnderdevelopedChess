@@ -25,7 +25,7 @@
          </font>
       </Button>
       <PieChart fx:id="playerPie" layoutX="14.0" layoutY="136.0" legendSide="LEFT" title="Games Played:" />
-      <Text fx:id="statsText" layoutX="534.0" layoutY="153.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="244.13671875">
+      <Text fx:id="statsText" layoutX="534.0" layoutY="153.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="244.1367187">
          <font>
             <Font size="16.0" />
          </font>

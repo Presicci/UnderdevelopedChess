@@ -130,6 +130,7 @@ public class StatisticsController {
 		this.settings = settings;
 	}
 	
+    //it does rule hell ya
 	public void setRules(GameRules rules) {
 		this.rules = rules;
 	}
