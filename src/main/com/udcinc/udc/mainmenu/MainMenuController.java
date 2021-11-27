@@ -13,6 +13,7 @@ import main.com.udcinc.udc.game.GameRules;
 import main.com.udcinc.udc.settings.GameSettings;
 import main.com.udcinc.udc.settings.SettingsController;
 import main.com.udcinc.udc.setup.SetupController;
+import main.com.udcinc.udc.stats.StatisticsController;
 
 /**
  * Controller for MainMenu.fxml
@@ -75,6 +76,25 @@ public class MainMenuController {
         SettingsController controller = loader.<SettingsController>getController();
         controller.setSettings(settings);
         controller.setRules(rules);
+		
+		// Transition scene to gamescreen
+		Scene scene = new Scene(root, 800, 600);
+		stage.setScene(scene);
+		stage.show();
+	}
+	
+	@FXML public void handleStatistics(Event event) throws IOException {
+		Stage stage = ((Stage) ((Node) event.getSource()).getScene().getWindow());
+		// Active game scene
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("/main/resources/fxml/Statistics.fxml"));
+
+		// Gets root pane for the scene
+		Pane root = loader.load();
+
+		// Pass settings and rules along
+		StatisticsController controller = loader.<StatisticsController>getController();
+		controller.setSettings(settings);
+		controller.setRules(rules);
 		
 		// Transition scene to gamescreen
 		Scene scene = new Scene(root, 800, 600);
