@@ -96,7 +96,8 @@ public class GameSceneController {
 	public void victory(Player winner) {
 		winnerText.setText(winner.getName() + " wins! Congratulations!");
 		winnerText.setVisible(true);
-		winner.incrementGamesCompleted();
+		gs.getBlackPlayer().incrementGamesCompleted();
+		gs.getWhitePlayer().incrementGamesCompleted();
 		winner.incrementGamesWon();
 		
 		if (gs.getActivePlayer().getTimer() != null) gs.getActivePlayer().getTimer().stop();
