@@ -61,13 +61,13 @@ public class GameSceneController {
 	// Static list of all currently populated move indicator circles
 	private static List<Circle> moveCircles;
 	
-	private boolean gameActive = false;
+	private boolean gameActive = false, hasDrawn = false;
 	private Timer timerRefresh = new Timer();
 	
 	/*
 	 * Pawn promotion dialogue
 	 */
-	@FXML private AnchorPane promoteDialogue;
+	@FXML private AnchorPane promoteDialogue, drawPane;
 	@FXML private Button promoteRook, promoteKnight, promoteBishop, promoteQueen;
 	private static Piece promotingPiece;
 	
@@ -104,6 +104,27 @@ public class GameSceneController {
 		timerRefresh.cancel();
 		timerRefresh.purge();
 		gameActive = false;
+	}
+	
+	@FXML
+	private void handleDrawYes() {
+		winnerText.setText("Nobody wins! Congratulations!");
+		winnerText.setVisible(true);
+		
+		gs.getBlackPlayer().incrementGamesCompleted();
+		gs.getWhitePlayer().incrementGamesCompleted();
+		if (gs.getActivePlayer().getTimer() != null) gs.getActivePlayer().getTimer().stop();
+		timerRefresh.cancel();
+		timerRefresh.purge();
+		gameActive = false;
+		drawPane.setVisible(false);
+		hasDrawn = true;
+	}
+	
+	@FXML
+	private void handleDrawNo() {
+		drawPane.setVisible(false);
+		hasDrawn = true;
 	}
 	
 	public void startTimers() {
@@ -634,6 +655,9 @@ public class GameSceneController {
 		}
 		else if(wCount < 1) {
 			victory(gs.getBlackPlayer());
+		}
+		else if(bCount == 1 && wCount == 1 && hasDrawn == false && gs.getSettings().getGameType() != "Chaos") {
+			drawPane.setVisible(true);
 		}
 	}
 	

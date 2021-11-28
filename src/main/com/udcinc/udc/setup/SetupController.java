@@ -34,7 +34,7 @@ public class SetupController {
 	private GameRules rules;
 	
 	@FXML
-	private Text curGameMode;
+	private Text curGameMode, gameModeError;
 	
 	@FXML
 	private ChoiceBox<String> playerOne, playerTwo;
@@ -60,12 +60,14 @@ public class SetupController {
 	private void handleStandard() {
 		settings.setGameType("Standard");
 		curGameMode.setText(settings.getGameType());
+		gameModeError.setVisible(false);
 	}
 	
 	@FXML
 	private void handleChaos() {
 		settings.setGameType("Chaos");
 		curGameMode.setText(settings.getGameType());
+		gameModeError.setVisible(false);
 	}
 	
 	/**
@@ -132,6 +134,11 @@ public class SetupController {
 			errorMessage.setVisible(true);
 			return;
 		}
+		if (settings.getGameType() == null) {
+			gameModeError.setVisible(true);
+			return;
+		}
+		
 		Player white = DeserializePlayer.load(playerOne.getValue().replace(" ", "_"));
 		Player black = DeserializePlayer.load(playerTwo.getValue().replace(" ", "_"));
 		if (white == null || black == null) {

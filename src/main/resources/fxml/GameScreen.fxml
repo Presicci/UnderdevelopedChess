@@ -69,5 +69,24 @@
             <Font name="Trebuchet MS" size="21.0" />
          </font>
       </Text>
+      <AnchorPane fx:id="drawPane" layoutX="100.0" layoutY="200.0" prefHeight="200.0" prefWidth="400.0" style="-fx-background-color: lightgrey;" visible="false">
+         <children>
+            <Label alignment="CENTER" prefHeight="58.0" prefWidth="400.0" text="Draw?" textAlignment="CENTER">
+               <font>
+                  <Font name="Trebuchet MS" size="32.0" />
+               </font>
+            </Label>
+            <Button layoutX="14.0" layoutY="121.0" mnemonicParsing="false" onAction="#handleDrawYes" prefHeight="58.0" prefWidth="131.0" style="-fx-background-color: black; -fx-border-color: white;" text="Yes" textFill="WHITE">
+               <font>
+                  <Font size="25.0" />
+               </font>
+            </Button>
+            <Button layoutX="255.0" layoutY="121.0" mnemonicParsing="false" onAction="#handleDrawNo" prefHeight="58.0" prefWidth="131.0" style="-fx-background-color: black; -fx-border-color: white;" text="No" textFill="WHITE">
+               <font>
+                  <Font size="25.0" />
+               </font>
+            </Button>
+         </children>
+      </AnchorPane>
    </children>
 </AnchorPane>
