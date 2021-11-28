@@ -46,8 +46,10 @@ public class GameSceneBuilder {
 			blackPlayer.incrementGamesPlayed();
 			SerializePlayer.save(whitePlayer);
 			SerializePlayer.save(blackPlayer);
-			if(whitePlayer.getTimer() != null) whitePlayer.getTimer().stop();
+			if(whitePlayer.getTimer() != null) whitePlayer.getTimer().stop(); //only if there is a timer, stop them
 			if(blackPlayer.getTimer() != null) blackPlayer.getTimer().stop();
+			
+			System.exit(0);
 		});
 		
 		// Transition scene to gamescreen

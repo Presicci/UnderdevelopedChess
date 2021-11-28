@@ -41,6 +41,10 @@ public class TurnTimer {
 		timer.cancel();
 		timer.purge();
 	}
+	
+	public int getSeconds() {
+		return seconds;
+	}
 
 	public boolean isRunning() {
 		return running;

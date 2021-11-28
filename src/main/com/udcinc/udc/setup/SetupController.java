@@ -13,6 +13,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import main.com.udcinc.udc.game.GameRules;
 import main.com.udcinc.udc.game.player.Player;
@@ -33,6 +34,9 @@ public class SetupController {
 	private GameRules rules;
 	
 	@FXML
+	private Text curGameMode;
+	
+	@FXML
 	private ChoiceBox<String> playerOne, playerTwo;
 	
 	@FXML
@@ -50,6 +54,18 @@ public class SetupController {
 	@FXML
 	private void initialize() {
 		loadPlayerLists();
+	}
+	
+	@FXML
+	private void handleStandard() {
+		settings.setGameType("Standard");
+		curGameMode.setText(settings.getGameType());
+	}
+	
+	@FXML
+	private void handleChaos() {
+		settings.setGameType("Chaos");
+		curGameMode.setText(settings.getGameType());
 	}
 	
 	/**

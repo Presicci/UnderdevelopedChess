@@ -57,7 +57,7 @@ public class GameSettings implements Serializable {
      */
     private SerializableColor moveHighlightingColor = new SerializableColor(Color.LIMEGREEN);
 
-    
+    private String gameType;
     
     
     // Getters/setters
@@ -115,5 +115,13 @@ public class GameSettings implements Serializable {
 
 	public void setMoveHighlightingColor(Color moveHighlightingColor) {
 		this.moveHighlightingColor = new SerializableColor(moveHighlightingColor);
+	}
+	
+	public String getGameType() {
+		return gameType;
+	}
+	
+	public void setGameType(String gameType) {
+		this.gameType = gameType;
 	}
 }

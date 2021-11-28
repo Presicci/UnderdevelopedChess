@@ -3,6 +3,9 @@ package main.com.udcinc.udc.game.scene;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Random;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
@@ -28,7 +31,9 @@ import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
+import javafx.scene.text.Text;
 import javafx.stage.WindowEvent;
 import main.com.udcinc.udc.game.board.Board;
 import main.com.udcinc.udc.game.board.Position;
@@ -56,12 +61,18 @@ public class GameSceneController {
 	// Static list of all currently populated move indicator circles
 	private static List<Circle> moveCircles;
 	
+	private boolean gameActive = false;
+	private Timer timerRefresh = new Timer();
+	
 	/*
 	 * Pawn promotion dialogue
 	 */
 	@FXML private AnchorPane promoteDialogue;
 	@FXML private Button promoteRook, promoteKnight, promoteBishop, promoteQueen;
 	private static Piece promotingPiece;
+	
+	@FXML
+    private Text winnerText, player1Text, player2Text;
 	
 	/**
 	 * This constructor overrides the base FXML constructor via
@@ -76,6 +87,47 @@ public class GameSceneController {
 	
 	public void closeWindow() {
 		gs.getActivePlayer().getTimer().stop();
+		timerRefresh.cancel();
+		timerRefresh.purge();
+		
+		System.exit(0);
+	}
+	
+	public void victory(Player winner) {
+		winnerText.setText(winner.getName() + " wins! Congratulations!");
+		winnerText.setVisible(true);
+		winner.incrementGamesCompleted();
+		winner.incrementGamesWon();
+		
+		if (gs.getActivePlayer().getTimer() != null) gs.getActivePlayer().getTimer().stop();
+		timerRefresh.cancel();
+		timerRefresh.purge();
+		gameActive = false;
+	}
+	
+	public void startTimers() {
+		if (gs.getRules().getTimerLimit() > 0) {
+			
+			//	Timer task that updates player timers on screen
+			timerRefresh.scheduleAtFixedRate(new TimerTask() {
+				@Override
+				public void run() {
+					if (gameActive) {
+						player2Text.setText(gs.getWhitePlayer().getName() + "\nTime: " + gs.getWhitePlayer().getTimer().getSeconds());
+						player1Text.setText(gs.getBlackPlayer().getName() + "\nTime: " + gs.getBlackPlayer().getTimer().getSeconds());
+						
+						if (gs.getWhitePlayer().getTimer().getSeconds() < 1) victory(gs.getBlackPlayer());
+						else if (gs.getBlackPlayer().getTimer().getSeconds() < 1) victory(gs.getWhitePlayer());
+					}
+				}
+			}, 250, 250);	// every quarter second
+			
+		}
+		else {
+			player2Text.setText(gs.getWhitePlayer().getName());
+			player1Text.setText(gs.getBlackPlayer().getName());
+		}
+		
 	}
 	
 	/**
@@ -83,6 +135,7 @@ public class GameSceneController {
 	 */
 	@FXML
 	private void initialize() {
+		gameActive = true;
 		setupGrid();
 
         //  Create the board
@@ -112,6 +165,45 @@ public class GameSceneController {
 		
 		// Adds pieces to the board
 		populateBoard();
+		
+		startTimers();
+	}
+	
+	private String randPiece() {
+		Random rand = new Random();
+		
+		int pieceType = rand.nextInt(5);
+		
+		switch(pieceType) {
+			case 0:
+				return "p";
+			case 1:
+				return "k";
+			case 2:
+				return "r";
+			case 3:
+				return "b";
+			case 4:
+				return "q";
+			default:
+				return "p";
+		}
+	}
+	
+	private String[][] generateChaosLayout(){
+		String[][] returnLayout = new String[8][8];
+		
+		for(int i = 0; i < 8; i++) {
+			for(int j = 0; j < 8; j++) {
+				if (i < 2) 
+					returnLayout[i][j] = "b" + randPiece();
+				else if (i > 5)
+					returnLayout[i][j] = "w" + randPiece();
+				else
+					returnLayout[i][j] = "-";
+			}
+		}
+		return returnLayout;
 	}
 	
 	/**
@@ -150,7 +242,21 @@ public class GameSceneController {
 	private void populateBoard() {
 		Board b = gs.getBoard();
 		int x = 0, y = 0;
-		for (String[] row : defaultLayout) {	// For now just using default layout as loader
+		String[][] layout;
+		
+		switch(gs.getSettings().getGameType()) {
+			case "Standard":
+				layout = defaultLayout;
+				break;
+			case "Chaos":
+				layout = generateChaosLayout();
+				break;
+			default:
+				layout = defaultLayout;
+		}
+		
+		
+		for (String[] row : layout) {	
 			for (String tile : row) {
 				Player player = null;
 				// Hyphen (-) denotes an empty tile
@@ -401,6 +507,9 @@ public class GameSceneController {
         			if (capturedPiece != null) {
             			handleMoveStats(selectedPiece, capturedPiece);
         				gs.getBoard().killPiece(boardTile.getPiece());
+        				if (capturedPiece.getName().equals("King")) {
+        					victory(gs.getActivePlayer());
+        				}
         			}
         			movePiece(selectedPiece, new Position(row, column));
             	} else {
@@ -422,6 +531,9 @@ public class GameSceneController {
     				if (capturedPiece != null) {
     					handleMoveStats(selectedPiece, capturedPiece);
         				gs.getBoard().killPiece(boardTile.getPiece());
+        				if (capturedPiece.getName().equals("King")) {
+        					victory(gs.getActivePlayer());
+        				}
         			}
         			movePiece(selectedPiece, new Position(row, column));
             	} else {
@@ -457,6 +569,9 @@ public class GameSceneController {
 				Piece passantPiece = passantTile.getPiece();
 				removePieceFromBoard(passantPiece);
 				board.killPiece(passantPiece);
+				if (passantPiece.getName().equals("King")) {
+					victory(gs.getActivePlayer());
+				}
 			}
 		}
 		
@@ -498,9 +613,27 @@ public class GameSceneController {
 				}
 			}
 		}
+		
+		checkAllPieces();
 
 		// Changes the active player to the other player
 		gs.nextTurn();
+	}
+	
+	private void checkAllPieces() {
+		int bCount = 0, wCount = 0;
+		
+		for(Piece piece : gs.getBoard().getPieces()) {
+			if (piece.getOwner().getName().equals(gs.getBlackPlayer().getName())) bCount++;
+			else if (piece.getOwner().getName().equals(gs.getWhitePlayer().getName())) wCount++;
+		}
+		
+		if (bCount < 1) {
+			victory(gs.getWhitePlayer());
+		}
+		else if(wCount < 1) {
+			victory(gs.getBlackPlayer());
+		}
 	}
 	
 	/**
