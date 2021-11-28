@@ -15,6 +15,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.ClipboardContent;
 import javafx.scene.input.Dragboard;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.input.TransferMode;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Background;
@@ -28,6 +29,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
+import javafx.stage.WindowEvent;
 import main.com.udcinc.udc.game.board.Board;
 import main.com.udcinc.udc.game.board.Position;
 import main.com.udcinc.udc.game.board.Tile;
@@ -70,6 +72,10 @@ public class GameSceneController {
 		this.gs = gs;
 		gs.assignPlayers(whitePlayer, blackPlayer);
 		moveCircles = new ArrayList<Circle>();
+	}
+	
+	public void closeWindow() {
+		gs.getActivePlayer().getTimer().stop();
 	}
 	
 	/**

@@ -36,6 +36,11 @@ public class TurnTimer {
 			}
 		}, 1000, 1000);	// 1 second
 	}
+	
+	public void stop() {
+		timer.cancel();
+		timer.purge();
+	}
 
 	public boolean isRunning() {
 		return running;
