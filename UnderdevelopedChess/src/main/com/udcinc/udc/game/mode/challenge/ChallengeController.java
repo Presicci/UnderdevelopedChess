@@ -1,4 +1,31 @@
 package main.com.udcinc.udc.game.mode.challenge;
+
+import java.io.IOException;
+import main.com.udcinc.udc.game.scene.*;
+import javafx.event.ActionEvent;
+import javafx.event.Event;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
+import main.com.udcinc.udc.game.GameRules;
+import main.com.udcinc.udc.game.player.Player;
+import main.com.udcinc.udc.game.player.saving.DeserializePlayer;
+import main.com.udcinc.udc.game.scene.GameSceneBuilder;
+import main.com.udcinc.udc.mainmenu.MainMenuController;
+import main.com.udcinc.udc.settings.GameSettings;
+
+
+/**
+ * Controller for CustomScreen.fxml
+ * 
+ * @author Alexander Regino
+ */
+
+
 import java.io.IOException;
 import main.com.udcinc.udc.game.scene.*;
 import javafx.event.ActionEvent;
@@ -29,7 +56,9 @@ public class ChallengeController {
 	 * Handler for the start game button
 	 * @param event The event being triggered
 	 * @throws IOException exception thrown if GameScreen.fxml can not be loaded
-	 */	
+	 */
+
+	
 	private GameRules rules;
 	private GameSettings settings;
 	public void setSettings(GameSettings settings) {
@@ -39,6 +68,8 @@ public class ChallengeController {
 	public void setRules(GameRules rules) {
 		this.rules = rules;
 	}
+	
+
     @FXML
     private Button back_Button;
 
