@@ -377,7 +377,7 @@ public class ChallengeSceneController {
        ChallengeVictoryController controller = loader.<ChallengeVictoryController>getController();
         controller.setRules(gs.getRules());
         controller.setSettings(gs.getSettings());
-        controller.setMoveNum(gs.getTurnsTaken()/4); //Turns taken by the white player is divided by the total number of turns over 4, the total and reverts doubling from skipping a turn.
+        controller.setMoveNum(gs.getTurnsTaken()/2); //Turns taken by the white player is divided by the total number of turns over 4, the total and reverts doubling from skipping a turn.
 		// Transition scene to gamescreen
 		Scene scene = new Scene(root, 800, 600);
 		stage.setScene(scene);
