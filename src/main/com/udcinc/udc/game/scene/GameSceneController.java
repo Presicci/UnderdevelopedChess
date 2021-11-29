@@ -456,11 +456,7 @@ public class GameSceneController {
         
         //	Handles clicking on a piece
         iv.setOnMouseClicked(event -> {
-        	// Reset the board to its default coloring before doing move coloring
         	resetMoveCircles();
-        	
-            Tile boardTile = gs.getBoard().getTiles()[row][column];
-            Piece piece = boardTile.getPiece();
         });
         
         // Start drag and drop
@@ -805,5 +801,16 @@ public class GameSceneController {
 		Scene scene = new Scene(root, 800, 600);
 		stage.setScene(scene);
 		stage.show();
+	}
+	
+	/**
+	 * Handler for the main menu button
+	 * 
+	 * @param event The event being triggered
+	 * @throws IOException exception thrown if GameScreen.fxml can not be loaded
+	 */
+	@FXML
+	public void handleOfferDraw(Event event) throws IOException {
+		drawPane.setVisible(true);
 	}
 }

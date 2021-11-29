@@ -37,7 +37,7 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
       </GridPane>
-      <AnchorPane fx:id="promoteDialogue" layoutX="110.0" layoutY="360.0" prefHeight="200.0" prefWidth="400.0" style="-fx-background-color: lightgray; -fx-border-color: black;" visible="false">
+      <AnchorPane fx:id="promoteDialogue" layoutX="100.0" layoutY="200.0" prefHeight="200.0" prefWidth="400.0" style="-fx-background-color: lightgray; -fx-border-color: black;" visible="false">
          <children>
             <Label alignment="CENTER" layoutX="13.0" layoutY="14.0" prefHeight="80.0" prefWidth="375.0" text="What do you want to promote your pawn to?" textAlignment="CENTER" wrapText="true">
                <font>
@@ -85,6 +85,11 @@
          </children>
       </AnchorPane>
       <Button layoutX="663.0" layoutY="7.0" mnemonicParsing="false" onAction="#handleMainMenu" prefHeight="23.0" prefWidth="80.0" style="-fx-background-color: black; -fx-border-color: lightgray;" text="Main menu" textFill="WHITE">
+         <font>
+            <Font name="Trebuchet MS" size="11.0" />
+         </font>
+      </Button>
+      <Button layoutX="663.0" layoutY="569.0" mnemonicParsing="false" onAction="#handleOfferDraw" prefHeight="23.0" prefWidth="80.0" style="-fx-background-color: black; -fx-border-color: lightgray;" text="Offer draw" textFill="WHITE">
          <font>
             <Font name="Trebuchet MS" size="11.0" />
          </font>
