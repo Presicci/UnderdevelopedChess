@@ -72,9 +72,8 @@ public class ChallengeSceneController {
 	// Static list of all currently populated move indicator circles
 	private static List<Circle> moveCircles;
 	
-	private static String currChallenge;
+	private String currChallenge;
 	
-	private int MoveNum;
 	/*
 	 * Pawn promotion dialogue
 	 */
