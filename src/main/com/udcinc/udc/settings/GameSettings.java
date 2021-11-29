@@ -31,25 +31,25 @@ public class GameSettings implements Serializable {
      * The color of white's pieces
      * defaults to WHITE, #FFFFFF
      */
-    private SerializableColor whiteColor = new SerializableColor(Color.WHITE);
+    private SerializableColor whiteColor = new SerializableColor(Color.valueOf("#336633"));
     
     /*
      * The color of black's pieces
      * defaults to BLACK, #000000
      */
-    private SerializableColor blackColor = new SerializableColor(Color.BLACK);
+    private SerializableColor blackColor = new SerializableColor(Color.valueOf("#4d66cc"));
     
     /*
      * The color of the brown tiles on the board
      * defaults to BROWN, #A52A2A
      */
-    private SerializableColor boardBrown = new SerializableColor(Color.BROWN);
+    private SerializableColor boardBrown = new SerializableColor(Color.BLACK);
     
     /*
      * The color of the beige tiles on the board
      * defaults to BEIGE, #F5F5DC
      */
-    private SerializableColor boardBeige = new SerializableColor(Color.BEIGE);
+    private SerializableColor boardBeige = new SerializableColor(Color.WHITE);
 
     /*
      * The color of the move highlighting on the board
