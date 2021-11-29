@@ -1,3 +1,11 @@
+1. Name Of Project: Underdeveloped Chess
+2. Name Of Team: Underdeveloped Chess Inc.
+3. Team Members: Thomas Presicci, Alexander Regino, Daniel Ramos
+4. Short Description: Play a digitalize version of chess, with many helpful features you can't easily get with pen and paper!
+5. Known bugs: None.
+6. Login Info: None.
+7. No special requirements aside from Javafx.
+
 REQUIREMENTS:
 -Ecli(fx)e
 This can be obtained by going to the eclipse market place, clicking on the help tab in the top center, clicking on Eclipse Market Place,
