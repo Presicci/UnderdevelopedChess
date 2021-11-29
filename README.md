@@ -1,10 +1,11 @@
 1. Name Of Project: Underdeveloped Chess
 2. Name Of Team: Underdeveloped Chess Inc.
 3. Team Members: Thomas Presicci, Alexander Regino, Daniel Ramos
-4. Short Description: Play a digitalize version of chess, with many helpful features you can't easily get with pen and paper!
-5. Known bugs: None.
-6. Login Info: None.
-7. No special requirements aside from Javafx.
+4. Short Description: Local co-op chess game. Has player and settings saving, statistics tracking, 
+and all the logic required to play a full game of chess with your friend.
+6. Known bugs: None.
+7. Login Info: None.
+8. No special requirements aside from Javafx.
 
 REQUIREMENTS:
 -Ecli(fx)e
@@ -69,7 +70,7 @@ STATISTICS:
 This button enables the user to see some stats regarding the player.
 This takes the form of a simple pie chart indicating the win ratio of each opponent, equaling a total of 100%.
 CUSTOM CHALLENGE:
-Upon clicking this button, the user is taken to a screen containing a menu, containing a single option for now, allowing thme to play
+Upon clicking this button, the user is taken to a screen containing a menu, containing a single option for now, allowing them to play
 a chess game mode that requires only 1 human's input, a puzzle.
 Here, the goal is to complete the puzzle and capture the opposing king in the least amount of turns possible, with a result screen
 indicating the least amount of moves needed, and listing how many moves were used trying to complete the puzzle.
