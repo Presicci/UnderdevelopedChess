@@ -68,7 +68,7 @@ and changing the number of seconds each player gets to make their turn, however 
 Special moves such as castling, promoting pawns, and en passant can be disabled if chosen to by the user.
 STATISTICS:
 This button enables the user to see some stats regarding the player.
-This takes the form of a simple pie chart indicating the win ratio of each opponent, equaling a total of 100%.
+This takes the form of a simple pie chart indicating the games played of each opponent.
 CUSTOM CHALLENGE:
 Upon clicking this button, the user is taken to a screen containing a menu, containing a single option for now, allowing them to play
 a chess game mode that requires only 1 human's input, a puzzle.
