@@ -10,6 +10,7 @@ import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import main.com.udcinc.udc.game.GameRules;
+import main.com.udcinc.udc.game.mode.challenge.ChallengeController;
 import main.com.udcinc.udc.settings.GameSettings;
 import main.com.udcinc.udc.settings.SettingsController;
 import main.com.udcinc.udc.setup.SetupController;
@@ -43,6 +44,30 @@ public class MainMenuController {
 		SetupController controller = loader.<SetupController>getController();
 		controller.setSettings(settings);
 		controller.setRules(rules);
+		
+		// Transition scene to gamescreen
+		Scene scene = new Scene(root, 800, 600);
+		stage.setScene(scene);
+		stage.show();
+	}
+	
+	/**
+	 * Handler for the Challenge button
+	 * @param event The event being triggered
+	 * @throws IOException exception thrown if ChallengeScreen.fxml can not be loaded
+	 */
+	@FXML public void handleCustom(Event event) throws IOException {
+		Stage stage = ((Stage) ((Node)event.getSource()).getScene().getWindow());
+		// Active game scene
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("/main/resources/fxml/CustomScreen.fxml"));
+
+		// Gets root pane for the scene
+		Pane root = loader.load();
+
+		// Pass settings and rules along
+        ChallengeController controller = loader.<ChallengeController>getController();
+        controller.setSettings(settings);
+        controller.setRules(rules);
 		
 		// Transition scene to gamescreen
 		Scene scene = new Scene(root, 800, 600);

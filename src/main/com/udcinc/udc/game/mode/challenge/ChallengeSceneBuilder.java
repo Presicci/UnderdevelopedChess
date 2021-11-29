@@ -24,7 +24,7 @@ public class ChallengeSceneBuilder {
 
 	public void build(Stage stage, GameSettings settings, GameRules rules, Player whitePlayer, Player blackPlayer, String challenge) throws IOException {
         // Active game scene
-		FXMLLoader loader = new FXMLLoader(getClass().getResource("/main/resources/fxml/GameScreen.fxml"));
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("/main/resources/fxml/GameScreenOld.fxml"));
 		
 		// Initialize our game state
 		GameState gs = new GameState(settings, rules);

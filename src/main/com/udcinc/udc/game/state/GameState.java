@@ -24,6 +24,8 @@ public class GameState {
 	
 	private GameRules rules;
 	
+	private int turnsTaken;
+	
 	public GameState(GameSettings settings, GameRules rules) {
 		this.settings = settings;
 		this.rules = rules;
@@ -98,5 +100,14 @@ public class GameState {
 		return rules;
 	}
     
+	public int getTurnsTaken()
+	{
+		return turnsTaken;
+	}
+	
+	public void setTurnsTaken(int turnUpdate)
+	{
+		this.turnsTaken = turnUpdate;
+	}
     
 }
