@@ -1,5 +1,6 @@
 package main.com.udcinc.udc.game.scene;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -7,9 +8,12 @@ import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import javafx.event.Event;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.effect.ColorAdjust;
 import javafx.scene.effect.Light;
@@ -29,11 +33,13 @@ import javafx.scene.layout.BackgroundRepeat;
 import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import main.com.udcinc.udc.game.board.Board;
 import main.com.udcinc.udc.game.board.Position;
@@ -47,6 +53,7 @@ import main.com.udcinc.udc.game.piece.impl.Queen;
 import main.com.udcinc.udc.game.piece.impl.Rook;
 import main.com.udcinc.udc.game.player.Player;
 import main.com.udcinc.udc.game.state.GameState;
+import main.com.udcinc.udc.mainmenu.MainMenuController;
 
 public class GameSceneController {
 
@@ -458,17 +465,13 @@ public class GameSceneController {
             // Debug information
             System.out.println("[" + (piece == null ? "" : piece.getName()) + "] owned by " + (piece == null ? "" : piece.getOwner().getName()));
             System.out.println("Clicked: " + row + ", " + column);
-            
-            // Spawn a circle on tiles that are possible moves
-            if (piece != null) {
-                for (Tile t : piece.getAllValidMoves()) {
-                	addMoveCircle(t.getPosition().getX(), t.getPosition().getY());
-                }
-            }
         });
         
         // Start drag and drop
         iv.setOnDragDetected(event -> {
+        	if (!gameActive) {
+        		return;
+        	}
         	Piece piece = gs.getBoard().getTiles()[row][column].getPiece();
         	if (piece == null) {
         		return;
@@ -784,5 +787,31 @@ public class GameSceneController {
 		} else if (capturedPiece instanceof Queen) {
 			owner.incrementQueensCaptured();
 		}
+	}
+	
+	/**
+	 * Handler for the main menu button
+	 * 
+	 * @param event The event being triggered
+	 * @throws IOException exception thrown if GameScreen.fxml can not be loaded
+	 */
+	@FXML
+	public void handleMainMenu(Event event) throws IOException {
+		Stage stage = ((Stage) ((Node)event.getSource()).getScene().getWindow());
+		// Active game scene
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("/main/resources/fxml/MainMenu.fxml"));
+
+		// Gets root pane for the scene
+		Pane root = loader.load();
+		
+		// Pass settings and rules along
+        MainMenuController controller = loader.<MainMenuController>getController();
+        controller.setRules(gs.getRules());
+        controller.setSettings(gs.getSettings());
+        
+		// Transition scene to gamescreen
+		Scene scene = new Scene(root, 800, 600);
+		stage.setScene(scene);
+		stage.show();
 	}
 }
