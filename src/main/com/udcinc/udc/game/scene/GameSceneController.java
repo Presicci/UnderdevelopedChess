@@ -461,10 +461,6 @@ public class GameSceneController {
         	
             Tile boardTile = gs.getBoard().getTiles()[row][column];
             Piece piece = boardTile.getPiece();
-            
-            // Debug information
-            System.out.println("[" + (piece == null ? "" : piece.getName()) + "] owned by " + (piece == null ? "" : piece.getOwner().getName()));
-            System.out.println("Clicked: " + row + ", " + column);
         });
         
         // Start drag and drop
@@ -537,8 +533,6 @@ public class GameSceneController {
         				}
         			}
         			movePiece(selectedPiece, new Position(row, column));
-            	} else {
-            		System.out.println("Invalid move!");
             	}
         	}
         	
@@ -561,8 +555,6 @@ public class GameSceneController {
         				}
         			}
         			movePiece(selectedPiece, new Position(row, column));
-            	} else {
-            		System.out.println("Invalid move!");
             	}
         	}
         	

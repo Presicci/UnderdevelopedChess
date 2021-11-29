@@ -172,7 +172,6 @@ public class ChallengeSceneController {
 		//String filePathName = "/UnderdevelopedChess/src/main/resources/challenges/";
 		//String finalPathName = filePathName.concat(fileName);
 		String finalestPathName = "C:src\\main\\resources\\challenges\\Challenge1.csv";
-		System.out.printf("Going to %s", finalestPathName);
 		File file = new File(finalestPathName);
 		Scanner scan = new Scanner(file);
 		//Initialize an array of size Layout by Layout. 
@@ -188,22 +187,11 @@ public class ChallengeSceneController {
 			for( int i = 0; i < row.length; i++) //Iterate through all lines of a row.
 			{
 				newDefaultLayout[i][column] = row[i];
-				System.out.printf("Row: %d, Column %d ===== |%s|\n", i, column, row[i]);
 			}
 			column++;
 			//With all variables solved for, creates a new avenger, then adds it.
 		}
 		
-		
-		for( int ctr1 = 0; ctr1 < newDefaultLayout.length; ctr1++)
-		{
-			System.out.println("\n");
-			for(int ctr2 = 0; ctr2 < newDefaultLayout.length; ctr2++)
-			{
-				System.out.println(newDefaultLayout[ctr1][ctr2]);
-			}
-		
-		}
 		//File closes, reader closes. 
 		buffReader.close();
 		scan.close();	
@@ -411,10 +399,8 @@ public class ChallengeSceneController {
         
         //	Handles clicking on a piece
         iv.setOnMouseClicked(event -> {
-        	System.out.printf("The current player is: %s\n", gs.getActivePlayer().getName());
         	if(gs.getActivePlayer().getName() == "CPU") //Stops CPU from being attempted to move.
         	{
-        		System.out.println("CPU can't move");
         		return;
         	}
         	// Reset the board to its default coloring before doing move coloring
@@ -422,10 +408,6 @@ public class ChallengeSceneController {
         	
             Tile boardTile = gs.getBoard().getTiles()[row][column];
             Piece piece = boardTile.getPiece();
-            
-            // Debug information
-            System.out.println("[" + (piece == null ? "" : piece.getName()) + "] owned by " + (piece == null ? "" : piece.getOwner().getName()));
-            System.out.println("Clicked: " + row + ", " + column);
             
             // Spawn a circle on tiles that are possible moves
             if (piece != null) {
@@ -438,10 +420,8 @@ public class ChallengeSceneController {
         // Start drag and drop
         iv.setOnDragDetected(event -> {
         	
-        	System.out.printf("The current player is: %s\n", gs.getActivePlayer().getName());
         	if(gs.getActivePlayer().getName() == "CPU") //Stops CPU from being attempted to move.
         	{
-        		System.out.println("CPU can't move");
         		return;
         	}
         
@@ -499,7 +479,6 @@ public class ChallengeSceneController {
         
         // When a piece is dropped onto another piece
         iv.setOnDragDropped(event -> {
-        	System.out.println("setOnDragged Drop(Piece does exist\n");
         	Tile boardTile = gs.getBoard().getTiles()[row][column];
         	// If selected piece is not null, move the piece
         	if (selectedPiece != null) {
@@ -508,21 +487,15 @@ public class ChallengeSceneController {
         			if (capturedPiece != null) {
             			handleMoveStats(selectedPiece, capturedPiece);
         				gs.getBoard().killPiece(boardTile.getPiece());
-        				System.out.printf("Stomped %s\n", capturedPiece.getName());
         				if(capturedPiece.getName() == "King")
         				{
-        					System.out.println("King was captured, puzzle complete!");
-        					System.out.println("Victory Button is now visible!");
         					checkAnswerButton.setVisible(true);
-        					System.out.println("Done");
         					//Upon the win condition being complete, the button appears.        					
         				}
         					        				
         			}
         			movePiece(selectedPiece, new Position(row, column));
-            	} else {
-            		System.out.println("Invalid move!");
-            	}
+        		}
         	}
         	
         	resetMoveCircles();
@@ -531,7 +504,6 @@ public class ChallengeSceneController {
         // When a piece is dropped onto a tile
         // *tile may or may not contain another piece
         tile.setOnDragDropped(event -> { 
-        	System.out.println("setOnDragDropped(Piece may not exist\n");
         	Tile boardTile = gs.getBoard().getTiles()[row][column];
         	// If selected piece is not null, move the piece
         	if (selectedPiece != null) {
@@ -542,18 +514,13 @@ public class ChallengeSceneController {
         				gs.getBoard().killPiece(boardTile.getPiece());
             				if(capturedPiece.getName() == "King")
             				{
-            					System.out.println("King was captured, puzzle complete!");
-            					System.out.println("Victory Button is now visible!");
             					checkAnswerButton.setVisible(true);
-            					System.out.println("Done");
             					//Upon the win condition being complete, the button appears.        					
             				}
             					        				
             			
         			}
         			movePiece(selectedPiece, new Position(row, column));
-            	} else {
-            		System.out.println("Invalid move!");
             	}
         	}
         	

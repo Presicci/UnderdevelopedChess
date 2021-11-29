@@ -30,8 +30,6 @@ public class TurnTimer {
 			@Override
 			public void run() {
 				if (running) {
-					System.out.println("Time: " + decrementTimer());	// Tick the timer down
-					// Write seconds to gui	
 				}
 			}
 		}, 1000, 1000);	// 1 second
