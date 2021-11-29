@@ -12,6 +12,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import main.com.udcinc.udc.game.GameRules;
+import main.com.udcinc.udc.game.player.Player;
 import main.com.udcinc.udc.mainmenu.MainMenuController;
 import main.com.udcinc.udc.settings.GameSettings;
 
@@ -54,6 +55,18 @@ public class ChallengeVictoryController {
 		Scene scene = new Scene(root, 800, 600);
 		stage.setScene(scene);
 		stage.show();
+    }
+    
+    @FXML
+    void handle_challenge_1(ActionEvent event) throws IOException {
+		Player Human = new Player("Human");
+		Player CPU = new Player("CPU");
+		ChallengeSceneBuilder csb = new ChallengeSceneBuilder();
+		//Set the passed Challenge1 CSV
+		String Challenge = "Challenge1";
+		rules.setNumberOfTurns(3);
+		csb.build((Stage) ((Node)event.getSource()).getScene().getWindow(), settings, rules, Human, CPU, Challenge);
+
     }
 
 
