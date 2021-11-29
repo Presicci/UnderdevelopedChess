@@ -30,6 +30,7 @@ public class TurnTimer {
 			@Override
 			public void run() {
 				if (running) {
+					decrementTimer();
 				}
 			}
 		}, 1000, 1000);	// 1 second
