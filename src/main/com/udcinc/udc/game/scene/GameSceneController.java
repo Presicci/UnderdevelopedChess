@@ -52,6 +52,7 @@ import main.com.udcinc.udc.game.piece.impl.Pawn;
 import main.com.udcinc.udc.game.piece.impl.Queen;
 import main.com.udcinc.udc.game.piece.impl.Rook;
 import main.com.udcinc.udc.game.player.Player;
+import main.com.udcinc.udc.game.player.saving.SerializePlayer;
 import main.com.udcinc.udc.game.state.GameState;
 import main.com.udcinc.udc.mainmenu.MainMenuController;
 
@@ -796,6 +797,16 @@ public class GameSceneController {
         MainMenuController controller = loader.<MainMenuController>getController();
         controller.setRules(gs.getRules());
         controller.setSettings(gs.getSettings());
+        
+        Player whitePlayer = gs.getWhitePlayer();
+        Player blackPlayer = gs.getBlackPlayer();
+        
+        whitePlayer.incrementGamesPlayed();
+        blackPlayer.incrementGamesPlayed();
+		SerializePlayer.save(whitePlayer);
+		SerializePlayer.save(blackPlayer);
+		if(whitePlayer.getTimer() != null) whitePlayer.getTimer().stop(); //only if there is a timer, stop them
+		if(blackPlayer.getTimer() != null) blackPlayer.getTimer().stop();
         
 		// Transition scene to gamescreen
 		Scene scene = new Scene(root, 800, 600);
