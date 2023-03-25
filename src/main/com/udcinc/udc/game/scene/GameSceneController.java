@@ -225,6 +225,16 @@ public class GameSceneController {
 		
 		for(int i = 0; i < 8; i++) {
 			for(int j = 0; j < 8; j++) {
+				if (j == 4) {
+					if (i == 0) {
+						returnLayout[i][j] = "bK";
+						continue;
+					}
+					if (i == 7) {
+						returnLayout[i][j] = "wK";
+						continue;
+					}
+				}
 				if (i < 2) 
 					returnLayout[i][j] = "b" + randPiece();
 				else if (i > 5)
